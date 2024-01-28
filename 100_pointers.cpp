@@ -18,13 +18,14 @@ int main()
     */
     int a = 1025;
 
-    int *p;
+    int *p; // Pointer is stored in 4 bytes
     p = &a; 
 
     printf("size of integer is %ld byte(s)\n", sizeof(int));
     printf("address int pointer = %p, value = %d\n", p, *p);
     printf("address +1 = %p, value  = %d\n", p+1, *(p+1));
 
+    // TYPE CASTING
     char *p0;
     p0 = (char *)p;
 
@@ -36,10 +37,27 @@ int main()
     // void pointer - Generic pointer
     void *p1;
     p1 = p;
-    printf("address void pointer = %p", p1);  // *p1 = ... Compilation error
+    printf("address void pointer = %p\n", p1);  // *p1 = ... Compilation error
     // printf("address +1 = %p", p1+1); // p1+1 : Compilation error
 
+    // POINTER to another pointer
 
+    int x = 5;
+    int *px = &x;
+    *px = 6;
+
+    int **q = &px;
+    int ***r= &q;
+
+    printf("----------------------------\n");
+    printf("*p = %d\n", *px);
+    printf("*q = %p\n", *q);
+    printf("*q = %d\n", **q);
+    printf("**r = %p\n", **r);
+    printf("***r = %d\n", ***r);
+    ***r = 10;
+    printf("x = %d\n", x);
+    printf("----------------------------\n");
 
     return 0;
 }
