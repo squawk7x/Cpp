@@ -74,6 +74,8 @@ int main()
     printf("----------------------------\n");
     */
 
+    /*
+
     // POINTERS AS FUNCTION ARGUMENTS - CALL BY REFERENCE
 
     int a = 10;
@@ -87,5 +89,25 @@ int main()
     increment_by_reference(&a);
     printf("value of a in main after call by reference = %d\n", a);
 
+    */
+
+    // POINTERS AND ARRAYS
+    int A[] = {2,
+               4,
+               5,
+               8,
+               1};
+    int *p = A;
+
+    printf("%p\n", A); // A == &A[0]   !!!
+
+    for (int i = 0; i < 5; i++)
+    {
+        printf("address = %p\n", &A[i]);
+        printf("address = %p\n", A + i);
+        printf("value = %d\n", A[i]);
+        printf("value = %d\n", *(A + i));
+    }
+    
     return 0;
 }
