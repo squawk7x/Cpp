@@ -90,7 +90,7 @@ int main()
     printf("value of a in main after call by reference = %d\n", a);
 
     */
-
+    /*
     // POINTERS AND ARRAYS
     int A[] = {2,
                4,
@@ -108,6 +108,11 @@ int main()
         printf("value = %d\n", A[i]);
         printf("value = %d\n", *(A + i));
     }
-    
+    */
+
+   // ARRAYS AS FUNCTION ARGUMENTS
+
+   
+
     return 0;
 }
