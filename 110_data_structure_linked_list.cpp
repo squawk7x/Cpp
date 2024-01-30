@@ -21,6 +21,7 @@ public:
     // Function to insert a new node at the beginning of the linked list
     void insert(int value) {
         Node* newNode = new Node(value); // Create a new node
+        // (*newNode).next = head;
         newNode->next = head; // Point the new node to the current head
         head = newNode; // Update the head to the new node
     }
