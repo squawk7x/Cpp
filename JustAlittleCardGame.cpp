@@ -9,7 +9,7 @@ using std::vector;
 vector<string> ranks = {"6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 vector<string> suits = {"♦", "♥", "♠", "♣"};
 vector<string> ranknames = {"6",    "7",     "8",    "9",  "10",
-                                      "jack", "queen", "king", "ace"};
+                            "jack", "queen", "king", "ace"};
 vector<string> suitnames = {"diamonds", "hearts", "spades", "clubs"};
 
 class Card {
