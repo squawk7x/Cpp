@@ -1,43 +1,37 @@
 #include <stdio.h>
 
-void increment_by_value(int a)
-{
+void increment_by_value(int a) {
     a = a + 1;
     printf("address of variable a in increment_by_value = %p\n", &a);
 }
 
-void increment_by_reference(int *pa)
-{
+void increment_by_reference(int *pa) {
     *pa = *pa + 1;
     printf("address of variable a in increment_by_reference = %p\n", &*pa);
 }
 
-int sumOfElements(int B[], int size)
-{
+int sumOfElements(int B[], int size) {
     int i, sum = 0;
     // int size = sizeof(B) / sizeof(B[0]);
     // with array as argument is call by reference !!!
     // A[] interpreted as int *B (pointer to integer)
-    printf("sumOfElements: size of B = %ld, size of B[0] = %ld\n", sizeof(B), sizeof(B[0]));
-    for (i = 0; i < size; i++)
-    {
+    printf("sumOfElements: size of B = %ld, size of B[0] = %ld\n", sizeof(B),
+           sizeof(B[0]));
+    for (i = 0; i < size; i++) {
         sum += B[i]; // B[i] = *(B+i)
     }
 
     return sum;
 }
 
-void doubleElements(int *B, int size)
-{
+void doubleElements(int *B, int size) {
     int i, sum = 0;
-    for (i = 0; i < size; i++)
-    {
+    for (i = 0; i < size; i++) {
         B[i] = 2 * B[i];
     }
 }
 
-int main()
-{
+int main() {
     int a = 1025;
     int *p;
     p = &a;
@@ -101,17 +95,12 @@ int main()
     printf("value of a in main after call by reference = %d\n", a);
 
     // POINTERS AND ARRAYS
-    int A[] = {2,
-               4,
-               5,
-               8,
-               1};
+    int A[] = {2, 4, 5, 8, 1};
     int *pA = A;
 
     printf("%p\n", A); // A == &A[0]   !!!
 
-    for (int i = 0; i < 5; i++)
-    {
+    for (int i = 0; i < 5; i++) {
         printf("address = %p\n", &A[i]);
         printf("address = %p\n", A + i);
         printf("value = %d\n", A[i]);
@@ -119,22 +108,17 @@ int main()
     }
 
     // ARRAYS AS FUNCTION ARGUMENTS
-    int B[] = {1,
-               2,
-               3,
-               4,
-               5};
+    int B[] = {1, 2, 3, 4, 5};
     int size = sizeof(B) / sizeof(B[0]);
     int total = sumOfElements(B, size);
-    printf("main: size of B = %ld, size of B[0] = %ld\n", sizeof(B), sizeof(B[0]));
+    printf("main: size of B = %ld, size of B[0] = %ld\n", sizeof(B),
+           sizeof(B[0]));
     printf("sum of elements = %d\n", total);
 
     doubleElements(B, size);
-    for (int i = 0; i < size; i++)
-    {
+    for (int i = 0; i < size; i++) {
         printf("%d ", B[i]);
     }
 
-
-return 0;
+    return 0;
 }
