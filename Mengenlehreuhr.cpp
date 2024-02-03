@@ -3,6 +3,15 @@
 #include <ctime>
 #include <iomanip>
 #include <thread>
+#include <cstdlib> // Needed for the system() function
+
+#ifdef _WIN32
+// Windows
+#define CLEAR_SCREEN "cls"
+#else
+// Assume UNIX-like system
+#define CLEAR_SCREEN "clear"
+#endif
 
 // Function to convert a digits to its corresponding pattern
 std::string convertDigitToPattern(int digit, int row) {
@@ -68,7 +77,13 @@ std::string convertDigitToPattern(int digit, int row) {
 }
 
 int main() {
+
+    // system("tput civis"); // Hide the cursor
+
     while (true) {
+        // Clear the screen
+        system(CLEAR_SCREEN);
+
         // Get the current system time
         auto currentTime = std::chrono::system_clock::to_time_t(
             std::chrono::system_clock::now());
@@ -89,6 +104,8 @@ int main() {
         // Wait for one second before updating the time again
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
+
+    // system("tput cnorm"); // Make the cursor visible again
 
     return 0;
 }

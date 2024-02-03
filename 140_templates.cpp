@@ -9,5 +9,4 @@ int main() {
     int i2 = 77;
     std::cout << mymax(i1, i2) << std::endl;
     std::cout << mymax("hi", "Hello") << std::endl;
-
 }

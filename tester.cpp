@@ -1,74 +1,77 @@
 #include <iostream>
 #include <chrono>
 #include <ctime>
-#include <iomanip>
 #include <thread>
+#include <iomanip>
 
-// Function to convert a digit (0-9) to its corresponding pattern
-std::string convertDigitToPattern(int digit, int cut) {
-    std::string pattern;
-    switch (digit) {
-        case 0:
-            pattern = "...........";
-            break;
-        case 1:
-            pattern = "..........o";
-            break;
-        case 2:
-            pattern = ".........oo";
-            break;
-        case 3:
-            pattern = "........ooo";
-            break;
-        case 4:
-            pattern = ".......oooo";
-            break;
-        case 5:
-            pattern = "......ooooo";
-            break;
-        case 6:
-            pattern = ".....oooooo";
-            break;
-        case 7:
-            pattern = "....ooooooo";
-            break;
-        case 8:
-            pattern = "...oooooooo";
-            break;
-        case 9:
-            pattern = "..ooooooooo";
-            break;
-        case 10:
-            pattern = ".oooooooooo";
-            break;
-        case 11:
-            pattern = "ooooooooooo";
-            break;
-        default:
-            pattern = "";
-            break;
+// Function to display the Qlocktwo-style clock
+void displayQlocktwoClock() {
+    // Clear the console screen
+    std::system("clear");
+
+    // Get the current system time
+    auto currentTime = std::chrono::system_clock::to_time_t(
+        std::chrono::system_clock::now());
+    
+    // Convert the time to a tm structure for local time
+    std::tm *localTime = std::localtime(&currentTime);
+
+    // Define the Qlocktwo-style clock grid
+    std::string clockGrid[11][11] = {
+        {"I", "T", "L", "I", "S", "A", "S", "T", "I", "M", "E"},
+        {"A", "C", "Q", "U", "A", "R", "T", "E", "R", "D", "C"},
+        {"T", "W", "E", "N", "T", "Y", "F", "I", "V", "E", "X"},
+        {"H", "A", "L", "F", "B", "T", "E", "N", "F", "T", "O"},
+        {"P", "A", "S", "T", "E", "R", "U", "N", "I", "N", "E"},
+        {"O", "N", "E", "S", "I", "X", "T", "H", "R", "E", "E"},
+        {"F", "O", "U", "R", "F", "I", "V", "E", "T", "W", "O"},
+        {"E", "I", "G", "H", "T", "E", "L", "E", "V", "E", "N"},
+        {"S", "E", "V", "E", "N", "T", "W", "E", "L", "V", "E"},
+        {"T", "E", "N", "S", "E", "O", "C", "L", "O", "C", "K"},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "}, // Empty row for spacing
+    };
+
+    // Get the current hour, minute, and second
+    int hour = localTime->tm_hour;
+    int minute = localTime->tm_min;
+    int second = localTime->tm_sec;
+
+    // Convert the hour to 12-hour format
+    if (hour > 12) hour -= 12;
+
+    // Set the time in the Qlocktwo-style clock grid
+    // Hours
+    if (hour >= 10) {
+        clockGrid[0][9] = "1";
+        clockGrid[0][10] = std::to_string(hour - 10);
+    } else {
+        clockGrid[0][9] = " ";
+        clockGrid[0][10] = std::to_string(hour);
     }
 
-    return pattern.substr(pattern.length() - cut);
+    // Minutes
+    clockGrid[2][6] = std::to_string(minute / 10);
+    clockGrid[2][7] = std::to_string(minute % 10);
+
+    // Seconds
+    clockGrid[4][8] = std::to_string(second / 10);
+    clockGrid[4][9] = std::to_string(second % 10);
+
+    // Display the current time in the Qlocktwo-style clock grid
+    for (int i = 0; i < 11; ++i) {
+        for (int j = 0; j < 11; ++j) {
+            std::cout << clockGrid[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
 }
 
 int main() {
     while (true) {
-        // Get the current system time
-        auto currentTime = std::chrono::system_clock::to_time_t(
-            std::chrono::system_clock::now());
+        // Display the Qlocktwo-style clock
+        displayQlocktwoClock();
 
-        // Convert the time to a tm structure for local time
-        std::tm *localTime = std::localtime(&currentTime);
-
-        // Display the time in the Menenlehreuhr format
-        std::cout << convertDigitToPattern((localTime->tm_hour / 5), 4) << " "
-                  << convertDigitToPattern((localTime->tm_hour % 5), 4)
-                  << " : " << convertDigitToPattern(localTime->tm_min / 5, 11)
-                  << " " << convertDigitToPattern(localTime->tm_min % 5, 4)
-                  << std::endl;
-
-        // Wait for one second before updating the time again
+        // Wait for one second before updating the clock again
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
