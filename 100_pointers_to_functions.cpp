@@ -12,7 +12,7 @@ int subtraction(int a, int b) {
 
 int operation(int x, int y, int (*functocall)(int, int)) {
     int g;
-    g = *functocall(x, y);
+    g = (*functocall)(x, y);
     return g;
 }
 

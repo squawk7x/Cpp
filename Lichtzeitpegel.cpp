@@ -5,45 +5,69 @@
 #include <thread> // For std::this_thread::sleep_for
 
 // Function to convert a digit (0-9) to its corresponding pattern
-std::string convertDigitToPattern(int digit, int cut) {
+std::string convertDigitToPattern(int digit, int pos) {
     std::string pattern;
     switch (digit) {
         case 0:
-            pattern = ".........";
+            if (pos == 1)
+                pattern = "░░";
+            if (pos == 3 || pos == 5)
+                pattern = "░░░░░";
+            if (pos == 2 || pos == 4 || pos == 6)
+                pattern = "░░░░░░░░░";
             break;
         case 1:
-            pattern = "........o";
+            if (pos == 1)
+                pattern = "░█";
+            if (pos == 3 || pos == 5)
+                pattern = "░░░░█";
+            if (pos == 2 || pos == 4 || pos == 6)
+                pattern = "░░░░░░░░█";
             break;
         case 2:
-            pattern = ".......oo";
+            if (pos == 1)
+                pattern = "██";
+            if (pos == 3 || pos == 5)
+                pattern = "░░░██";
+            if (pos == 2 || pos == 4 || pos == 6)
+                pattern = "░░░░░░░██";
             break;
         case 3:
-            pattern = "......ooo";
+            if (pos == 3 || pos == 5)
+                pattern = "░░███";
+            if (pos == 2 || pos == 4 || pos == 6)
+                pattern = "░░░░░░███";
             break;
         case 4:
-            pattern = ".....oooo";
+            if (pos == 3 || pos == 5)
+                pattern = "░████";
+            if (pos == 2 || pos == 4 || pos == 6)
+                pattern = "░░░░░████";
             break;
         case 5:
-            pattern = "....ooooo";
+            if (pos == 3 || pos == 5)
+                pattern = "█████";
+            if (pos == 2 || pos == 4 || pos == 6)
+                pattern = "░░░░█████";
             break;
         case 6:
-            pattern = "...oooooo";
+            pattern = "░░░██████";
             break;
         case 7:
-            pattern = "..ooooooo";
+            pattern = "░░███████";
             break;
         case 8:
-            pattern = ".oooooooo";
+            pattern = "░████████";
             break;
         case 9:
-            pattern = "ooooooooo";
+            pattern = "█████████";
             break;
         default:
             pattern = "";
             break;
     }
 
-    return pattern.substr(pattern.length() - cut);
+    return pattern;
 }
 
 int main() {
@@ -56,12 +80,13 @@ int main() {
         std::tm *localTime = std::localtime(&currentTime);
 
         // Display the time in the Düsseldorfer Tower format
-        std::cout << convertDigitToPattern((localTime->tm_hour / 10), 2) << " "
-                  << convertDigitToPattern((localTime->tm_hour % 10), 9)
-                  << "  " << convertDigitToPattern(localTime->tm_min / 10, 5)
-                  << " " << convertDigitToPattern(localTime->tm_min % 10, 9)
-                  << "  " << convertDigitToPattern(localTime->tm_sec / 10, 5)
-                  << " " << convertDigitToPattern(localTime->tm_sec % 10, 9)
+        std::cout << "21H987654321:54321M987654321:54321S987654321\n"
+                  << convertDigitToPattern((localTime->tm_hour / 10), 1) << "H"
+                  << convertDigitToPattern((localTime->tm_hour % 10), 2) << ":"
+                  << convertDigitToPattern(localTime->tm_min / 10, 3) << "M"
+                  << convertDigitToPattern(localTime->tm_min % 10, 4) << ":"
+                  << convertDigitToPattern(localTime->tm_sec / 10, 5) << "S"
+                  << convertDigitToPattern(localTime->tm_sec % 10, 6)
                   << std::endl;
 
         // Wait for one second before updating the time again
