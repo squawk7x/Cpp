@@ -27,15 +27,13 @@ std::string convertDigitToPattern(int digit, int row) {
                 pattern = "██ ██ ░░ ░░";
             break;
         case 3:
-
             if (row == 3 || row == 5)
                 pattern = "███░░░░░░░░";
             else
                 pattern = "██ ██ ██ ░░";
             break;
         case 4:
-
-            if (row == 3)
+            if (row == 3 || row == 5)
                 pattern = "████░░░░░░░";
             else
                 pattern = "██ ██ ██ ██";
