@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <thread>
 
-// Function to convert a digit (0-9) to its corresponding pattern
+// Function to convert a digits to its corresponding pattern
 std::string convertDigitToPattern(int digit, int row) {
     std::string pattern;
     switch (digit) {
