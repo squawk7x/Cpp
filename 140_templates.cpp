@@ -1,6 +1,7 @@
 #include <iostream>
 
-template <typename T> T mymax(T a, T b) {
+template <typename T> 
+T mymax(T a, T b) {
     return b < a ? a : b;
 }
 
