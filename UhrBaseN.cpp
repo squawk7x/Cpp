@@ -3,84 +3,117 @@
 #include <ctime>
 #include <iomanip>
 #include <thread>
-#include <cstdlib> // Needed for the system() function
+#include <cstdlib>
 
 #ifdef _WIN32
-// Windows
 #define CLEAR_SCREEN "cls"
 #else
-// Assume UNIX-like system
 #define CLEAR_SCREEN "clear"
 #endif
 
-int BASE = 5;
+// #define BASE 5
 
-// Function to convert a digits to its corresponding pattern
-std::string convertDigitToPattern(int digit, int row) {
-    std::string pattern;
+std::string makePattern(int digit, int length, std::string opaque,
+                        std::string translucent) {
+    std::string pattern = "";
 
-    pattern = "";
-    int X = 2, Y = 1, Z = 1;
+    for (int i = 0; i < digit; i++) {
+        pattern += opaque;
+    }
 
-    if (row == 3 || row == 5) {
-        for (int i = 0; i < digit; ++i) {
-            for (int j = 0; j < Z; ++j) {
-                pattern += "█";
-            }
-        }
-
-        for (int i = digit; i < (60 / BASE - 1); ++i) {
-            for (int j = 0; j < Z; ++j) {
-                pattern += "░";
-            }
-        }
-
-        // (Base-1)*p*x + (BASE-2)*p*y = [(60/BASE)-1]*p*z
-
-    } else {
-
-        for (int i = 0; i < digit; ++i) {
-            pattern += "██ ";
-        }
-        for (int i = digit; i < (BASE - 1); ++i) {
-            pattern += "░░ ";
-        }
+    for (int i = digit; i < length; i++) {
+        pattern += translucent;
     }
 
     return pattern;
 }
 
-int main() {
-    // system("tput civis"); // Hide the cursor
+int main(int argc, char *argv[]) {
+
+    int BASE = 5;
+
+    if (argc == 2) {
+        BASE = std::atoi(argv[1]);
+    }
+
+    std::string pattern_H[24 / BASE + 1];
+    std::string pattern_L[BASE];
+    std::string pattern_S[60 / BASE];
+    
+    std::string pos;
+    std::string pts;
+
+    if (BASE == 5) {
+        pos = "█";
+        pts = "░";
+    } else {
+        pos = "█ ";
+        pts = "░ ";
+    }
+    std::string pol;
+    std::string ptl;
+
+    if (BASE == 5) {
+        pol = "██ ";
+        ptl = "░░ ";
+    } else {
+        pol = "█ ";
+        ptl = "░ ";
+    }
+
+    // (BASE -1) +
+
+    for (int k = 0; k < 24 / BASE + 1; k++) {
+        pattern_H[k] = makePattern(k, 24 / BASE, pol, ptl);
+    }
+
+    for (int k = 0; k < 60 / BASE; k++) {
+        pattern_S[k] = makePattern(k, 60 / BASE - 1, pos, pts);
+    }
+
+    for (int k = 0; k < BASE; k++) {
+        pattern_L[k] = makePattern(k, BASE - 1, pol, ptl);
+    }
 
     while (true) {
-        // Clear the screen
         system(CLEAR_SCREEN);
 
-        // Get the current system time
         auto currentTime = std::chrono::system_clock::to_time_t(
             std::chrono::system_clock::now());
 
-        // Convert the time to a tm structure for local time
         std::tm *localTime = std::localtime(&currentTime);
 
-        // Display the time in the Menenlehreuhr format
-        std::cout << "\n"
-                  << convertDigitToPattern((localTime->tm_hour / BASE), 1)
-                  << "\n"
-                  << convertDigitToPattern((localTime->tm_hour % BASE), 2)
-                  << "\n"
-                  << convertDigitToPattern(localTime->tm_min / BASE, 3) << "\n"
-                  << convertDigitToPattern(localTime->tm_min % BASE, 4) << "\n"
-                  << convertDigitToPattern(localTime->tm_sec / BASE, 5) << "\n"
-                  << convertDigitToPattern(localTime->tm_sec % BASE, 6) << "\n"
-                  << std::endl;
+        std::cout << "Indication based " << BASE << "\n";
+        std::cout << pattern_H[localTime->tm_hour / BASE];
+        if (BASE == 5)
+            std::cout << "\n";
+        else
+            std::cout << "H ";
+        std::cout << pattern_L[localTime->tm_hour % BASE];
+        if (BASE == 5)
+            std::cout << "\n";
+        else
+            std::cout << ": ";
+        std::cout << pattern_S[localTime->tm_min / BASE];
+        if (BASE == 5)
+            std::cout << "\n";
+        else
+            std::cout << "M ";
+        std::cout << pattern_L[localTime->tm_min % BASE];
+        if (BASE == 5)
+            std::cout << "\n";
+        else
+            std::cout << ": ";
+        std::cout << pattern_S[localTime->tm_sec / BASE];
+        if (BASE == 5)
+            std::cout << "\n";
+        else
+            std::cout << "S ";
+        std::cout << pattern_L[localTime->tm_sec % BASE];
+        std::cout << "\n";
 
-        // Wait for one second before updating the time again
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
-
-    // system("tput cnorm"); // Make the cursor visible again
 
     return 0;
 }
