@@ -64,6 +64,11 @@ int main(int argc, char *argv[]) {
         ptl = "░ ";
     }
 
+<<<<<<< HEAD
+    // (BASE -1) +
+
+=======
+>>>>>>> aa1a7cc (Mengenlehreuhr)
     for (int k = 0; k < 24 / BASE + 1; k++) {
         pattern_H[k] = makePattern(k, 24 / BASE, pol, ptl);
     }
