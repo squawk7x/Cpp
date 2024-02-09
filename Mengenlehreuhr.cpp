@@ -61,31 +61,27 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    std::string pattern_H[24 / BASE + 1];
-    std::string pattern_L[BASE];
-    std::string pattern_S[60 / BASE];
-
     std::string pos;
     std::string pts;
-
-    if (BASE == 5) {
-        pos = "█";
-        pts = "░";
-    } else {
-        pos = "█ ";
-        pts = "░ ";
-    }
     std::string pol;
     std::string ptl;
 
     if (BASE == 5) {
+        pos = "█";
+        pts = "░";
         pol = "██ ";
         ptl = "░░ ";
     } else {
+        pos = "█ ";
+        pts = "░ ";
         pol = "█ ";
         ptl = "░ ";
     }
 
+    std::string pattern_H[24 / BASE + 1];
+    std::string pattern_L[BASE];
+    std::string pattern_S[60 / BASE];
+    
     for (int k = 0; k < 24 / BASE + 1; k++) {
         pattern_H[k] = makePattern(k, 24 / BASE, pol, ptl);
     }
@@ -108,30 +104,20 @@ int main(int argc, char *argv[]) {
 
         std::cout << "\n";
         std::cout << pattern_H[localTime->tm_hour / BASE];
-        if (BASE == 5)
-            std::cout << "\n";
-        else
-            std::cout << "H ";
+        BASE == 5 && std::cout << "\n";
+        BASE != 5 && std::cout << "H ";
         std::cout << pattern_L[localTime->tm_hour % BASE];
-        if (BASE == 5)
-            std::cout << "\n";
-        else
-            std::cout << ": ";
+        BASE == 5 && std::cout << "\n";
+        BASE != 5 && std::cout << ": ";
         std::cout << pattern_S[localTime->tm_min / BASE];
-        if (BASE == 5)
-            std::cout << "\n";
-        else
-            std::cout << "M ";
+        BASE == 5 && std::cout << "\n";
+        BASE != 5 && std::cout << "M ";
         std::cout << pattern_L[localTime->tm_min % BASE];
-        if (BASE == 5)
-            std::cout << "\n";
-        else
-            std::cout << ": ";
+        BASE == 5 && std::cout << "\n";
+        BASE != 5 && std::cout << ": ";
         std::cout << pattern_S[localTime->tm_sec / BASE];
-        if (BASE == 5)
-            std::cout << "\n";
-        else
-            std::cout << "S ";
+        BASE == 5 && std::cout << "\n";
+        BASE != 5 && std::cout << "S ";
         std::cout << pattern_L[localTime->tm_sec % BASE];
         std::cout << "\n\n";
 
