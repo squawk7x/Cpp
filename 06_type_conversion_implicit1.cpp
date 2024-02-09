@@ -1,11 +1,10 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 
-int main(){
+int main() {
+    double x = (int)3.14;
 
-double x = (int) 3.14;
-
-std ::cout<< x;
+    std ::cout << x;
 
     return 0;
 }

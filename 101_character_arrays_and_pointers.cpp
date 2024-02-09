@@ -3,8 +3,7 @@
 
 // A STRING HAS TO BE TERMINATED BY '\0'
 
-void print(char *C)
-{
+void print(char *C) {
     int i = 0;
     while (C[i] != '\0') // C[i] = *(C+i)
     {
@@ -14,8 +13,7 @@ void print(char *C)
     printf("\n");
 }
 
-void print2(char *C)
-{
+void print2(char *C) {
     while (*C != '\0') // C[i] = *(C+i)
     {
         printf("%c", *C);
@@ -24,8 +22,7 @@ void print2(char *C)
     printf("\n");
 }
 
-int main()
-{
+int main() {
     char C[4];
     C[0] = 'J';
     C[1] = 'O';

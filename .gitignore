@@ -4,3 +4,4 @@
 # Allow *.cpp files
 .gitignore
 !*.cpp
+tester.cpp
