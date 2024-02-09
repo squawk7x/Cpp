@@ -29,14 +29,39 @@ std::string makePattern(int digit, int length, std::string opaque,
     return pattern;
 }
 
+void displayHelp() {
+    std::cout << "Usage: Mengenlehreuhr [options]\n";
+    std::cout << "Options:\n";
+    std::cout << "   Mengenlehreuhr                  Display time based on "
+                 "quinary system\n";
+    std::cout << "  -b 2 (or 3, 4, 5, 6, 10, 12)     Display time based on "
+                 "given number\n";
+    std::cout << "  -h, --help      Display this help message\n";
+    std::cout << "  --version       Display program version information\n";
+}
+
 int main(int argc, char *argv[]) {
     int BASE = 5;
 
-    if (argc == 2 && (strcmp(argv[1], "1") == 0 || strcmp(argv[1], "2") == 0 ||
-                      strcmp(argv[1], "3") == 0 || strcmp(argv[1], "4") == 0 ||
-                      strcmp(argv[1], "5") == 0 || strcmp(argv[1], "6") == 0 ||
-                      strcmp(argv[1], "10") == 0 || strcmp(argv[1], "12") == 0)) {
-        BASE = std::atoi(argv[1]);
+    if (argc > 1) {
+        std::string arg = argv[1];
+        if (arg == "-h" || arg == "--help") {
+            displayHelp();
+            return 0;
+        } else if (arg == "--version") {
+            std::cout << "Program Version 1.0" << std::endl;
+            return 0;
+        } else if (arg == "-b" &&
+                   (strcmp(argv[2], "1") == 0 || strcmp(argv[2], "2") == 0 ||
+                    strcmp(argv[2], "3") == 0 || strcmp(argv[2], "4") == 0 ||
+                    strcmp(argv[2], "5") == 0 || strcmp(argv[2], "6") == 0 ||
+                    strcmp(argv[2], "10") == 0 || strcmp(argv[2], "12") == 0)) {
+            BASE = std::atoi(argv[2]);
+        } else {
+            std::cerr << "Unknown option, try: Mengenlehreuhr -b 5"
+                      << std::endl;
+            return 1;
+        }
     }
 
     std::string pattern_H[24 / BASE + 1];
@@ -64,11 +89,6 @@ int main(int argc, char *argv[]) {
         ptl = "░ ";
     }
 
-<<<<<<< HEAD
-    // (BASE -1) +
-
-=======
->>>>>>> aa1a7cc (Mengenlehreuhr)
     for (int k = 0; k < 24 / BASE + 1; k++) {
         pattern_H[k] = makePattern(k, 24 / BASE, pol, ptl);
     }
