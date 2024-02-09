@@ -32,10 +32,7 @@ std::string makePattern(int digit, int length, std::string opaque,
 void displayHelp() {
     std::cout << "Usage: Mengenlehreuhr [options]\n";
     std::cout << "Options:\n";
-    std::cout << "   Mengenlehreuhr                  Display time based on "
-                 "quinary system\n";
-    std::cout << "  -b 2 (or 3, 4, 5, 6, 10, 12)     Display time based on "
-                 "given number\n";
+    std::cout << "  -b [ 1 2 3 4 5 6 10 12 ]     Display time base-n (default -b 5)\n";
     std::cout << "  -h, --help      Display this help message\n";
     std::cout << "  --version       Display program version information\n";
 }
