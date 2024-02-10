@@ -5,6 +5,7 @@
 #include <thread>
 #include <cstdlib>
 #include <string.h>
+#include <set>
 
 using std::string;
 using std::cout;
@@ -16,6 +17,8 @@ using std::cout;
 #endif
 
 // #define BASE 5
+
+const std::set<string> validValues = {"1", "2", "3", "4", "5", "6", "10", "12"};
 
 string makePattern(int digit, int length, string opaque, string translucent) {
     string pattern = "";
@@ -40,28 +43,28 @@ void displayHelp() {
     cout << "  --version       Display program version information\n";
 }
 
-
 int main(int argc, char *argv[]) {
     int BASE = 5;
 
     if (argc > 1) {
         string arg = argv[1];
         if (arg == "-h" || arg == "--help") {
-            displayHelp();
+            cout << "Usage: " << argv[0] << " [options]\n";
+            cout << "Options:\n";
+            cout << "  -b [ 1 2 3 4 5 6 10 12 ]     Display time base-n "
+                    "(default -b 5)\n";
+            cout << "  -h, --help      Display this help message\n";
+            cout << "  --version       Display program version information\n";
             return 0;
         } else if (arg == "--version") {
             cout << "Program Version 1.0" << std::endl;
             return 0;
-        } else if (arg == "-b" &&
-                   (strcmp(argv[2], "1") == 0 || strcmp(argv[2], "2") == 0 ||
-                    strcmp(argv[2], "3") == 0 || strcmp(argv[2], "4") == 0 ||
-                    strcmp(argv[2], "5") == 0 || strcmp(argv[2], "6") == 0 ||
-                    strcmp(argv[2], "10") == 0 || strcmp(argv[2], "12") == 0)) {
+        } else if (arg == "-b" && validValues.count(argv[2]) > 0) {
             BASE = std::atoi(argv[2]);
         } else {
             std::cerr << "Unknown option \
-            \nusage: Mengenlehreuhr -b [ 1 2 3 4 5 6 10 12 ] \
-            \ntry for example: Mengenlehreuhr -b 5"
+            \nusage: " << argv[0] << " -b [ 1 2 3 4 5 6 10 12 ] \
+            \ntry for example: " << argv[0] << " -b 5"
                       << std::endl;
             return 1;
         }
@@ -72,17 +75,10 @@ int main(int argc, char *argv[]) {
     string pol;
     string ptl;
 
-    if (BASE == 5) {
-        pos = "█";
-        pts = "░";
-        pol = "██ ";
-        ptl = "░░ ";
-    } else {
-        pos = "█ ";
-        pts = "░ ";
-        pol = "█ ";
-        ptl = "░ ";
-    }
+    pos = (BASE == 5) ? "█" : "█ ";
+    pts = (BASE == 5) ? "░" : "░ ";
+    pol = (BASE == 5) ? "██ " : "█ ";
+    ptl = (BASE == 5) ? "░░ " : "░ ";
 
     string pattern_H[24 / BASE + 1];
     string pattern_L[BASE];
