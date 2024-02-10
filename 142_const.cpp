@@ -1,7 +1,16 @@
-// **************************************************
-// if const is on the left of *, data is constant
-// if const is on the right of *, pointer is constant
-// **************************************************
+// ***********************************************
+// if const is on the  left of *,    data is const
+// if const is on the right of *, pointer is const
+// ***********************************************
+
+
+/*
+Why use const
+1. guards against inadvertent write to the variable
+2. self documenting
+3. compiler makes more optimization
+4. variabel can be put in ROM
+*/
 
 int main() {
     const int i = 5;

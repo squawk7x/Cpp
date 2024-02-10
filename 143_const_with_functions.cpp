@@ -12,9 +12,11 @@ public:
         age = 3;
         name = "dummy";
     }
-    // const parameter
+    // ---------------------
+    // const PARAMETER
+    // ---------------------
     // void setAge(int a) { age = a; a++; }     // local copy
-    // void setAge(const int a) { age = a; }    // not so usefull
+    // void setAge(const int a) { age = a; }    // not so useful, makes a copy
     void setAge(int &a) { // lvalue
         age = a + 100;
         cout << age << " - non-const" << endl;
@@ -25,13 +27,17 @@ public:
         cout << age << " - const" << endl;
     }
 
-    // const return value
+    // ---------------------
+    // const RETURN VALUE
+    // ---------------------
     // const string getName() { return name; } // const useless, returns a temporary value
     const string &getName() {
         return name;
     } // the caller cannot modify the return
 
-    // const function body
+    // ---------------------
+    // const FUNCTION
+    // ---------------------
     // void printDogName() const {cout << name << endl; age++; }
     // void printDogName() const {cout << name << endl; }
     void printDogName() const {

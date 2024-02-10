@@ -8,20 +8,22 @@ using std::vector;
 
 vector<string> ranks = {"6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 vector<string> suits = {"♦", "♥", "♠", "♣"};
-vector<string> ranknames = {"6",    "7",     "8",    "9",  "10",
+vector<string> ranknames = {"6", "7", "8", "9", "10",
                             "jack", "queen", "king", "ace"};
 vector<string> suitnames = {"diamonds", "hearts", "spades", "clubs"};
 
-class Card {
- private:
+class Card
+{
+private:
   string suit;
   string rank;
   string suitname;
   string rankname;
   int value;
 
- public:
-  Card(string suit, string rank) : suit(suit), rank(rank) {
+public:
+  Card(string suit, string rank) : suit(suit), rank(rank)
+  {
     suitname = suitnames[std::distance(
         suits.begin(), std::find(suits.begin(), suits.end(), suit))];
     rankname = ranknames[std::distance(
@@ -29,14 +31,18 @@ class Card {
     value = set_value(rank);
   }
 
-  int set_value(string rank) {
-    if (rank == "10" || rank == "Q" || rank == "K") {
+  int set_value(string rank)
+  {
+    if (rank == "10" || rank == "Q" || rank == "K")
+    {
       return 10;
     }
-    if (rank == "A") {
+    if (rank == "A")
+    {
       return 15;
     }
-    if (rank == "J") {
+    if (rank == "J")
+    {
       return 20;
     }
     return 0;
@@ -44,12 +50,14 @@ class Card {
 
   string toString() { return suit + rank; }
 
-  void set_suitname(string suit) {
+  void set_suitname(string suit)
+  {
     suitname = suitnames[std::distance(
         suits.begin(), std::find(suits.begin(), suits.end(), suit))];
   }
 
-  void set_rankname(string rank) {
+  void set_rankname(string rank)
+  {
     rankname = ranknames[std::distance(
         ranks.begin(), std::find(ranks.begin(), ranks.end(), rank))];
   }
@@ -59,24 +67,29 @@ class Card {
   string get_rankname() const { return rankname; }
 };
 
-class JsuitChooser {
- private:
+class JsuitChooser
+{
+private:
   vector<string> suits;
   string suit;
 
- public:
-  JsuitChooser() {
+public:
+  JsuitChooser()
+  {
     suits = {"♦", "♥", "♠", "♣"};
     suit = "";
   }
 
-  void toggle() {
+  void toggle()
+  {
     std::rotate(suits.begin(), suits.begin() + 1, suits.end());
     suit = suits[0];
   }
 
-  void toggle_to(string target_suit) {
-    while (suit != target_suit) {
+  void toggle_to(string target_suit)
+  {
+    while (suit != target_suit)
+    {
       toggle();
     }
     suit = suits[0];
@@ -87,24 +100,29 @@ class JsuitChooser {
   string get_suit() const { return suit; }
 };
 
-class EightChooser {
- private:
+class EightChooser
+{
+private:
   vector<char> eights;
   char decision;
 
- public:
-  EightChooser() {
+public:
+  EightChooser()
+  {
     eights = {'a', 'n'};
     decision = '\0';
   }
 
-  void toggle() {
+  void toggle()
+  {
     std::rotate(eights.begin(), eights.begin() + 1, eights.end());
     decision = eights[0];
   }
 
-  void toggle_to(char dec) {
-    while (decision != dec) {
+  void toggle_to(char dec)
+  {
+    while (decision != dec)
+    {
       toggle();
     }
     decision = eights[0];
@@ -115,24 +133,29 @@ class EightChooser {
   char get_decision() const { return decision; }
 };
 
-class BridgeChooser {
- private:
+class BridgeChooser
+{
+private:
   vector<char> bridge;
   char decision;
 
- public:
-  BridgeChooser() {
+public:
+  BridgeChooser()
+  {
     bridge = {'y', 'n'};
     decision = '\0';
   }
 
-  void toggle() {
+  void toggle()
+  {
     std::rotate(bridge.begin(), bridge.begin() + 1, bridge.end());
     decision = bridge[0];
   }
 
-  void toggle_to(char dec) {
-    while (decision != dec) {
+  void toggle_to(char dec)
+  {
+    while (decision != dec)
+    {
       toggle();
     }
     decision = bridge[0];
@@ -143,24 +166,29 @@ class BridgeChooser {
   char get_decision() const { return decision; }
 };
 
-class JpointsChooser {
- private:
+class JpointsChooser
+{
+private:
   vector<char> jpoints;
   char decision;
 
- public:
-  JpointsChooser() {
+public:
+  JpointsChooser()
+  {
     jpoints = {'m', 'p'};
     decision = '\0';
   }
 
-  void toggle() {
+  void toggle()
+  {
     std::rotate(jpoints.begin(), jpoints.begin() + 1, jpoints.end());
     decision = jpoints[0];
   }
 
-  void toggle_to(char dec) {
-    while (decision != dec) {
+  void toggle_to(char dec)
+  {
+    while (decision != dec)
+    {
       toggle();
     }
     decision = jpoints[0];
@@ -171,24 +199,29 @@ class JpointsChooser {
   char get_decision() const { return decision; }
 };
 
-class RoundChooser {
- private:
+class RoundChooser
+{
+private:
   vector<char> round;
   char decision;
 
- public:
-  RoundChooser() {
+public:
+  RoundChooser()
+  {
     round = {'n', 'c'};
     decision = '\0';
   }
 
-  void toggle() {
+  void toggle()
+  {
     std::rotate(round.begin(), round.begin() + 1, round.end());
     decision = round[0];
   }
 
-  void toggle_to(char dec) {
-    while (decision != dec) {
+  void toggle_to(char dec)
+  {
+    while (decision != dec)
+    {
       toggle();
     }
     decision = round[0];
@@ -199,7 +232,8 @@ class RoundChooser {
   char get_decision() const { return decision; }
 };
 
-int main() {
+int main()
+{
   RoundChooser chooser;
   std::cout << "Initial decision: " << chooser.get_decision() << std::endl;
   chooser.toggle();
