@@ -37,6 +37,7 @@ void displayHelp() {
     std::cout << "  --version       Display program version information\n";
 }
 
+
 int main(int argc, char *argv[]) {
     int BASE = 5;
 
