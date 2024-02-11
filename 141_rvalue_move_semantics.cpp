@@ -1,34 +1,127 @@
-#include <iostream>
-#include <string>
+/* 
+ * Note 1: the most useful place for rvalue reference is overloading copy 
+ * constructor and assignment operator, to achieve move semantics.
+ *
+ * X& X::operator=(X const & rhs); 
+ * X& X::operator=(X&& rhs);
+ * 
+ * Note 2: Move semantics is implemented for all STL containers, which means:
+ *    a. Move to C++ 11, You code will be faster without changing a thing.
+ *    b. You should use passing by value more often.
+ *
+ * X &X::operator=(X const &rhs);
+ * X &X::operator=(X &&rhs);
+*/
 
-void printInt(int &i) {
-    std::cout << "Called with lvalue: " << i << std::endl;
-}
+/* Move constructor:
+ *    Purpose: avoid costly and unnecessary deep copying.
+ * 1. Move constructor is particularly powerful where passing by reference and 
+ *    passing by value are both needed.
+ * 2. Move constructor give you finer control of which part of your object to 
+ *    be moved.
+ */ 
 
-void printInt(int &&i) {
-    std::cout << "Called with rvalue: " << i << std::endl;
-}
+// #include <iostream>
+// #include <string>
 
-// void printInt(int i) {
+// /* 
+//  * Function Signature: 
+//  *
+//  *    int and int& are indistinguishable.
+//  *    int and int&& are indistinguishable.
+//  *
+//  *    int& and int&& are distinguishable.
+//  */
+
+// // parameter overloading by lvalue / rvalue
+// void printInt(int &i) {
 //     std::cout << "Called with lvalue: " << i << std::endl;
 // }
 
-int main() {
-    int a = 5;              // a is lvalue
-    int &b = a;             // b is a lvalue reference (reference)
-    int &&c = std::move(a); // c is a rvalue reference
+// void printInt(int &&i) {
+//     std::cout << "Called with rvalue: " << i << std::endl;
+// }
 
-    printInt(a); // call printInt(int& i)
-    printInt(6); // call printInt(int&& i)
-    printInt(c);
+// // void printInt(int i) {
+// //     std::cout << "Called with lvalue: " << i << std::endl;
+// // }
+
+
+
+// int main() {
+//     int a = 5;              // a is lvalue
+//     int &b = a;             // b is a lvalue reference (reference)
+//     int &&c = std::move(a); // c is a rvalue reference
+
+//     printInt(a); // call printInt(int& i)
+//     printInt(6); // call printInt(int&& i)
+//     printInt(c);
+
+//     return 0;
+// }
+
+
+
+#include <iostream>
+#include <string>
+
+class BoVector {
+    int size;
+    double *arr_;
+
+public:
+    // Copy constructor - deep copy
+    BoVector(const BoVector &rhs) {
+        size = rhs.size;
+        arr_ = new double[size];
+        for (int i = 0; i < size; i++) {
+            arr_[i] = rhs.arr_[i];
+        }
+    }
+
+    // Move constructor - shallow copy
+    BoVector(BoVector &&rhs) {
+        size = rhs.size;
+        arr_ = rhs.arr_;
+        rhs.arr_ = nullptr;
+    }
+
+    // Constructor with initializer_list
+    BoVector(std::initializer_list<double> values)
+        : size(values.size()), arr_(new double[size]) {
+        int i = 0;
+        for (auto value : values) {
+            arr_[i++] = value;
+        }
+    }
+
+    ~BoVector() {
+        delete[] arr_;
+    }
+};
+
+// void foo(BoVector v);
+void foo(BoVector v){};
+
+void foo_by_reference(BoVector &v){};
+
+BoVector createBoVector() { // creates a BoVector
+    BoVector bv{1, 2, 3};
+    return bv;
+}
+
+int main() {
+    // copy
+    BoVector reusable = createBoVector(); // lvalue
+
+    // Call no constructor
+    foo_by_reference(reusable);
+
+    // Call copy constructor
+    foo(reusable); // returns  // reusable still exists
+
+    // Call move constructor
+    foo(std::move(reusable)); // reusable.arr_ == nullptr // reusable destroyed
 
     return 0;
 }
-
-/*
-
-X &X::operator=(X const &rhs);
-X &X::operator=(X &&rhs);
-*/
-
-
