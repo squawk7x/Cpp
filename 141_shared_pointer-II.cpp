@@ -33,7 +33,7 @@ public:
 
 void foo() {
     shared_ptr<Dog> p1 = make_shared<Dog>("Gunner");
-    shared_ptr<Dog> p2 = make_shared<Dog>("Tank");
+    auto p2 = make_shared<Dog>("Tank");
     p1 = p2;      // Gunner is deleted
     p1 = nullptr; // Gunner is deleted
     p1.reset();   // Gunner is deleted

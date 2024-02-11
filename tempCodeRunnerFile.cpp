@@ -1,14 +1,4 @@
-std::string makePattern(int digit, int length, std::string opaque,
-                        std::string translucent) {
-    std::string pattern = "";
-
-    for (int i = 0; i < digit; i++) {
-        pattern += opaque;
-    }
-
-    for (int i = digit; i < length; i++) {
-        pattern += translucent;
-    }
-
-    return pattern;
-}
+ with caution.
+// 1. Not very readable, even with the help of IDE.
+//    Funcion name rarely indicates the type of parameter the function takes.
+// 2. Function could be overloaded with differenct parameter types.
