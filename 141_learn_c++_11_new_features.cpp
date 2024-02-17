@@ -18,7 +18,7 @@ class BoVector {
 
 public:
     // Define your own initializer_list constructor:
-    BoVector(const initializer_list<int> &v) {
+    BoVector(const initializer_list<int>& v) {
         for (initializer_list<int>::iterator itr = v.begin(); itr != v.end();
              ++itr)
             m_vec.push_back(*itr);
@@ -470,38 +470,39 @@ int main() {
  * 15. lambda function
  */
 
-// #include <iostream>
-// #include <string>
-// # include <vector>
+#include <iostream>
+#include <string>
+#include <vector>
 
-// using namespace std;
+using namespace std;
 
-//     template <typename func> void filter(func f, vector<int> arr) {
-//         for (auto i : arr) {
-//             if (f(i))
-//                 cout << i << " ";
-//         }
-//     }
+template <typename func> 
+void filter(func f, vector<int> arr) {  //
+    for (auto i : arr) {
+        if (f(i))
+            cout << i << " ";
+    }
+}
 
-// int main(int argc, char *argv[]) {
-//     cout << [](int x, int y) { return x + y;}(3, 4) << endl; // Output: 7
-//     auto f = [](int x, int y) { return x + y; };
-//     cout << f(3, 4) << endl; // Output: 7
+int main(int argc, char* argv[]) {
+    cout << [](int x, int y) { return x + y; }(3, 4) << endl; // Output: 7
+    auto f = [](int x, int y) { return x + y; };
+    cout << f(3, 4) << endl; // Output: 7
 
-//     vector<int> v = {1, 2, 3, 4, 5, 6};
+    vector<int> v = {1, 2, 3, 4, 5, 6};
 
-//     filter([](int x) { return (x > 3); }, v);          // Output: 4 5 6
-//     filter([](int x) { return (x > 2 && x < 5); }, v); // Output: 3 4
+    filter([](int x) { return (x > 3); }, v);          // Output: 4 5 6
+    filter([](int x) { return (x > 2 && x < 5); }, v); // Output: 3 4
 
-//     int y = 4;
-//     filter([&](int x) { return (x > y); }, v); // Output: 5 6
-//     //Note: [&] tells compiler that we want variable capture
+    int y = 4;
+    filter([&](int x) { return (x > y); }, v); // Output: 5 6
+    //Note: [&] tells compiler that we want variable capture
 
-//     // Lambda function works almost like a language extention
-//     // template for_nth_item
+    // Lambda function works almost like a language extention
+    // template for_nth_item
 
-//     return 0;
-// }
+    return 0;
+}
 
 /*
  * 17. User defined Literals

@@ -6,8 +6,8 @@
  * X& X::operator=(X&& rhs);
  * 
  * Note 2: Move semantics is implemented for all STL containers, which means:
- *    a. Move to C++ 11, You code will be faster without changing a thing.
- *    b. You should use passing by value more often.
+ *    a. Move to C++ 11, Your code will be faster without changing a thing.
+ *    b. Passing by value can be used for STL containers.
  *
  * X &X::operator=(X const &rhs);
  * X &X::operator=(X &&rhs);
@@ -19,13 +19,13 @@
  *    passing by value are both needed.
  * 2. Move constructor give you finer control of which part of your object to 
  *    be moved.
- */ 
+ */
 
 // #include <iostream>
 // #include <string>
 
-// /* 
-//  * Function Signature: 
+// /*
+//  * Function Signature:
 //  *
 //  *    int and int& are indistinguishable.
 //  *    int and int&& are indistinguishable.
@@ -46,8 +46,6 @@
 // //     std::cout << "Called with lvalue: " << i << std::endl;
 // // }
 
-
-
 // int main() {
 //     int a = 5;              // a is lvalue
 //     int &b = a;             // b is a lvalue reference (reference)
@@ -60,18 +58,16 @@
 //     return 0;
 // }
 
-
-
 #include <iostream>
 #include <string>
 
 class BoVector {
     int size;
-    double *arr_;
+    double* arr_;
 
 public:
     // Copy constructor - deep copy
-    BoVector(const BoVector &rhs) {
+    BoVector(const BoVector& rhs) {
         size = rhs.size;
         arr_ = new double[size];
         for (int i = 0; i < size; i++) {
@@ -80,7 +76,7 @@ public:
     }
 
     // Move constructor - shallow copy
-    BoVector(BoVector &&rhs) {
+    BoVector(BoVector&& rhs) {
         size = rhs.size;
         arr_ = rhs.arr_;
         rhs.arr_ = nullptr;
@@ -103,7 +99,7 @@ public:
 // void foo(BoVector v);
 void foo(BoVector v){};
 
-void foo_by_reference(BoVector &v){};
+void foo_by_reference(BoVector& v){};
 
 BoVector createBoVector() { // creates a BoVector
     BoVector bv{1, 2, 3};
@@ -121,7 +117,8 @@ int main() {
     foo(reusable); // returns  // reusable still exists
 
     // Call move constructor
-    foo(std::move(reusable)); // reusable.arr_ == nullptr // reusable destroyed
+    foo(std::move(reusable)); // reusable.arr_ == nullptr
+    // reusable destroyed
 
     return 0;
 }

@@ -1,5 +1,16 @@
 
-template <typename T> void relay(T &&arg) {
+/*
+UNIVERSAL REFERENCE !!!
+    rvalue, lvalue, const, non-const, etc.
+
+    Conditions:
+    1. T is a template type. Type deduction (reference collapsing) happens to T.
+    2. T is a function template type, not class template type.
+
+*/
+
+template <typename T>
+void relay(T&& arg) { // Universal Reference, works for lvalues and rvalues
     foo(std::forward<T>(arg));
 }
 
