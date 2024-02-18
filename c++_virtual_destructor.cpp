@@ -4,18 +4,33 @@
 
 using namespace std;
 
+
+/*
+Note:
+
+destructor from base class must be virtual or use shared_pointer.
+Only shared_pointer can be used.
+unique_pointer will only invoke base class' destructor.
+
+All classes in STL have no virtual destructor.
+So be careful inheriting from them!
+
+Use shared_ptr as much as possible.
+
+*/
+
 class Dog {
 public:
     // ~Dog() { cout << "Dog destroyed" << endl; }
     virtual ~Dog() {
         cout << "Dog destroyed" << endl;
-    }
+    } // either use virtual destructor or use sared_pointer
     virtual void bark() {
     }
 };
 
 class Yellowdog : public Dog {
-    public:
+public:
     ~Yellowdog() {
         cout << "Yellowdog destroyed" << endl;
     }
@@ -31,16 +46,13 @@ public:
     }
 };
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     // Dog *pd = DogFactory::createYellowdog();
     shared_ptr<Dog> pd = DogFactory::createYellowdog();
 
-    // delete pd;
+    // delete pd;   
+    // shared pointer ist responsible for destruction
+
     return 0;
 }
 
-/*
-Note:
-All classes in STL have no virtual destructor, so be careful inheriting from them.
-Use shared_ptr as much as possible.
-*/
