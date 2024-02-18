@@ -3,15 +3,15 @@
 #include <vector>
 using namespace std;
 
-int i = 42;
-int& ri = i;
-int j = ri + 2;
+// int i = 42;
+// int& ri = i;
+// int j = ri + 2;
 
 // ==
 
-int* const cpi = &i;
+// int* const cpi = &i;
 // *cpi = 4;
-int k = *cpi + 2;
+// int k = *cpi + 2;
 
 // int foo(int x) {
 //     cout << "foo returns var";

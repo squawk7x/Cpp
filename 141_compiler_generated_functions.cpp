@@ -1,3 +1,67 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// class dogBase {};
+
+// =>   compiler generated functions
+//      equivalent to:
+
+// class dogGen {
+// public:
+//     dogGen(){} // 1. call base class default constructor
+//                       // 2. call data members default constructor
+//     dogGen(const dogGen &rhs){} // Member by member initialization
+//     dogGen operator=(
+//         const dogGen &rhs){} // Member by member copying
+//     ~dogGen(){}              // 1. call base class destructor
+//                                     // 2. call data members destructor
+// };
+
+class dog {
+    string m_name;
+
+public:
+    dog(string name = "Bob") {
+        m_name = name;
+        cout << name << " is born." << endl;
+    }
+    ~dog() {
+        cout << m_name << " is destroyed." << endl;
+    }
+};
+
+// int main(int argc, char *argv[]) {
+//     dog dog1("Henry");  // default constructor
+//     dog dog2;
+//     dog2 = dog1;        // copy assignment operator
+
+//     return 0;
+// }
+
+class collar {
+public:
+    collar() = default;
+    collar(string color) {
+        cout << "collar is born." << endl;
+    }
+    // collar() {cout << "collar is born." << endl;}
+};
+
+class dogC {
+    collar m_collar;
+    string &m_name;
+};
+
+int main(int argc, char *argv[]) {
+    dogC dog1;
+}
+
+/*
+1. They are public and inline.
+2. They are generated only when needed.
+*/
+
 /*
 
 Member function	typical form for class C:
@@ -60,7 +124,7 @@ class Dog { // 1, 2, 3, 4, 5, 6
             // 2. calls data member's default destructor
 
     // C++ 11:
-    Dog(Dog &&);                  // move constructor
+    Dog(Dog &&); // move constructor
 
     Dog &operator=(const Dog &&); // move assignment operator
 };

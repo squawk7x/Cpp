@@ -36,11 +36,11 @@ public:
     } // the caller cannot modify the return
 
     // ---------------------
-    // const FUNCTION
+    // const FUNCTION       // can only call another const function
     // ---------------------
     // void printDogName() const {cout << name << endl; age++; }
     // void printDogName() const {cout << name << endl; }
-    void printDogName() const {
+    void printDogName() const { // function can not change member variables
         cout << name << " - const" << endl;
     }
     void printDogName() {
@@ -58,9 +58,9 @@ int main() {
     const string &name = dog.getName();
     cout << name << endl;
 
-    Dog d1;
+    Dog d1;         // calls non-const printDogName()
     d1.printDogName();
 
-    const Dog d2;
+    const Dog d2;   // calls const printDogName()
     d2.printDogName();
 }

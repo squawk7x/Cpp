@@ -42,14 +42,5 @@ T&& forward(typename remove_reference<T>::type &arg) {
 
     if arg is initialized with rvalue ==> T&& arg is rvalue reference
     if arg is initialized with lvalue ==> T&& arg is lvalue reference
- 
-    UNIVERSAL REFERENCE !!!
-    rvalue, lvalue, const, non-const, etc.
-
-    Conditions:
-    1. T is a template type.
-    2. Type deduction (reference collapsing) happens to T.
-    3. T is a function template type, not class template type.
-
-   
+    
     */

@@ -477,7 +477,7 @@ int main() {
 using namespace std;
 
 template <typename func> 
-void filter(func f, vector<int> arr) {  //
+void filter(func f, vector<int> arr) { 
     for (auto i : arr) {
         if (f(i))
             cout << i << " ";

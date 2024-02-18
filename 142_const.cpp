@@ -6,16 +6,17 @@
 
 /*
 Why use const
+-------------
 1. guards against inadvertent write to the variable
 2. self documenting
 3. compiler makes more optimization
 4. variabel can be put in ROM
+
 */
 
 int main() {
     const int i = 5;
     // i = 6;   fails
-
 
     int j = 7;
 
