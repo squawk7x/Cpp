@@ -5,47 +5,102 @@
 
 using namespace std;
 
+// class Person {
+// private:
+//     string* pName_;
+
+// public:
+//     Person(string name) : pName_(new string(name)) {}
+//     ~Person() {delete pName_;}
+//     void printName() {
+//         cout << *pName_;
+//     }
+// };
+
+// int main() {
+//     vector<Person> persons;
+
+//     persons.push_back(Person("George"));
+//     // 1. George is constructed.
+//     // 2. A copy of "George" is saved in the vector persons (shallow copy).
+//     // 3. "George" ist destroyed.
+
+//     persons.back().printName();
+
+//     cout << "\nGoodbye" << endl;
+// }
+
+// Solution 1: Define copy constructor and copy assignment operator for deep copy assignment
+// class Person {
+// private:
+//     string* pName_;
+
+// public:
+//     Person(string name) : pName_(new string(name)) {
+//     }
+//     Person(const Person& rhs) : pName_(new string(*(rhs.pName_))) {
+//     }
+//     // Person& operator=(const Person& rhs);
+//     ~Person() {
+//         delete pName_;
+//     }
+//     void printName() {
+//         cout << *pName_;
+//     }
+// };
+
+// int main() {
+//     vector<Person> persons;
+
+//     persons.push_back(Person("George"));
+//     // 1. George is constructed.
+//     // 2. A copy of "George" is saved in the vector persons (shallow copy).
+//     // 3. "George" ist destroyed.
+
+//     persons.back().printName();
+
+//     cout << "\nGoodbye" << endl;
+// }
+
+// Solution 2: Delete copy constructor and copy assignment operator 
+//  and define clone() function.
 class Person {
 private:
-    // string *pName_;
-    // shared_ptr<string> pName_;
-    unique_ptr<string> pName_; // more efficient than shared_ptr
-    // but push_back(p) function tries copy, but unique_ptr can not be copied
-    // -> std::move(p)
+    //  C++03: make them private functions and delete function body
+    // Person(const Person& rhs);
+    // Person& operator=(const Person& rhs);
+    string* pName_;
 
 public:
     Person(string name) : pName_(new string(name)) {
     }
-    // Person(const Person &) = delete;
-    // ~Person() {delete pName_; }  // not needed with shared_ptr
+    //  C++11: = delete;
+    Person(const Person& rhs) = delete;
+    Person& operator=(const Person& rhs) = delete;
     ~Person() {
-    } // when destructor defined, no move constructor generated
-    // Move constructor set to default
-    Person(Person &&) = default;
-
+        delete pName_;
+    }
     void printName() {
         cout << *pName_;
     }
+    // if you need an copy of an object and have no copy constructor:
+    Person* clone() const {return new Person(*pName_);}
 };
 
 int main() {
-    vector<Person> persons;
-    // persons.push_back(Person("Georges"));
+    // STL containers require containees to have copy constructor and copy assignment
+    // Workaround: save pointers in containers
+    vector<Person*> persons;
 
-    // persons.emplace_back("Georges");
-    // construct object in place (in the space allocated for vector)
-    // No copy or moving was involved
+    persons.push_back(new Person("George"));
+    // 1. "George" is constructed.
+    // 2. A copy of "George" is saved in the vector persons (shallow copy).
+    // 3. "George" ist destroyed.
 
-    Person p("George"); // Segmentation fault -> smart pointer
-    // persons.push_back(p);
-    persons.push_back(move(p));
-
-    //
-    persons.front().printName();
+    persons.back()->printName();
 
     cout << "\nGoodbye" << endl;
 }
-
 
 /*
 C++ 11 features:
