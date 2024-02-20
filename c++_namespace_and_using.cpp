@@ -14,26 +14,58 @@ C++ Keyword: using
                 using std::cout;
                 cout << "Hello world.\n";
 */
+//############################################################################
 
 #include <iostream>
-using std::cout, std::endl;
+using namespace std;        //case 1: global scope
+using std::cout, std::endl; // case 2a: global scope
 
-class B {
-public:
-    void f(int a) {
-        cout << "f in B" << endl;
-    }
-};
+// class B {
+// public:
+//     void f(int a) {
+//         cout << "f in B" << endl;
+//     }
+// };
 
-class D : public B {
-public:
-    using B::f; // <-- now access to private member f of B
-    void f() {  // function shadowing
-        cout << "f in D" << endl;
-    }
-};
+// class D : private B {
+// public:
+//     void f() { // function shadowing
+//         cout << "f in D" << endl;
+//     }
+
+//     void g() {
+//         using namespace std; // case 1: local scope
+//         cout << "g in D\n" << endl;
+//     }
+
+//     void h() {
+//         using std::cout; // case 2a: local scope
+//         cout << "h in D\n" << endl;
+//     }
+//     using B::f; // xase 2b: class scope
+//     // <-- now access to private member f of B
+// };
+
+// int main() {
+//     D d;
+//     d.f(8);
+// }
+
+
+
+/*
+ * Anonymous Namespace
+ */
+
+// similiar to: 
+// static void h() { std::cout << "h()\n"; }
+// void g() { std::cout << "global g()\n"; }
+
+namespace {
+   void g() { std::cout << "g()\n"; }
+   void h() { std::cout << "h()\n"; g(); }
+}
 
 int main() {
-    D d;
-    d.f(8);
+   h();
 }
