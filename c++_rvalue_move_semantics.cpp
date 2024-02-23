@@ -1,22 +1,22 @@
 /* 
  * Note 1: the most useful place for rvalue reference is overloading copy 
- * constructor and assignment operator, to achieve move semantics.
+ * constructor and copy assignment operator, to achieve move semantics.
  *
- * X& X::operator=(X const & rhs); 
- * X& X::operator=(X&& rhs);
+ * X& X::operator=(X const & rhs);  // copy assignment operator
+ * X& X::operator=(X&& rhs);        // move assignment operator
  * 
  * Note 2: Move semantics is implemented for all STL containers, which means:
  *    a. Move to C++ 11, Your code will be faster without changing a thing.
  *    b. Passing by value can be used for STL containers.
  *
- * X &X::operator=(X const &rhs);
- * X &X::operator=(X &&rhs);
 */
 
-/* Move constructor:
+/* Move constructor/Move assignment operator:
  *    Purpose: avoid costly and unnecessary deep copying.
+
  * 1. Move constructor is particularly powerful where passing by reference and 
  *    passing by value are both needed.
+ * 
  * 2. Move constructor give you finer control of which part of your object to 
  *    be moved.
  */

@@ -13,49 +13,50 @@
 
 using namespace std;
 
-class BoVector {
-    vector<int> m_vec;
+// class BoVector {
+//     vector<int> m_vec;
 
-public:
-    // Define your own initializer_list constructor:
-    BoVector(const initializer_list<int>& v) {
-        for (initializer_list<int>::iterator itr = v.begin(); itr != v.end();
-             ++itr)
-            m_vec.push_back(*itr);
-    }
-};
+// public:
+//     // Define your own initializer_list constructor:
+//     BoVector(const initializer_list<int>& v) {
+//         for (initializer_list<int>::iterator itr = v.begin(); itr != v.end();
+//              ++itr)
+//             m_vec.push_back(*itr);
+//     }
+// };
 
-class Rectangle {
-public:
-    Rectangle(int height, int width, int length) {
-    }
-};
+// class Rectangle {
+// public:
+//     Rectangle(int height, int width, int length) {
+//     }
+// };
 
-void draw_rect(Rectangle r) {
-    cout << "Rectangle was drawn." << endl;
-};
+// void draw_rect(Rectangle r) {
+//     cout << "Rectangle was drawn." << endl;
+// };
 
-int main() {
-    //C++ 03 initializer list:
-    int arr[4] = {3, 2, 4, 5};
+// int main() {
+//     //C++ 03 initializer list:
+//     int arr[4] = {3, 2, 4, 5};
 
-    // vector not supported in C++ 03
-    vector<int> v;
-    v.push_back(3);
-    v.push_back(2);
-    v.push_back(4);
-    v.push_back(5);
+//     // vector not supported in C++ 03
+//     vector<int> v;
+//     v.push_back(3);
+//     v.push_back(2);
+//     v.push_back(4);
+//     v.push_back(5);
 
-    // C++ 11 extended the support
-    // All the relevant STL containers have been updated to accept initializer_list.
-    vector<int> v2 = {3, 4, 1, 9}; // Calling initializer_list constructor
+//     // C++ 11 extended the support
+//     // All the relevant STL containers have been updated to accept initializer_list.
+//     vector<int> v2 = {3, 4, 1, 9}; // Calling initializer_list constructor
+//     cout << v2.size() << endl;
 
-    BoVector v3 = {0, 2, 3, 4};
-    BoVector v4{0, 2, 3, 4}; // effectively the same
+//     BoVector v3 = {0, 2, 3, 4};
+//     BoVector v4{0, 2, 3, 4}; // effectively the same
 
-    // Automatic normal Initialization
-    draw_rect({5, 6, 9}); // Rectangle{5,6,9} is automatically called
-}
+//     // Automatic normal Initialization
+//     draw_rect({5, 6, 9}); // Rectangle{5,6,9} is automatically called
+// }
 
 // Note: use it with caution.
 // 1. Not very readable, even with the help of IDE.
@@ -103,13 +104,14 @@ int main() {
 //     // C++ 11 extended the scope of curly brace initialization
 //     Dog11_1 d11_1 = {5, "Henry"};
 
-//     /* Uniform Initialization Search Order:
-//  * 1. Initializer_list constructor
-//  * 2. Regular constructor that takes the appropriate parameters.
-//  * 3. Aggregate initializer.
-//  */
 //     Dog11_2 d11_2{3};
 // }
+
+/* Uniform Initialization Search Order:
+ * 1. Initializer_list constructor
+ * 2. Regular constructor that takes the appropriate parameters.
+ * 3. Aggregate initializer.
+ */
 
 /*
  * 3. auto type
@@ -343,9 +345,9 @@ int main() {
 // };
 
 // class Yellowdog11 : public Dog11 {
-//     // virtual void A(float) override; // Error: no function to override
-//     // virtual void B() override;      // Error: no function to override
-//     // void C() override;              // Error: not a virtual function
+//     virtual void A(float) override; // Error: no function to override
+//     virtual void B() override;      // Error: no function to override
+//     void C() override;              // Error: not a virtual function
 // };
 
 /*
@@ -363,10 +365,19 @@ int main() {
  * 11. Compiler Generated Default Constructor
  */
 // C++ 03:
-// class Dog {
-//     Dog(int age) {
-//     }
-// };
+class Dog {
+    public:
+    Dog() = default;
+    Dog(int age) {
+    }
+};
+
+int main(int argc, char* argv[]) {
+    Dog d1;
+    Dog d2{};
+    Dog d3{3};
+    return 0;
+}
 
 // // Dog d1; // Error: compiler will not generate the default constructor
 
@@ -470,39 +481,38 @@ int main() {
  * 15. lambda function
  */
 
-#include <iostream>
-#include <string>
-#include <vector>
+// #include <iostream>
+// #include <string>
+// #include <vector>
 
-using namespace std;
+// using namespace std;
 
-template <typename func> 
-void filter(func f, vector<int> arr) { 
-    for (auto i : arr) {
-        if (f(i))
-            cout << i << " ";
-    }
-}
+// template <typename func> void filter(func f, vector<int> arr) {
+//     for (auto i : arr) {
+//         if (f(i))
+//             cout << i << " ";
+//     }
+// }
 
-int main(int argc, char* argv[]) {
-    cout << [](int x, int y) { return x + y; }(3, 4) << endl; // Output: 7
-    auto f = [](int x, int y) { return x + y; };
-    cout << f(3, 4) << endl; // Output: 7
+// int main(int argc, char* argv[]) {
+//     cout << [](int x, int y) { return x + y; }(3, 4) << endl; // Output: 7
+//     auto f = [](int x, int y) { return x + y; };
+//     cout << f(3, 4) << endl; // Output: 7
 
-    vector<int> v = {1, 2, 3, 4, 5, 6};
+//     vector<int> v = {1, 2, 3, 4, 5, 6};
 
-    filter([](int x) { return (x > 3); }, v);          // Output: 4 5 6
-    filter([](int x) { return (x > 2 && x < 5); }, v); // Output: 3 4
+//     filter([](int x) { return (x > 3); }, v);          // Output: 4 5 6
+//     filter([](int x) { return (x > 2 && x < 5); }, v); // Output: 3 4
 
-    int y = 4;
-    filter([&](int x) { return (x > y); }, v); // Output: 5 6
-    //Note: [&] tells compiler that we want variable capture
+//     int y = 4;
+//     filter([&](int x) { return (x > y); }, v); // Output: 5 6
+//     //Note: [&] tells compiler that we want variable capture
 
-    // Lambda function works almost like a language extention
-    // template for_nth_item
+//     // Lambda function works almost like a language extention
+//     // template for_nth_item
 
-    return 0;
-}
+//     return 0;
+// }
 
 /*
  * 17. User defined Literals
