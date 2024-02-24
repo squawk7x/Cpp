@@ -4,7 +4,7 @@
 // using namespace std;
 
 // std::make_unique<T> implemented from C++14
-template<typename T, typename... Args>
+template <typename T, typename... Args>
 std::unique_ptr<T> make_unique(Args&&... args) {
     return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
@@ -18,7 +18,7 @@ int main() {
     foo(pointer);
     std::cout << "get: " << pointer.get() << std::endl;
     // No use_count() function for unique_ptr
-    std::cout << "use_count: N/A" << std::endl; 
+    std::cout << "use_count: N/A" << std::endl;
     // pointer.reset();
 
     // Dereferencing a null unique_ptr is undefined behavior

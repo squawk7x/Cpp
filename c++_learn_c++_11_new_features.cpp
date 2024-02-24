@@ -365,19 +365,19 @@ using namespace std;
  * 11. Compiler Generated Default Constructor
  */
 // C++ 03:
-class Dog {
-    public:
-    Dog() = default;
-    Dog(int age) {
-    }
-};
+// class Dog {
+//     public:
+//     Dog() = default;
+//     Dog(int age) {
+//     }
+// };
 
-int main(int argc, char* argv[]) {
-    Dog d1;
-    Dog d2{};
-    Dog d3{3};
-    return 0;
-}
+// int main(int argc, char* argv[]) {
+//     Dog d1;
+//     Dog d2{};
+//     Dog d3{3};
+//     return 0;
+// }
 
 // // Dog d1; // Error: compiler will not generate the default constructor
 
@@ -507,6 +507,7 @@ int main(int argc, char* argv[]) {
 //     int y = 4;
 //     filter([&](int x) { return (x > y); }, v); // Output: 5 6
 //     //Note: [&] tells compiler that we want variable capture
+//     // VERY POWERFUL FEATURE IN C++ 11 !!! 
 
 //     // Lambda function works almost like a language extention
 //     // template for_nth_item

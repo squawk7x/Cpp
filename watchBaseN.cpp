@@ -17,7 +17,6 @@ using std::cout;
 #define CLEAR_SCREEN "clear"
 #endif
 
-
 // #define BASE 5
 const std::set<string> validValues = {"1", "2", "3", "4", "5", "6", "10", "12"};
 
@@ -28,9 +27,9 @@ private:
     string pts;
     string pol;
     string ptl;
-    string *pattern_H;
-    string *pattern_L;
-    string *pattern_S;
+    string* pattern_H;
+    string* pattern_L;
+    string* pattern_S;
 
     string makePattern(int digit, int length, string opaque,
                        string translucent) {
@@ -84,7 +83,7 @@ public:
             auto currentTime = std::chrono::system_clock::to_time_t(
                 std::chrono::system_clock::now());
 
-            std::tm *localTime = std::localtime(&currentTime);
+            std::tm* localTime = std::localtime(&currentTime);
 
             cout << "\n";
             cout << pattern_H[localTime->tm_hour / BASE];
@@ -105,7 +104,7 @@ public:
     }
 };
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     int BASE = 5;
 
     if (argc > 1) {
@@ -125,9 +124,10 @@ int main(int argc, char *argv[]) {
             BASE = std::atoi(argv[2]);
         } else {
             std::cerr << "Unknown option \
-            \nusage: " << argv[0] << " -b [ 1 2 3 4 5 6 10 12 ] \
-            \ntry for example: " << argv[0] << " -b 5"
-                      << std::endl;
+            \nusage: " << argv[0]
+                      << " -b [ 1 2 3 4 5 6 10 12 ] \
+            \ntry for example: "
+                      << argv[0] << " -b 5" << std::endl;
             return 1;
         }
     }
