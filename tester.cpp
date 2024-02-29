@@ -1,17 +1,18 @@
 #include <iostream>
 #include <string>
+#include <vector>
+
 using namespace std;
 
-int main(int argc, char* argv[]) {
-    int i{0};
+class A;
 
-    const int *p1 = &i;
-    *(p1++);
-    cout << *p1 << endl;
+class B {
+    std::vector<A> vec;
 
-    int* const p2 = &i;
-    *(p2++);
-    cout << *p2 << endl;
+    B();
 
-    return 0;
-}
+};
+
+
+int main()
+{}

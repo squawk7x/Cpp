@@ -65,7 +65,7 @@ void function_2() {
     int data = 0;
     while (data != 1) {
         std::unique_lock<mutex> locker(mu);
-        // cond.wait(locker);  // spurious wake
+        // cond.wait(locker);  // can wake up by itself: spurious wake
         cond.wait(locker, []() { return !q.empty(); });
         //  ^^^^^ Unlock mu and wait to be notified relock mu
         data = q.back();

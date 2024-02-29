@@ -13,15 +13,21 @@ using namespace std;
 
 std::mutex mu;
 
-void shared_print(string msg, int id) {
-    std::lock_guard<std::mutex> guard(mu);
-    //RAII = Ressource Acquisition Is Initialization technique
-	// but other programs still have access to cout ressource
-    // mu.lock();
-    cout << msg << id << endl; 
-	// if exception occurs mu will never unlock -> lock_guard
-    // mu.unlock();
-}
+// void shared_print(string msg, int id) {
+//     std::lock_guard<std::mutex> guard(mu);
+//     // RAII = Ressource Acquisition Is Initialization technique
+// 	// whenever the guard goes out of scope, the mutex mu will always be unlocked
+// 	// with or without exception.
+
+// 	// Another problem:
+// 	// other programs still have access to cout ressource
+    
+// 	// mu.lock();
+//     cout << msg << id << endl; 
+//     // mu.unlock();
+	
+// 	// if exception occurs mu will never unlock -> lock_guard
+// }
 
 // void function_1() {
 //     for (int i = 0; i > -100; i--) {
@@ -105,26 +111,26 @@ int main() {
 // /* Important: Do not let your user work on protected data directly */
 
 /* Interface is not thread safe */
-// class stack {
-// 	int* _data;
-// 	std::mutex _mu;
-// public:
-// 	// void pop();// pops off the item on top of the stack
-//     int& pop();
-// 	int& top(); // returns the item on top
-// 	//...
-// };
+class stack {
+	int* _data;
+	std::mutex _mu;
+public:
+	// void pop();// pops off the item on top of the stack
+    int& pop();
+	int& top(); // returns the item on top
+	//...
+};
 
-// void process(int& value) {}
+void process(int& value) {}
 
-// void function_1(stack& st) {
-// 	int v = st.pop();
-//     // st.pop();
-// 	process(v);
-// }
+void function_1(stack& st) {
+	int v = st.pop();
+    // st.pop();
+	process(v);
+}
 
 /*	Summary: Avoiding Data Race:
-1. Use mutex to syncrhonize data access;
+1. Use mutex to synchronize data access;
 2. Never leak a handle of data to outside
 3. Design interface appropriately.
 */
