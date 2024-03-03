@@ -5,12 +5,6 @@
 using namespace std;
 
 // Functor:
-class Lsb_less {
-public:
-    bool operator() (int x, int y) const {
-        return (x % 10) < (y % 10);
-    }
-};
 
 template <typename T> void print_container(T container) {
     typename T::iterator it;
@@ -20,6 +14,12 @@ template <typename T> void print_container(T container) {
     }
     cout << " }" << endl;
 }
+class Lsb_less {
+public:
+    bool operator() (int x, int y) const {
+        return (x % 10) < (y % 10);
+    }
+};
 
 int main() {
     set<int, Lsb_less> s = {21, 23, 26, 27};

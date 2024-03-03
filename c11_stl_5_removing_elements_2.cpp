@@ -16,6 +16,7 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 template <class T> void print_container(T container, string msg) {
     typename T::iterator it;
     cout << msg << "{ ";
@@ -23,6 +24,14 @@ template <class T> void print_container(T container, string msg) {
         std::cout << *it << ", ";
     }
     std::cout << " }" << std::endl;
+=======
+template <class T> void print_container(T container, const string& msg) {
+    cout << msg << "{ ";
+    for (const auto& elem : container) {
+        cout << elem << ", ";
+    }
+    cout << " }" << endl;
+>>>>>>> 5970f50 (Stream Tutorial added)
 }
 
 bool equalOne(int e) {
@@ -33,11 +42,22 @@ bool equalOne(int e) {
     return false;
 }
 
+<<<<<<< HEAD
+=======
+bool equalX(int e, int x) {
+    if (e == x) {
+        cout << e << " will be removed" << endl;
+        return true;
+    }
+    return false;
+}
+>>>>>>> 5970f50 (Stream Tutorial added)
 //############################################################################
 // Remove and do something else
 //############################################################################
 
 // Associative Container:
+<<<<<<< HEAD
 multiset<int> s = {1, 4, 1, 1, 1, 12, 18, 16};
 
 int main() {
@@ -110,11 +130,104 @@ int main() {
 
     auto itr2 = remove_if(v.begin(), v.end(), [](int e) {
         if (e == 12) {
+=======
+
+// int main() {
+//     multiset<int> ms = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
+//     multiset<int>::iterator itr;
+//     for (itr = ms.begin(); itr != ms.end(); itr++) {
+//         if (*itr == 1) {
+//             ms.erase(itr);
+//             cout << "Erase one item of " << *itr << endl;
+//         }
+// First erase OK; second one is undefined behavior
+//     }
+// }
+
+//Solution:
+// int main() {
+//     multiset<int> ms = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
+//     multiset<int>::iterator itr;
+//     for (itr = ms.begin(); itr != ms.end();) {
+//         if (*itr == 1) {
+//             cout << "Erase one item of " << *itr << endl;
+//             ms.erase(itr++); //  <----------
+//         } else {
+//             itr++;
+//         }
+//     }
+// }
+
+// Same way to erase elements from vector?
+
+// Sequence Container:
+// int main() {
+//     vector<int> v = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
+//     vector<int>::iterator itr;
+//     for (itr = v.begin(); itr != v.end();) {
+//         if (*itr == 1) {
+//             cout << "Erase one item of " << *itr << endl;
+//             v.erase(itr++);
+//         } else {
+//             itr++;
+//         }
+//         // only 3 elements of 1 are erased
+//         // undefined behavior
+//     }
+// }
+
+// Sequence container and unordered container's erase() returns
+// iterator pointing to next item after the erased item.
+
+//Solution for sequence and unordered container:
+// int main() {
+//     vector<int> v = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
+//     vector<int>::iterator itr;
+//     for (itr = v.begin(); itr != v.end();) {
+//         if (*itr == 1) {
+//             cout << "Erase one item of " << *itr << endl;
+//             itr = v.erase(itr); //  <----------
+//         } else {
+//             itr++;
+//         }
+//     }
+// }
+
+// 1. Sequence container and unordered container's erase() returns the next
+//    iterator after the erased item.
+//    itr = c.erase(itr)
+// 2. Associative container's erase() returns nothing.
+//    c.erase(itr++)
+
+
+// A thing about efficiency: v.end()
+
+// BEST SOLUTION: Use Algorithm + Lambda
+int main() {
+    vector<int> v;
+    
+    v = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
+    auto itr = remove_if(v.begin(), v.end(), equalOne);
+    v.erase(itr, v.end());
+
+    // Use bind():
+    v = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
+    remove_if(v.begin(), v.end(), bind(equalX, placeholders::_1, 12));
+
+    // Lambda:
+    v = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
+    auto itr2 = remove_if(v.begin(), v.end(), [](int e) {
+        if (e == 1) {
+>>>>>>> 5970f50 (Stream Tutorial added)
             cout << e << " will be removed" << endl;
             return true;
         } else {
             return false;
         }
     });
+<<<<<<< HEAD
     v.erase(itr2, v.end());
+=======
+    v.erase(itr, v.end());
+>>>>>>> 5970f50 (Stream Tutorial added)
 }

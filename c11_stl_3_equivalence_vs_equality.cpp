@@ -41,7 +41,7 @@ int main() {
         cout << "Not found using algorithm" << endl;
     }
 
-    // set::find()
+    // member function set::find()
     itr2 = s.find(36); // 26
     if (itr2 != s.end()) {
         cout << "Found using set::find(): " << *itr2 << endl;
@@ -52,35 +52,18 @@ int main() {
     return 0;
 }
 
-
-
 // set<int, Lsb_less> s = {21, 23, 26, 27};
 
-/*
- * Algorithm find() looks for equality: if (x == y)  
- */
-
+//############################################################################
+// Algorithm find() looks for equality: if (x == y)  
 // itr1 = find(s.begin(), s.end(), 36); // itr1 points to s.end()
+//############################################################################
 
-/*
- * set<int>::find() looks for equivalence: if ( !(x<y) && !(y<x) )
- */
 
+//############################################################################
+// set<int>::find() looks for equivalence: if ( !(x<y) && !(y<x) )
 // itr2 = s.find(36); // itr2 points to 26
-
-// set<int> s = {21, 23, 26, 27};
-
-/*
- * Algorithm find() looks for equality: if (x == y)  
- */
-
-// itr1 = find(s.begin(), s.end(), 36); // itr1 points to s.end()
-
-/*
- * set<int>::find() looks for equivalence: if ( !(x<y) && !(y<x) )
- */
-
-// itr2 = s.find(36); // itr2 points to s.end()
+//############################################################################
 
 // Guidelines:
 //
@@ -93,7 +76,8 @@ int main() {
 
 
 // Algorithms of equality:
-// search find_end
+// search 
+// find_end
 // find_first_of
 // adjacent_search
 
