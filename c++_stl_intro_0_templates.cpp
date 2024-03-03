@@ -1,3 +1,8 @@
+//############################################################################
+//  Templates
+//############################################################################
+
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -5,6 +10,15 @@ using namespace std;
 // function template can infer the datatype from parameter
 template <typename T> T square(T x) {
     return x * x;
+}
+
+template <typename T> void print_container(T container) {
+    typename T::iterator it;
+    std::cout << "{ ";
+    for (it = container.begin(); it != container.end(); it++) {
+        std::cout << *it << ", ";
+    }
+    std::cout << " }" << std::endl;
 }
 
 // datatype must be given
