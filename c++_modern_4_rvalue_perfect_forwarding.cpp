@@ -1,3 +1,7 @@
+//###################################################################
+// Rvalue Reference -- Perfect Forwarding
+//###################################################################
+
 /*
 PERFECT FORWARDING
 1. no costly and unnecessary copy construction of boVector is made.
@@ -7,6 +11,8 @@ PERFECT FORWARDING
 #include <iostream>
 #include <string>
 #include <type_traits>
+
+using namespace std;
 
 class BoVector {
     int size;
@@ -57,6 +63,15 @@ void relay(T&& arg) { // Universal Reference, works for lvalues and rvalues
     foo(std::forward<T>(arg)); // argument forwarding
 }
 
+// template <typename T>
+// struct remove_reference;
+
+// // T is int&
+// remove_reference<int&>::type i; // <=> int i
+
+// // T is int
+// remove_reference<int&>::type i; // <=> int i
+
 /*
     Reference Collapsing Rules (C++ 11)
     T& &    ==> T&
@@ -69,11 +84,14 @@ void relay(T&& arg) { // Universal Reference, works for lvalues and rvalues
 
     if arg is initialized with rvalue ==> T&& arg is rvalue reference
     func(9); => T = int&& => T&& = int&& && = int&&
+
     if arg is initialized with lvalue ==> T&& arg is lvalue reference
     func(x); => T = int& => T&& = int& && = int&
 
-    UNIVERSAL REFERENCE !!! (Scott Meyer)
+    T&& IS UNIVERSAL REFERENCE !!! (Scott Meyer)
     rvalue, lvalue, const, non-const, etc.
+
+    IF AND ONLY IF:
 
     Conditions:
     1. T is a template type. 
@@ -87,6 +105,11 @@ int main() {
     relay(reusable);
     relay(createBoVector());
 }
+
+// // Implementation of std::forward()
+// template <typename T> T&& forward(typename remove_reference<T>::type& arg) {
+//     return static_cast<T&&>(arg);
+// }
 
 /*
             MOVE <----------------------> FORWARD

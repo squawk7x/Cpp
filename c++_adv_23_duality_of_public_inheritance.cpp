@@ -4,6 +4,9 @@
  *
  *   - Inheritance of Interface
  *   - Inheritance of Implementation
+ * 
+ *    Interface Implementation
+ *      func()    { ... }
  */
 //###########################################################################
 
@@ -41,20 +44,20 @@ public:
  * Types of Inheritance in C++:
  * 1. Pure virtual public function - inherit interface only.
  * 2. Non-virtual public function - inherit both interface and implementation.
- * 3. Impure virtual public function - inherit interface and default
- *    implementation
+ * 3. Impure virtual public function - inherit interface and default implementation
  * 4. Protected function - inherit implementation only
  *
  * As a software designer, it is very important to separate the concepts of
  * interface and implementation.
  */
 
-// /*
-//  * Interface Inheritance
-//  *
-//  * 1. Subtyping
-//  * 2. Polymorphism
-//  */
+/*
+ * Interface Inheritance
+ *
+ * 1. Subtyping
+ * 2. Polymorphism
+ */
+
 // virtual void bark() = 0;
 
 /*
@@ -68,6 +71,7 @@ public:
  *    - Increase code complexity
  *    - Not encouraged
  */
+
 // public:
 // void run() {
 //     cout << "I am running.";

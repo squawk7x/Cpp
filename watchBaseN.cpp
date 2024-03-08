@@ -1,5 +1,5 @@
 //############################################################################
-// watchBaseN - simulation of the 'Mengenlehreuhr' in Berlin
+// watchBaseN - simulation of the 'Mengenlehreuhr' found in Berlin
 // ██ ██ ██ ░░  
 // ██ ██ ░░ ░░
 // ████░░░░░░░

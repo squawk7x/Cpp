@@ -1,7 +1,8 @@
-/*
-Initialization Fiasco
- - A subtitle problem that can crash your program
-*/
+// ***********************************************
+// Initialization Fiasco
+//  - A subtitle problem that can crash your program
+// ***********************************************
+
 
 #include "./c++_dog.cpp"
 #include "./c++_cat.cpp"

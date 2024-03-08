@@ -1,3 +1,7 @@
+// ***********************************************
+// const and Functions
+// ***********************************************
+
 #include <iostream>
 #include <string>
 
@@ -16,13 +20,14 @@ public:
     // const PARAMETER
     // ---------------------
     // void setAge(int a) { age = a; a++; }     // local copy
-    // void setAge(const int a) { age = a; }    // not so useful, makes a copy
-    void setAge(int &a) { // lvalue
+    // void setAge(const int a) { age = a; }    // not so useful, local copy
+
+    void setAge(int& a) { // lvalue
         age = a + 100;
         cout << age << " - non-const" << endl;
         a++;
     }
-    void setAge(const int &a) { // rvalue
+    void setAge(const int& a) { // rvalue
         age = a;
         cout << age << " - const" << endl;
     }
@@ -31,15 +36,17 @@ public:
     // const RETURN VALUE
     // ---------------------
     // const string getName() { return name; } // const useless, returns a temporary value
-    const string &getName() {
+
+    const string& getName() {
         return name;
-    } // the caller cannot modify the return
+    } // the caller cannot modify the return value
 
     // ---------------------
     // const FUNCTION       // can only call another const function
     // ---------------------
     // void printDogName() const {cout << name << endl; age++; }
     // void printDogName() const {cout << name << endl; }
+
     void printDogName() const { // function can not change member variables
         cout << name << " - const" << endl;
     }
@@ -49,18 +56,19 @@ public:
 };
 
 int main() {
-    int i = 9;
     Dog dog;
+    int i = 9;
+    cout << "before dog.setAge(i) i = " << i << endl;
     dog.setAge(i);
+    cout << "after dog.setAge(i) i = " << i << endl;
     dog.setAge(7);
-    // cout << i << endl;
 
-    const string &name = dog.getName();
+    const string& name = dog.getName();
     cout << name << endl;
 
-    Dog d1;         // calls non-const printDogName()
+    Dog d1; // calls non-const printDogName()
     d1.printDogName();
 
-    const Dog d2;   // calls const printDogName()
+    const Dog d2; // calls const printDogName()
     d2.printDogName();
 }

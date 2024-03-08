@@ -1,8 +1,9 @@
 
 //############################################################################
-/*
-C++ Keyword: using 
-
+// C++ Keyword: using 
+//############################################################################
+ 
+ /*
 1. using directive: to bring all namespace members into current scope
   Example:  
                 using namespace std;
@@ -14,7 +15,7 @@ C++ Keyword: using
                 using std::cout;
                 cout << "Hello world.\n";
 */
-//############################################################################
+
 
 #include <iostream>
 using namespace std;        //case 1: global scope
@@ -42,7 +43,7 @@ using std::cout, std::endl; // case 2a: global scope
 //         using std::cout; // case 2a: local scope
 //         cout << "h in D\n" << endl;
 //     }
-//     using B::f; // xase 2b: class scope
+//     using B::f; // case 2b: class scope
 //     // <-- now access to private member f of B
 // };
 

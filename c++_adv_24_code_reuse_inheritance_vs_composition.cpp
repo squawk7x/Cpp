@@ -36,20 +36,20 @@
 //     ... // Call the common activities through pActMngr
 // };
 
-// /*
-//  * Code reuse: composition is better than inheritance
-//  *
-//  * 1. Less code coupling between reused code and reuser of the code
-//  *    a. Child class automatically inherits ALL parent class's public members.
-//  *    b. Child class can access parent's protected members.
-//  *       - Inheritance breaks encapsulation
-//  */
+/*
+ * Code reuse: composition is better than inheritance
+ *
+ * 1. Less code coupling between reused code and reuser of the code
+ *    a. Child class automatically inherits ALL parent class's public members.
+ *    b. Child class can access parent's protected members.
+ *       - Inheritance breaks encapsulation
+ */
 
-// /*
-//  * 2. Dynamic binding
-//  *    a. Inheritance is bound at compile time
-//  *    b. Composition can be bound either at compile time or at run time.
-//  */
+/*
+ * 2. Dynamic binding
+ *    a. Inheritance is bound at compile time
+ *    b. Composition can be bound either at compile time or at run time.
+ */
 
 // class OutdoorActivityManager : public ActivityManager {
 //     ...

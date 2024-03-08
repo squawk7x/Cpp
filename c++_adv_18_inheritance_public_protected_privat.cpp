@@ -1,7 +1,5 @@
 //############################################################################
-/*
- * Public, Protected, Private Inheritance 
- */
+// Public, Protected, Private Inheritance 
 //############################################################################
 
 // class B {};
@@ -10,7 +8,7 @@
 // class D_pub : public B {};
 
 /*
-They specifies different access control from the derived class to the base class.
+They specify different access control from the derived class to the base class.
 
 Access Control:
 1. None of the derived classes can access anything that is private in B. 
