@@ -2,8 +2,9 @@
 // Demystifying Operator new/delete
 //############################################################################
 
-/* What happens when following code is executed? 
- */
+/* 
+    What happens when following code is executed? 
+*/
 
 #include <iostream>
 #include <string>
