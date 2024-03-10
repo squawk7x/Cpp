@@ -2,11 +2,11 @@
 // Iterators
 //############################################################################
 
-#include <vector>
-#include <iostream>
-#include <string>
 #include <algorithm>
+#include <iostream>
 #include <iterator>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -144,15 +144,13 @@ template <typename T> void print_container(T container) {
 // }
 
 // Note 4: Algorithm with function
-bool isOdd(int i) {
-    return i % 2;
-}
+bool isOdd(int i) { return i % 2; }
 
 int main() {
     vector<int> vec = {2, 4, 5, 9, 2};
     vector<int>::iterator itr = find_if(vec.begin(), vec.end(), isOdd);
 
-    // Note 5 : Algorithm with native C++ array 
+    // Note 5 : Algorithm with native C++ array
     int arr[4] = {6, 3, 7, 4};
     sort(arr, arr + 4);
     // itr -> 5

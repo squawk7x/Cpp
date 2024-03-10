@@ -1,15 +1,15 @@
-#include <stdio.h>
 #include <iostream>
+#include <stdio.h>
 #include <typeinfo>
 
 int main() {
     int a = 1025;
 
-    int *pint;
+    int* pint;
     pint = &a;
 
-    char *pchar;
-    pchar = (char *)pint;
+    char* pchar;
+    pchar = (char*)pint;
 
     *pchar = 5; // Assigning 5 to the least significant byte of 'a'
 

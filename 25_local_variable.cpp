@@ -1,20 +1,20 @@
-#include<iostream>
-#include<ctime>
+#include <ctime>
+#include <iostream>
 
 void printnum();
 
-int main(){
+int main() {
 
-    int num=1;
+    int num = 1;
 
-    std:: cout<<num<<"\n";
+    std::cout << num << "\n";
 
     printnum();
 
     return 0;
 }
 
-void printnum(){
-    int num=2;
-    std:: cout<< num<<"\n";
+void printnum() {
+    int num = 2;
+    std::cout << num << "\n";
 }

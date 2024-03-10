@@ -2,8 +2,8 @@
 // Prevent Exceptions from Leaving Destructors.
 //############################################################################
 
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -37,9 +37,7 @@ public:
         throw 20;
     }
 
-    void bark() {
-        cout << m_name << " is yelling" << endl;
-    }
+    void bark() { cout << m_name << " is yelling" << endl; }
 };
 
 int main() {

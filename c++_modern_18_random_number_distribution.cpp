@@ -2,11 +2,11 @@
 // Random Number Distribution
 // ***********************************************
 
+#include <algorithm>
+#include <chrono>
 #include <iostream>
 #include <random>
-#include <chrono>
 #include <sstream>
-#include <algorithm>
 
 using namespace std;
 

@@ -2,22 +2,22 @@
 // Review and Time Constrain
 //############################################################################
 
-#include <mutex>
+#include "../../../../../usr/include/c++/11/bits/this_thread_sleep.h"
 #include <deque>
+#include <functional>
 #include <future>
 #include <iostream>
-#include <functional>
-#include "../../../../../usr/include/c++/11/bits/this_thread_sleep.h"
+#include <mutex>
 
 using namespace std;
 
 int factorial(int N) {
-	int res = 1;
-	for (int i=N; i>1; i--)
-		res *= i;
+    int res = 1;
+    for (int i = N; i > 1; i--)
+        res *= i;
     std::cout << "Result is: " << res << std::endl;
 
-	return res;
+    return res;
 }
 
 int main() {
@@ -35,8 +35,9 @@ int main() {
     ulocker.try_lock_for(chrono::nanoseconds(500));
     ulocker.try_lock_until(tp);
 
-    /* Condition Variable */
-    std:condition_variable cond;
+/* Condition Variable */
+std:
+    condition_variable cond;
     cond.wait_for(ulocker, chrono::microseconds(2));
     cond.wait_until(ulocker, tp);
 
@@ -56,7 +57,7 @@ int main() {
     std::future<int> fu2 = t.get_future();
     t(6);
 
-	 return 0;
+    return 0;
 }
 
 //  Together with thread library

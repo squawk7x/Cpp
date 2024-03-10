@@ -10,24 +10,16 @@ using namespace std;
 
 class OpenFile {
 public:
-    OpenFile(string filename) {
-        cout << "Open a file " << filename << endl;
-    }
+    OpenFile(string filename) { cout << "Open a file " << filename << endl; }
 
-    void destroyMe() {
-        delete this;
-    }
+    void destroyMe() { delete this; }
 
 private:
     // in C++11: ... = delete;
     // in C++03 dissallow like this:
-    OpenFile(OpenFile& rhs); // copy constructor declared but not defined
-    OpenFile& operator=(
-        const OpenFile&
-            rhs); // copy assignment operator declared but not defined
-    ~OpenFile() {
-        cout << "OpenFile destructed";
-    }   //destructor needs a body
+    OpenFile(OpenFile& rhs);                  // copy constructor declared but not defined
+    OpenFile& operator=(const OpenFile& rhs); // copy assignment operator declared but not defined
+    ~OpenFile() { cout << "OpenFile destructed"; } // destructor needs a body
 };
 
 int main(int argc, char* argv[]) {

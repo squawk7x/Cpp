@@ -7,10 +7,10 @@
  * 1. Initializer List
  */
 
+#include <initializer_list>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <initializer_list>
 
 using namespace std;
 
@@ -20,466 +20,460 @@ class BoVector {
 public:
     // Define your own initializer_list constructor:
     BoVector(const initializer_list<int>& v) {
-        for (initializer_list<int>::iterator itr = v.begin(); itr != v.end();
-             ++itr)
+        for (initializer_list<int>::iterator itr = v.begin(); itr != v.end(); ++itr)
             m_vec.push_back(*itr);
     }
 };
 
 class Rectangle {
 public:
-    Rectangle(int height, int width, int length) {
-    }
+    Rectangle(int height, int width, int length) {}
 };
 
-void draw_rect(Rectangle r) {
-    cout << "Rectangle was drawn." << endl;
-};
+void draw_rect(Rectangle r) { cout << "Rectangle was drawn." << endl; };
 
-    // int main() {
-    //     //C++ 03 initializer list:
-    //     int arr[4] = {3, 2, 4, 5};
+// int main() {
+//     //C++ 03 initializer list:
+//     int arr[4] = {3, 2, 4, 5};
 
-    //     // vector not supported in C++ 03
-    //     vector<int> v;
-    //     v.push_back(3);
-    //     v.push_back(2);
-    //     v.push_back(4);
-    //     v.push_back(5);
+//     // vector not supported in C++ 03
+//     vector<int> v;
+//     v.push_back(3);
+//     v.push_back(2);
+//     v.push_back(4);
+//     v.push_back(5);
 
-    //     // C++ 11 extended the support
-    //     // All the relevant STL containers have been updated to accept initializer_list.
-    //     vector<int> v2 = {3, 4, 1, 9}; // Calling initializer_list constructor
+//     // C++ 11 extended the support
+//     // All the relevant STL containers have been updated to accept initializer_list.
+//     vector<int> v2 = {3, 4, 1, 9}; // Calling initializer_list constructor
 
-    //     BoVector v3 = {0, 2, 3, 4};
-    //     BoVector v4{0, 2, 3, 4}; // effectively the same
+//     BoVector v3 = {0, 2, 3, 4};
+//     BoVector v4{0, 2, 3, 4}; // effectively the same
 
-    //     // Automatic normal Initialization
-    //     draw_rect({5, 6, 9}); // Rectangle{5,6,9} is automatically called
-    // }
+//     // Automatic normal Initialization
+//     draw_rect({5, 6, 9}); // Rectangle{5,6,9} is automatically called
+// }
 
-    // Note: use it with caution.
-    // 1. Not very readable, even with the help of IDE.
-    //    Funcion name rarely indicates the type of parameter the function takes.
-    // 2. Function could be overloaded with differenct parameter types.
+// Note: use it with caution.
+// 1. Not very readable, even with the help of IDE.
+//    Funcion name rarely indicates the type of parameter the function takes.
+// 2. Function could be overloaded with differenct parameter types.
 
-    /*
+/*
  * 2. Uniform Initialization
  */
 
-    // #include <iostream>
-    // #include <initializer_list>
+// #include <iostream>
+// #include <initializer_list>
 
-    // using namespace std;
+// using namespace std;
 
-    // // C++ 03
-    // class Dog3 { // Aggregate class or struct
-    // public:      // members must be public
-    //     int age;
-    //     string name;
-    // };
+// // C++ 03
+// class Dog3 { // Aggregate class or struct
+// public:      // members must be public
+//     int age;
+//     string name;
+// };
 
-    // class Dog11_1 {
-    // public:
-    //     Dog11_1(int age, string name){};
-    // };
+// class Dog11_1 {
+// public:
+//     Dog11_1(int age, string name){};
+// };
 
-    // class Dog11_2 {
-    // public:
-    //     int age; // 3rd choice - Aggregat Initializer
+// class Dog11_2 {
+// public:
+//     int age; // 3rd choice - Aggregat Initializer
 
-    //     Dog11_2(int a) { // 2nd choice - Regular Constructor
-    //         age = a;
-    //     }
+//     Dog11_2(int a) { // 2nd choice - Regular Constructor
+//         age = a;
+//     }
 
-    //     Dog11_2(const initializer_list<int> &vec) { // 1st choice - Initializer_list
-    //         age = *(vec.begin());
-    //         cout << "created with initializer_list" << endl;
-    //     }
-    // };
+//     Dog11_2(const initializer_list<int> &vec) { // 1st choice - Initializer_list
+//         age = *(vec.begin());
+//         cout << "created with initializer_list" << endl;
+//     }
+// };
 
-    // int main() {
-    //     Dog3 d3 = {5, "Henry"}; // Aggregate Initialization
+// int main() {
+//     Dog3 d3 = {5, "Henry"}; // Aggregate Initialization
 
-    //     // C++ 11 extended the scope of curly brace initialization
-    //     Dog11_1 d11_1 = {5, "Henry"};
+//     // C++ 11 extended the scope of curly brace initialization
+//     Dog11_1 d11_1 = {5, "Henry"};
 
-    /* Uniform Initialization Search Order:
+/* Uniform Initialization Search Order:
  * 1. Initializer_list constructor
  * 2. Regular constructor that takes the appropriate parameters.
  * 3. Aggregate initializer.
  */
 
-    //     Dog11_2 d11_2{3};
-    // }
+//     Dog11_2 d11_2{3};
+// }
 
-    /*
+/*
  * 3. auto type
-*/
+ */
 
-    /*
+/*
  * It's static type, no run-time cost, fat-free.
  * It also makes code easier to maintain.
- * 
+ *
  * 1. Don't use auto when type conversion is needed
  * 2. IDE becomes more important
  */
 
-    // #include <vector>
-    // #include <iostream>
+// #include <vector>
+// #include <iostream>
 
-    // using namespace std;
+// using namespace std;
 
-    // int main(int argc, char *argv[]) {
+// int main(int argc, char *argv[]) {
 
-    //     auto a = 6;       // a is a integer
-    //     auto b = 9.6;     // b is a double
-    //     auto c = a;       // c is an integer
-    //     auto const x = a; // int const x = a
-    //     auto &y = a;      // int& y = a
+//     auto a = 6;       // a is a integer
+//     auto b = 9.6;     // b is a double
+//     auto c = a;       // c is an integer
+//     auto const x = a; // int const x = a
+//     auto &y = a;      // int& y = a
 
-    //     std::vector<int> vec = {2, 3, 4, 5};
+//     std::vector<int> vec = {2, 3, 4, 5};
 
-    //     // C++ 03
-    //     for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it) {
-    //         cout << *it << endl;
-    //     }
+//     // C++ 03
+//     for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it) {
+//         cout << *it << endl;
+//     }
 
-    //     // C++ 11: use auto type
-    //     for (auto it = vec.begin(); it != vec.end(); ++it) {
-    //         cout << *it << endl;
-    //     }
+//     // C++ 11: use auto type
+//     for (auto it = vec.begin(); it != vec.end(); ++it) {
+//         cout << *it << endl;
+//     }
 
-    //     return 0;
-    // }
+//     return 0;
+// }
 
-    /*
+/*
  * 4. foreach
  */
 
-    // #include <iostream>
-    // #include <string>
-    // #include <vector>
+// #include <iostream>
+// #include <string>
+// #include <vector>
 
-    // using namespace std;
+// using namespace std;
 
-    // int main(int argc, char *argv[]) {
+// int main(int argc, char *argv[]) {
 
-    //     vector<int> v = {1,2,3};
+//     vector<int> v = {1,2,3};
 
-    //     // C++ 03:
-    //     for (vector<int>::iterator itr = v.begin(); itr != v.end(); ++itr)
-    //         cout << (*itr);
+//     // C++ 03:
+//     for (vector<int>::iterator itr = v.begin(); itr != v.end(); ++itr)
+//         cout << (*itr);
 
-    //     // C++ 11: for each
-    //     for (int i : v) { // works on any class that has begin() and end()
-    //         cout << i;     // readonly access
-    //     }
+//     // C++ 11: for each
+//     for (int i : v) { // works on any class that has begin() and end()
+//         cout << i;     // readonly access
+//     }
 
-    //     for (auto& i : v) {
-    //         i++; // changes the values in v
-    //     }        // and also avoids copy construction
+//     for (auto& i : v) {
+//         i++; // changes the values in v
+//     }        // and also avoids copy construction
 
-    //     auto x = begin(v); // Same as: int x = v.begin();
+//     auto x = begin(v); // Same as: int x = v.begin();
 
-    //     int arr[4] = {3, 2, 4, 5};
-    //     auto y = begin(arr); // y == 3
-    //     auto z = end(arr);   // z == 5
+//     int arr[4] = {3, 2, 4, 5};
+//     auto y = begin(arr); // y == 3
+//     auto z = end(arr);   // z == 5
 
-    //     // How this worked? Because begin() and end() are defined for array.
-    //     // Adapt your code to third party library by defining begin() and end()
-    //     // for their containers.
+//     // How this worked? Because begin() and end() are defined for array.
+//     // Adapt your code to third party library by defining begin() and end()
+//     // for their containers.
 
-    //     return 0;
-    // }
+//     return 0;
+// }
 
-    /*
+/*
  * 5. nullptr
  */
-    /*
+/*
  * To replace NULL in C++ 03
  */
 
-    // #include <iostream>
-    // #include <string>
-    // using namespace std;
+// #include <iostream>
+// #include <string>
+// using namespace std;
 
-    // void foo(int i) {
-    //     cout << "foo_int" << endl;
-    // }
-    // void foo(char *pc) {
-    //     cout << "foo_char*" << endl;
-    // }
+// void foo(int i) {
+//     cout << "foo_int" << endl;
+// }
+// void foo(char *pc) {
+//     cout << "foo_char*" << endl;
+// }
 
-    // int main(int argc, char *argv[]) {
-    //     // foo(NULL); // Ambiguity
-    //     // more than one instance of overloaded function "foo" matches the argument list:C/C++(308)
+// int main(int argc, char *argv[]) {
+//     // foo(NULL); // Ambiguity
+//     // more than one instance of overloaded function "foo" matches the argument list:C/C++(308)
 
-    //     // C++ 11
-    //     foo(nullptr); // call foo(char*)
+//     // C++ 11
+//     foo(nullptr); // call foo(char*)
 
-    //     return 0;
-    // }
+//     return 0;
+// }
 
-    /*
+/*
  * 6. enum class
  */
 
-    // #include <iostream>
-    // #include <string>
-    // using namespace std;
+// #include <iostream>
+// #include <string>
+// using namespace std;
 
-    // int main(int argc, char *argv[]) {
+// int main(int argc, char *argv[]) {
 
-    //     // C++ 03
-    //     enum apple { green_a, red_a };
-    //     enum orange { big_o, small_o };
-    //     apple a1 = green_a;
-    //     orange o1 = big_o;
+//     // C++ 03
+//     enum apple { green_a, red_a };
+//     enum orange { big_o, small_o };
+//     apple a1 = green_a;
+//     orange o1 = big_o;
 
-    //     if (a1 == o1)
-    //         cout << "green apple and big orange are the same\n";
-    //     else
-    //         cout << "green apple and big orange are not the same\n";
+//     if (a1 == o1)
+//         cout << "green apple and big orange are the same\n";
+//     else
+//         cout << "green apple and big orange are not the same\n";
 
-    //     // C++ 11
-    //     enum class Apple { green, red };
-    //     enum class Orange { big, small };
-    //     Apple a2 = Apple::green;
-    //     Orange o2 = Orange::big;
+//     // C++ 11
+//     enum class Apple { green, red };
+//     enum class Orange { big, small };
+//     Apple a2 = Apple::green;
+//     Orange o2 = Orange::big;
 
-    //     // Compile fails because we haven't defined ==(Apple, Orange)
-    //     // if (a2 == o2) // This line will fail to compile
-    //     //    cout << "green apple and big orange are the same\n";
-    //     // else
-    //     //    cout << "green apple and big orange are not the same\n";
+//     // Compile fails because we haven't defined ==(Apple, Orange)
+//     // if (a2 == o2) // This line will fail to compile
+//     //    cout << "green apple and big orange are the same\n";
+//     // else
+//     //    cout << "green apple and big orange are not the same\n";
 
-    //     return 0;
-    // }
+//     return 0;
+// }
 
-    /*
+/*
  * 7. static_assert
  */
 
-    // #include <iostream>
-    // #include <string>
-    // #include <cassert>
+// #include <iostream>
+// #include <string>
+// #include <cassert>
 
-    // using namespace std;
+// using namespace std;
 
-    // int main(int argc, char *argv[]) {
-    //     int a = 3;
-    //     int *p = &a;
+// int main(int argc, char *argv[]) {
+//     int a = 3;
+//     int *p = &a;
 
-    //     // run-time assert
-    //     assert(p != nullptr);
+//     // run-time assert
+//     assert(p != nullptr);
 
-    //     // Static assert - Compile time assert (C++ 11)
-    //     static_assert(sizeof(int) == 4);
-    //     return 0;
-    // }
+//     // Static assert - Compile time assert (C++ 11)
+//     static_assert(sizeof(int) == 4);
+//     return 0;
+// }
 
-    /*
+/*
  * 8. Delegating Constructor
  */
 
-    // C++ 03:
-    // class Dog {
-    // private:
-    //     void init() {
-    //         // Perform common initialization tasks here
-    //     }
+// C++ 03:
+// class Dog {
+// private:
+//     void init() {
+//         // Perform common initialization tasks here
+//     }
 
-    // public:
-    //     // Constructors
-    //     Dog() {
-    //         init();
-    //     }
-    //     Dog(int a) {
-    //         init();
-    //         // doOtherThings();
-    //     }
-    // };
+// public:
+//     // Constructors
+//     Dog() {
+//         init();
+//     }
+//     Dog(int a) {
+//         init();
+//         // doOtherThings();
+//     }
+// };
 
-    // /* Cons:
-    //  * 1. Cumbersome code.
-    //  * 2. init() could be invoked by other functions.
-    //  */
+// /* Cons:
+//  * 1. Cumbersome code.
+//  * 2. init() could be invoked by other functions.
+//  */
 
-    // // C++ 11:
-    // class Dog11 {
-    //     int age = 9;
-    // public:
-    //     Dog11() {
-    //     }
-    //     Dog11(int a) : Dog11() {
-    //         // doOtherThings();
-    //     }
-    // };
-    // // Limitation: Dog() has to be called first.
+// // C++ 11:
+// class Dog11 {
+//     int age = 9;
+// public:
+//     Dog11() {
+//     }
+//     Dog11(int a) : Dog11() {
+//         // doOtherThings();
+//     }
+// };
+// // Limitation: Dog() has to be called first.
 
-    /*
+/*
  * 9. override (for virtual function)
  */
 
-    /*
+/*
  * To avoid inadvertently create new function in derived classes.
  */
 
-    // C++ 03
-    // class Dog03 {
-    //     virtual void A(int);
-    //     virtual void B() const;
-    // };
+// C++ 03
+// class Dog03 {
+//     virtual void A(int);
+//     virtual void B() const;
+// };
 
-    // class Yellowdog03 : public Dog03 {
-    //     virtual void A(float); // Created a new function
-    //     virtual void B();      // Created a new function
-    // };
+// class Yellowdog03 : public Dog03 {
+//     virtual void A(float); // Created a new function
+//     virtual void B();      // Created a new function
+// };
 
-    // // C++ 11 new keyword 'override'
-    // class Dog11 {
-    //     virtual void A(int);
-    //     virtual void B() const;
-    //     void C();
-    // };
+// // C++ 11 new keyword 'override'
+// class Dog11 {
+//     virtual void A(int);
+//     virtual void B() const;
+//     void C();
+// };
 
-    // class Yellowdog11 : public Dog11 {
-    //     // virtual void A(float) override; // Error: no function to override
-    //     // virtual void B() override;      // Error: no function to override
-    //     // void C() override;              // Error: not a virtual function
-    // };
+// class Yellowdog11 : public Dog11 {
+//     // virtual void A(float) override; // Error: no function to override
+//     // virtual void B() override;      // Error: no function to override
+//     // void C() override;              // Error: not a virtual function
+// };
 
-    /*
+/*
  * 10. final (for virtual function and for class)
  */
 
-    // class Dog final { // no class can be derived from Dog
-    // };
+// class Dog final { // no class can be derived from Dog
+// };
 
-    // class Dog {
-    //     virtual void bark() final; // No class can override bark()
-    // };
+// class Dog {
+//     virtual void bark() final; // No class can override bark()
+// };
 
-    /*
+/*
  * 11. Compiler Generated Default Constructor
  */
-    // C++ 03:
-    // class Dog {
-    //     Dog(int age) {
-    //     }
-    // };
+// C++ 03:
+// class Dog {
+//     Dog(int age) {
+//     }
+// };
 
-    // // Dog d1; // Error: compiler will not generate the default constructor
+// // Dog d1; // Error: compiler will not generate the default constructor
 
-    // // C++ 11:
-    // class Dog {
-    //     Dog(int age);
-    //     Dog() = default; // Force compiler to generate the default constructor
-    // };
+// // C++ 11:
+// class Dog {
+//     Dog(int age);
+//     Dog() = default; // Force compiler to generate the default constructor
+// };
 
-    /*
+/*
  * 12. delete
  */
 
-    // // C++ 03:
-    // class Dog03 {
-    // public:
-    //     Dog03(int age) {
-    //     }
-    // };
+// // C++ 03:
+// class Dog03 {
+// public:
+//     Dog03(int age) {
+//     }
+// };
 
-    // // C++ 11:
-    // class Dog11 {
-    // public:
-    //     Dog11() = default;
-    //     Dog11(int age) {
-    //     }
-    //     Dog11(double) = delete;
-    //     Dog11 &operator=(const Dog11 &) = delete;
-    // };
+// // C++ 11:
+// class Dog11 {
+// public:
+//     Dog11() = default;
+//     Dog11(int age) {
+//     }
+//     Dog11(double) = delete;
+//     Dog11 &operator=(const Dog11 &) = delete;
+// };
 
-    // int main() {
-    //     Dog11 a;
-    //     Dog11 b(2);
-    //     // Dog11 c(3.0); // 3.0 is converted from double to int
-    //     // a = b;        // Compiler generated assignment operator
-    // }
+// int main() {
+//     Dog11 a;
+//     Dog11 b(2);
+//     // Dog11 c(3.0); // 3.0 is converted from double to int
+//     // a = b;        // Compiler generated assignment operator
+// }
 
-    /*
+/*
  * 13. constexpr
  */
 
-    // #include <iostream>
-    // #include <string>
-    // using namespace std;
+// #include <iostream>
+// #include <string>
+// using namespace std;
 
-    // int A() {
-    //     return 3;
-    // }
+// int A() {
+//     return 3;
+// }
 
-    // constexpr int B() {
-    //     return 3;
-    // }
+// constexpr int B() {
+//     return 3;
+// }
 
-    // Write faster program with constexpr  // computed at compile time
-    // constexpr int cubed(int x) {
-    //     return x * x * x;
-    // }
+// Write faster program with constexpr  // computed at compile time
+// constexpr int cubed(int x) {
+//     return x * x * x;
+// }
 
-    // int main(int argc, char *argv[]) {
-    //     int arrA[6]; //OK
-    //     // int arr[A() + 3]; // Compile Error
+// int main(int argc, char *argv[]) {
+//     int arrA[6]; //OK
+//     // int arr[A() + 3]; // Compile Error
 
-    //     // C++ 11
-    //     // Forces the computation to happen at compile time.
+//     // C++ 11
+//     // Forces the computation to happen at compile time.
 
-    //     int arrB[B() + 3]; // Create an array of size 6
+//     int arrB[B() + 3]; // Create an array of size 6
 
-    //     int y = cubed(1789); // computed at compile time
+//     int y = cubed(1789); // computed at compile time
 
-    //     //Function cubed() is:
-    //     //1. Super fast. It will not consume run-time cycles
-    //     //2. Super small. It will not occupy space in binary.
+//     //Function cubed() is:
+//     //1. Super fast. It will not consume run-time cycles
+//     //2. Super small. It will not occupy space in binary.
 
-    //     cout << y << endl;
+//     cout << y << endl;
 
-    //     return 0;
-    // }
+//     return 0;
+// }
 
-    /*
+/*
  * 14. New String Literals
  */
 
-    // #include <iostream>
-    // #include <string>
-    // using namespace std;
+// #include <iostream>
+// #include <string>
+// using namespace std;
 
-    // int main(int argc, char *argv[]) {
-    //     // C++ 03:
-    //     char *a = "string";
+// int main(int argc, char *argv[]) {
+//     // C++ 03:
+//     char *a = "string";
 
-    //     // C++ 11:
-    //     char *b = u8"string";     // to define an UTF-8 string.
-    //     char16_t *c = u"string";  // to define an UTF-16 string.
-    //     char32_t *d = U"string";  // to define an UTF-32 string.
-    //     char *e = R"(string \\)"; // to define raw string.
+//     // C++ 11:
+//     char *b = u8"string";     // to define an UTF-8 string.
+//     char16_t *c = u"string";  // to define an UTF-16 string.
+//     char32_t *d = U"string";  // to define an UTF-32 string.
+//     char *e = R"(string \\)"; // to define raw string.
 
-    //     return 0;
-    // }
+//     return 0;
+// }
 
-    /*
+/*
  * 15. lambda function
  */
-
 
 template <typename func> void filter(func f, vector<int> arr) {
     for (auto i : arr) {
         if (f(i))
             cout << i << " ";
     }
-            cout << "\n";
-
+    cout << "\n";
 }
 
 int main(int argc, char* argv[]) {
@@ -494,14 +488,13 @@ int main(int argc, char* argv[]) {
 
     int y = 4;
     filter([&](int x) { return (x > y); }, v); // Output: 5 6
-    //Note: [&] tells compiler that we want variable capture
+    // Note: [&] tells compiler that we want variable capture
 
     // Lambda function works almost like a language extention
     // template for_nth_item
 
     return 0;
 }
-
 
 /*
  * Variadic Template

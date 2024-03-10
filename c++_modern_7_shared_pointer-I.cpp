@@ -10,7 +10,7 @@
 /*
    WRONG way to use shared pointer:
    Dog* d = new Dog("Gunner");  // d lvalue
-   shared_ptr<Dog> p(d); 
+   shared_ptr<Dog> p(d);
 
    CORRECT way:
    shared_ptr<Dog> p(new Dog("Tank")); //count ==1
@@ -22,9 +22,9 @@
    auto p = make_shared<Dog>("Tank");
 
 */
-#include <string>
 #include <iostream>
 #include <memory>
+#include <string>
 
 using namespace std;
 
@@ -32,9 +32,7 @@ class Dog {
     string m_name;
 
 public:
-    void bark() {
-        cout << "Dog " << m_name << " rules!" << endl;
-    }
+    void bark() { cout << "Dog " << m_name << " rules!" << endl; }
     Dog(string name) {
         cout << "Dog is created: " << name << endl;
         m_name = name;
@@ -43,9 +41,7 @@ public:
         cout << "Nameless dog created." << endl;
         m_name = "nameless";
     }
-    ~Dog() {
-        cout << "dog is destroyed: " << m_name << endl;
-    }
+    ~Dog() { cout << "dog is destroyed: " << m_name << endl; }
 };
 
 void foo_wrong() {
@@ -56,10 +52,10 @@ void foo_wrong() {
 
 void foo() {
     // CORRECT way creating shared pointer, but not the BEST way (see below PREFERED ...):
-    shared_ptr<Dog> p(new Dog("Gunner")); //count == 1
+    shared_ptr<Dog> p(new Dog("Gunner")); // count == 1
     // 1. Gunner is created
     // 2. p is created with Dog Gunner
-    // not exception safe: 
+    // not exception safe:
     // What if Dog is created successfully but shared_ptr failed to be created?
 
     {
@@ -68,7 +64,7 @@ void foo() {
         cout << "\ncounts: " << p2.use_count() << "\n";
     } // count == 1
     p->bark();
-} //count == 0
+} // count == 0
 
 int main() {
     // foo_wrong();
@@ -83,7 +79,7 @@ int main() {
 
     // PREFERED way to create shared pointer:
     shared_ptr<Dog> p = make_shared<Dog>("Tank"); // faster and safer
-    p->bark();                                    
+    p->bark();
     (*p).bark();
     auto p2 = make_shared<Dog>("Gunner");
     p2->bark(); // == (*p2).bark();

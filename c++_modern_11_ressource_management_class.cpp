@@ -2,11 +2,11 @@
 // Ressource Management Class
 // ***********************************************
 
-#include <string>
-#include <iostream>
-#include <vector>
-#include <memory>
 #include <deque>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -14,19 +14,16 @@ class Person {
 private:
     // string* pName_;
     // shared_ptr<string> pName_;  // C++ 11 solution
-    unique_ptr<string> pName_;  // C++ 11 solution
+    unique_ptr<string> pName_; // C++ 11 solution
 
 public:
-    Person(string name) : pName_(new string(name)) {
-    }
+    Person(string name) : pName_(new string(name)) {}
     // Person(const Person&) = delete; // copy constructor is deleted
     // ~Person() { delete pName_; }
-    ~Person() { }
+    ~Person() {}
     Person(Person&&) = default;
 
-    void printName() {
-        cout << *pName_;
-    }
+    void printName() { cout << *pName_; }
 };
 
 int main() {
@@ -55,7 +52,7 @@ int main() {
 /* C++ 03 solution:
  * 1. define copy constructor and copy assignment operator
  * 2. delete copy constructor and copy assignment operator
-*/
+ */
 
 /* C++ 11:
  * keyword delete
@@ -64,4 +61,4 @@ int main() {
  * unique_ptr
  * move()
  * keyword default
-*/
+ */

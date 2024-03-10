@@ -4,9 +4,9 @@
 //############################################################################
 
 /*
- * 1. What is new-handler 
+ * 1. What is new-handler
  *
- * New handler is a function invoked when operator new failed to allocate 
+ * New handler is a function invoked when operator new failed to allocate
  * memory. It's purpose is to help memory allocation to succeed.
  *   set_new_handler() installs a new handler and returns current new handler.
  */
@@ -26,7 +26,7 @@ void* operator new(std::size_t size) throw(std::bad_alloc) {
             throw bad_alloc(); // If new handler is null, throw exception
     }
 }
-/* 
+/*
  * So the new-handler must to do one of following things:
  * 1). Make more memory available.
  * 2). Install a different new-handler.
@@ -76,9 +76,7 @@ public:
     }
 };
 
-int main() {
-    std::tr1::shared_ptr<dog> pd(new dog());
-}
+int main() { std::tr1::shared_ptr<dog> pd(new dog()); }
 
 // Any problem
 //
@@ -93,9 +91,9 @@ void* operator new(std::size_t size) throw(std::bad_alloc);
 void operator delete(void* pMemory) throw();
 
 /*
- * Placement new:  an operator new that takes extra parameters in addition 
+ * Placement new:  an operator new that takes extra parameters in addition
  * to size_t param.
- * Placement delete:  an operator delete that takes extra parameters in 
+ * Placement delete:  an operator delete that takes extra parameters in
  * addition to void* param.
  *
  * IMPORTANT: they should be provided in pairs.
@@ -118,9 +116,7 @@ int function_A() {
 
 class dog {
     // ...
-    dog() {
-        throw 20;
-    }
+    dog() { throw 20; }
     static void* operator new(size_t szie, ostream& log) throw(bad_alloc) {
         log << "Customized new for dog.\n";
         return ::operator new(size);
@@ -133,10 +129,10 @@ class dog {
 
 dog* pd = new (std::cout) dog();
 
-/* What's happening in new(): 
+/* What's happening in new():
  * Step 1. operator new is called to allocate memory.
  * Step 2. dog's constructor is called to create dog.
- * Step 3. if step 2 throws an exception, call operator delete to free the 
+ * Step 3. if step 2 throws an exception, call operator delete to free the
  *         memory allocated in step 1.
  */
 

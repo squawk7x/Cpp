@@ -2,12 +2,12 @@
 // Remove from Vector or Deque
 //############################################################################
 
+#include <algorithm>
 #include <iostream>
+#include <list>
+#include <set>
 #include <string>
 #include <vector>
-#include <list>
-#include <algorithm>
-#include <set>
 
 using namespace std;
 
@@ -24,8 +24,7 @@ template <class T> void print_container(T container, string msg) {
 // int main() {
 //     vector<int> vec = {1, 4, 1, 1, 1, 12, 18, 16};
 =======
-template <class T>
-void print_container(T container, const string& msg) {
+template <class T> void print_container(T container, const string& msg) {
     cout << msg << "{ ";
     for (const auto& elem : container) {
         cout << elem << ", ";

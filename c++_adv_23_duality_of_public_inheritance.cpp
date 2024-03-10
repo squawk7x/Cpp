@@ -4,7 +4,7 @@
  *
  *   - Inheritance of Interface
  *   - Inheritance of Implementation
- * 
+ *
  *    Interface Implementation
  *      func()    { ... }
  */
@@ -32,12 +32,8 @@ protected:
 
 class Yellowdog : public Dog {
 public:
-    virtual void bark() {
-        cout << "I am a yellow dog.\n";
-    }
-    void iSleep() {
-        sleep();
-    }
+    virtual void bark() { cout << "I am a yellow dog.\n"; }
+    void iSleep() { sleep(); }
 };
 
 /*

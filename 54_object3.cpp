@@ -1,18 +1,14 @@
 #include <iostream>
 
-class Car{
-    public:
-        std::string make;
-        std::string model;
-        int year;
-        std::string color;
+class Car {
+public:
+    std::string make;
+    std::string model;
+    int year;
+    std::string color;
 
-        void accelerate(){
-            std::cout << "You step on the gas!\n";
-        }
-        void brake(){
-            std::cout << "You step on the brakes!\n";
-        }
+    void accelerate() { std::cout << "You step on the gas!\n"; }
+    void brake() { std::cout << "You step on the brakes!\n"; }
 };
 
 int main() {

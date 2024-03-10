@@ -1,13 +1,13 @@
-#include<iostream>
+#include <iostream>
 
-int main(){
+int main() {
 
-int temp;
-std:: cout<< "Enter temp";
-std:: cin >>temp;
+    int temp;
+    std::cout << "Enter temp";
+    std::cin >> temp;
 
-temp>0 && temp <30 ? std::cout<< "good" : std::cout<< "bad";
-std:: cout << std::endl;
+    temp > 0 && temp < 30 ? std::cout << "good" : std::cout << "bad";
+    std::cout << std::endl;
 
     return 0;
 }

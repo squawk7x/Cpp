@@ -23,17 +23,15 @@
 using namespace std;
 
 /*
-Solution: 
+Solution:
 */
 class Dog {
 public:
-    virtual ~Dog() {
-        cout << "dog destroyed" << endl;
-    }
+    virtual ~Dog() { cout << "dog destroyed" << endl; }
 };
 
-/* 
-Note: All classes in STL have no virtual destructor, so be careful inheriting 
+/*
+Note: All classes in STL have no virtual destructor, so be careful inheriting
 from them.
 */
 
@@ -48,33 +46,29 @@ When not to use virtual destructor:
 
 class YellowDog : public Dog {
 public:
-    ~YellowDog() {
-        cout << "yellow dog destroyed" << endl;
-    }
+    ~YellowDog() { cout << "yellow dog destroyed" << endl; }
 };
 
-/* Solution 2: 
+/* Solution 2:
  *    using shared_prt
  */
 
 class DogFactory {
 public:
-    //static Dog* createYellowDog() { return (new Yellowdog()); }
-    static shared_ptr<Dog> createYellowDog() {
-        return shared_ptr<YellowDog>(new YellowDog());
-    }
-    //static unique_ptr<Dog> createYellowDog() {
-    //   return unique_ptr<Yellowdog>(new Yellowdog());
-    //}
+    // static Dog* createYellowDog() { return (new Yellowdog()); }
+    static shared_ptr<Dog> createYellowDog() { return shared_ptr<YellowDog>(new YellowDog()); }
+    // static unique_ptr<Dog> createYellowDog() {
+    //    return unique_ptr<Yellowdog>(new Yellowdog());
+    // }
 };
 
 int main() {
-    //Dog* pd = DogFactory::createYellowDog();
+    // Dog* pd = DogFactory::createYellowDog();
     shared_ptr<Dog> pd = DogFactory::createYellowDog();
-    //unique_ptr<Dog> pd = DogFactory::createYellowDog();
+    // unique_ptr<Dog> pd = DogFactory::createYellowDog();
 
-    //delete pd;    // shared_ptr is responsible for deleting
-                    // destructor even not required anymore
+    // delete pd;    // shared_ptr is responsible for deleting
+    //  destructor even not required anymore
 
     return 0;
 }

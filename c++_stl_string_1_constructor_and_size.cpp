@@ -2,8 +2,8 @@
 // String - Constructor and Size
 //############################################################################
 
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 

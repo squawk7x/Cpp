@@ -2,14 +2,14 @@
 // Condition Variable
 //############################################################################
 
+#include <condition_variable>
 #include <deque>
+#include <fstream>
 #include <functional>
 #include <iostream>
-#include <fstream>
-#include <thread>
-#include <string>
 #include <mutex>
-#include <condition_variable>
+#include <string>
+#include <thread>
 
 using namespace std;
 
@@ -54,7 +54,7 @@ void function_1() {
         cout << "producing value: " << count << endl;
         locker.unlock();
         //  cond.notify_all();
-        cond.notify_one(); 
+        cond.notify_one();
         //   ^^^^^^^^^^ Notify one waiting thread, if there is one.
         std::this_thread::sleep_for(chrono::seconds(1));
         count--;

@@ -15,9 +15,7 @@ using namespace std;
 class Dog {
 public:
     string m_name;
-    void bark() {
-        cout << "Dog " << m_name << " rules!" << endl;
-    }
+    void bark() { cout << "Dog " << m_name << " rules!" << endl; }
     Dog() {
         cout << "Nameless dog created." << endl;
         m_name = "nameless";
@@ -26,9 +24,7 @@ public:
         cout << "Dog is created: " << name << endl;
         m_name = name;
     }
-    ~Dog() {
-        cout << "dog is destroyed: " << m_name << endl;
-    }
+    ~Dog() { cout << "dog is destroyed: " << m_name << endl; }
 };
 
 void test() {
@@ -41,7 +37,7 @@ void test() {
     unique_ptr<Dog> pD(new Dog("Gunner"));
     pD->bark();
 
-    Dog* p = pD.release();       
+    Dog* p = pD.release();
     // released object will NOT be destroyed
     // returns a raw pointer ( like shared_ptr get() function )
 
@@ -55,13 +51,11 @@ void test() {
         cout << "pD is not empty\n";
 }
 
-void f(unique_ptr<Dog> p) {
-    p->bark();
-}
+void f(unique_ptr<Dog> p) { p->bark(); }
 
 unique_ptr<Dog> getDog() {
     unique_ptr<Dog> p(new Dog("Smokey"));
-    return p;   // return by value // move semantics
+    return p; // return by value // move semantics
 }
 
 void test2() {
@@ -87,6 +81,6 @@ void test3() {
 }
 
 int main() {
-    // test(); 
+    // test();
     test2();
 }

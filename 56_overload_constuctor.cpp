@@ -1,17 +1,13 @@
 #include <iostream>
 
-class Pizza{
-    public:
-        std::string topping1;
-        std::string topping2;
+class Pizza {
+public:
+    std::string topping1;
+    std::string topping2;
 
-    Pizza(){
-        
-    }
-    Pizza(std::string topping1){
-        this->topping1 = topping1;
-    }
-    Pizza(std::string topping1, std::string topping2){
+    Pizza() {}
+    Pizza(std::string topping1) { this->topping1 = topping1; }
+    Pizza(std::string topping1, std::string topping2) {
         this->topping1 = topping1;
         this->topping2 = topping2;
     }
@@ -23,11 +19,11 @@ int main() {
     Pizza pizza2("mushrooms", "peppers");
     Pizza pizza3;
 
-std:: cout<< pizza1.topping1<<"\n\n";
+    std::cout << pizza1.topping1 << "\n\n";
 
-std:: cout<< pizza2.topping1<<"\n";
-std:: cout<< pizza2.topping2<<"\n\n";
+    std::cout << pizza2.topping1 << "\n";
+    std::cout << pizza2.topping2 << "\n\n";
 
-std:: cout<< pizza3.topping1<<"\n";//no toping
+    std::cout << pizza3.topping1 << "\n"; // no toping
     return 0;
 }

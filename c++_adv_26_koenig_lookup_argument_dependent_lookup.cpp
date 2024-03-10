@@ -21,10 +21,10 @@ using namespace std;
 //    g(x1);   // Koenig Lookup, or Argument Dependent Lookup (ADL)
 // }
 
-//Notes:
-//1. Remove A:: from A::g(x);
-//2. Add a global g(A::X);
-// Argument Dependent Lookup (ADL)
+// Notes:
+// 1. Remove A:: from A::g(x);
+// 2. Add a global g(A::X);
+//  Argument Dependent Lookup (ADL)
 
 // // Example 2:
 // class C {
@@ -69,34 +69,28 @@ using namespace std;
 //     g(x);
 // }
 
-//Notes:
-//1. Ambiguous call to g();
-//2. Change C to a class, no more ambiguity.
-//3. Derive C from B, move C::g() to B, still no ambiguity.
+// Notes:
+// 1. Ambiguous call to g();
+// 2. Change C to a class, no more ambiguity.
+// 3. Derive C from B, move C::g() to B, still no ambiguity.
 
 // Name hiding: namespace example
 
 namespace A {
 struct X {};
-void g(X) {
-    std::cout << " calling A::g() \n";
-}
+void g(X) { std::cout << " calling A::g() \n"; }
 
 namespace C {
-void g() {
-    std::cout << "calling C:g() \n";
-}
+void g() { std::cout << "calling C:g() \n"; }
 void j() {
-    //using A::g;   // using ... because of name hiding
+    // using A::g;   // using ... because of name hiding
     X x;
     g(x);
 }
 } // namespace C
 } // namespace A
 
-int main() {
-    A::C::j();
-}
+int main() { A::C::j(); }
 
 // // Notes:
 // // 1. add using A::g;

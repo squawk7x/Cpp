@@ -4,11 +4,11 @@
 //	copy, move, transform, swap, fill, replace, remove
 //############################################################################
 
-#include <iostream>
-#include <string>
 #include <algorithm>
-#include <vector>
+#include <iostream>
 #include <random>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -117,12 +117,12 @@ int main(int argc, char* argv[]) {
     // Generalized form: unique_copy()
 
     /*
- * Order-Changing Algorithms:
- *   - reverse, rotate, permute, shuffle 
- *   
- * They changes the order of elements in container, but not necessarily the
- * elements themselves.
- */
+     * Order-Changing Algorithms:
+     *   - reverse, rotate, permute, shuffle
+     *
+     * They changes the order of elements in container, but not necessarily the
+     * elements themselves.
+     */
 
     vector<int> vec = {9, 60, 70, 8, 45, 87, 90}; // 7 items
     vector<int> vec2 = {0, 0, 0, 0, 0, 0, 0};     // 7 items
@@ -145,17 +145,17 @@ int main(int argc, char* argv[]) {
 
     // 3. Permute
     next_permutation(vec.begin(), vec.end());
-    //Lexicographically next greater permutation
+    // Lexicographically next greater permutation
     prev_permutation(vec.begin(), vec.end());
-    //Lexicographically next smaller permutation
-    // {1,2,3,5} < {1,2,4,4}
-    // {1,2}     < {1,2,3}
+    // Lexicographically next smaller permutation
+    //  {1,2,3,5} < {1,2,4,4}
+    //  {1,2}     < {1,2,3}
 
-    //Sorted in ascending order:  {8, 9, 45, 60, 70, 87, 90}
-    //                            - Lexicographically smallest
+    // Sorted in ascending order:  {8, 9, 45, 60, 70, 87, 90}
+    //                             - Lexicographically smallest
     //
-    //Sorted in descending order: {90, 87, 70, 60, 45, 9, 8}
-    //                            - Lexicographically greatest
+    // Sorted in descending order: {90, 87, 70, 60, 45, 9, 8}
+    //                             - Lexicographically greatest
 
     // Generalized form: next_permutation(), prev_permutation()
 

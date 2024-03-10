@@ -1,5 +1,5 @@
 //############################################################################
-// Public, Protected, Private Inheritance 
+// Public, Protected, Private Inheritance
 //############################################################################
 
 // class B {};
@@ -11,11 +11,11 @@
 They specify different access control from the derived class to the base class.
 
 Access Control:
-1. None of the derived classes can access anything that is private in B. 
-2. D_pub inherits public members of B as public and the protected members of B as 
+1. None of the derived classes can access anything that is private in B.
+2. D_pub inherits public members of B as public and the protected members of B as
    protected.
-3. D_priv inherits the public and protected members of B as private. 
-4. D_prot inherits the public and protected members of B as protected. 
+3. D_priv inherits the public and protected members of B as private.
+4. D_prot inherits the public and protected members of B as protected.
 
 Casting:
 1. Anyone can cast a D_pub* to B*. D_pub is a special kind of B.
@@ -81,7 +81,6 @@ Note: Only public inheritance indicates a is-a relationship.
 // int main() {
 //     D_pub D1;
 //     D1.f_pub(); // OK. f_pub() is D_pub's public function.
-    
 
 //     D_prot D2;
 //     // D2.f_pub(); // Error. f_pub() is D_prot's protected function.
@@ -100,7 +99,7 @@ Note: Only public inheritance indicates a is-a relationship.
 // in D_prot, after public, add:  using B::f_pub;   the error goes away.
 
 /*
- * public inheritance: is-a relation, eg., D_pub is-a kind of a B. 
+ * public inheritance: is-a relation, eg., D_pub is-a kind of a B.
  *
  * private inheritance: similar to has-a relation.
  */
@@ -109,9 +108,7 @@ class Ring {
     virtual void tremble();
 
 public:
-    void tinkle() {
-        tremble();
-    }
+    void tinkle() { tremble(); }
 };
 
 /* Composition */
@@ -119,9 +116,7 @@ class Dog {
     Ring m_ring;
 
 public:
-    void tinkle() {
-        m_ring.tinkle();
-    } // call forwarding
+    void tinkle() { m_ring.tinkle(); } // call forwarding
 };
 
 /* Private Inheritance */

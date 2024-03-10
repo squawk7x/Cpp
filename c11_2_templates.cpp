@@ -1,25 +1,16 @@
-//############################################################################
-// Templates
-//############################################################################
-
-
 #include <iostream>
 #include <vector>
 
-template <typename T, typename U> 
+template <typename T, typename U>
 
 class MagicType {
 public:
     T dark;
     U magic;
-    MagicType(T d, U m) : dark(d), magic(m) {
-    }
+    MagicType(T d, U m) : dark(d), magic(m) {}
 };
 
-template <typename T>
-using TrueDarkMagic = MagicType<std::vector<T>, std::string>;
-
-
+template <typename T> using TrueDarkMagic = MagicType<std::vector<T>, std::string>;
 
 int main() {
     MagicType<int, double> mt(42, 1.23);

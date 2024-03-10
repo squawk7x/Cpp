@@ -5,17 +5,17 @@
 #include <iostream>
 #include <string>
 
-#include <vector>
-#include <deque>
-#include <list>
-#include <set>           // set and multiset
-#include <map>           // map and multimap
-#include <unordered_set> // unordered set/multiset
-#include <unordered_map> // unordered map/multimap
-#include <iterator>
 #include <algorithm>
-#include <numeric> // some numeric algorithm
+#include <deque>
 #include <functional>
+#include <iterator>
+#include <list>
+#include <map>           // map and multimap
+#include <numeric>       // some numeric algorithm
+#include <set>           // set and multiset
+#include <unordered_map> // unordered map/multimap
+#include <unordered_set> // unordered set/multiset
+#include <vector>
 
 using namespace std;
 
@@ -120,7 +120,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
     int a[3] = {3, 4, 5};
     array<int, 3> ac = {1, 2, 3};
-    array<int, 4> bc = {1, 2, 3, 4};    // different type as ac
+    array<int, 4> bc = {1, 2, 3, 4}; // different type as ac
 
     // Array is not a class type
     // a.begin();

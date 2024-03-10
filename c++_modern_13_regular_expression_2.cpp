@@ -4,7 +4,7 @@
 
 /***************  Deal with subexpression *****************/
 
-/* 
+/*
   std::match_results<>  Store the detailed matches
   smatch                Detailed match in string
 
@@ -16,32 +16,30 @@
   m.suffix()   Everything after the last matched character
 */
 
-#include <regex>
 #include <iostream>
+#include <regex>
 #include <string>
 
 using namespace std;
 
 int main() {
-   string str;
+    string str;
 
-   while (true) {
-      cin >> str;
-	  smatch m;        // typedef std::match_results<string>
+    while (true) {
+        cin >> str;
+        smatch m; // typedef std::match_results<string>
 
-	  regex e("([[:w:]]+)@([[:w:]]+)\\.com");  
+        regex e("([[:w:]]+)@([[:w:]]+)\\.com");
 
-	  bool found = regex_search(str, m, e);
+        bool found = regex_search(str, m, e);
 
-      cout << "m.size() " << m.size() << endl;
-	  for (int n = 0; n< m.size(); n++) {
-		   cout << "m[" << n << "]: str()=" << m[n].str() << endl;
-		   cout << "m[" << n << "]: str()=" << m.str(n) << endl;
-		   cout << "m[" << n << "]: str()=" << *(m.begin()+n) << endl;
-	  }
-	  cout << "m.prefix().str(): " << m.prefix().str() << endl;
-	  cout << "m.suffix().str(): " << m.suffix().str() << endl;
-   }
+        cout << "m.size() " << m.size() << endl;
+        for (int n = 0; n < m.size(); n++) {
+            cout << "m[" << n << "]: str()=" << m[n].str() << endl;
+            cout << "m[" << n << "]: str()=" << m.str(n) << endl;
+            cout << "m[" << n << "]: str()=" << *(m.begin() + n) << endl;
+        }
+        cout << "m.prefix().str(): " << m.prefix().str() << endl;
+        cout << "m.suffix().str(): " << m.suffix().str() << endl;
+    }
 }
-
-

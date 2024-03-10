@@ -3,8 +3,7 @@
 
 // A STRING HAS TO BE TERMINATED BY '\0'
 
-int main()
-{
+int main() {
 
     int B[2][3] = {{2, 3, 6}, {4, 5, 8}};
     // int* pB = B; //  Comilation error
@@ -36,8 +35,8 @@ int main()
     printf("&B[1][0]: %p\n", &B[1][0]);
     printf("--------------------------\n");
 
-    printf("*(B+1)+2: %p\n", *(B + 1)+2);
-    printf("B[1]+2: %p\n", B[1]+2);
+    printf("*(B+1)+2: %p\n", *(B + 1) + 2);
+    printf("B[1]+2: %p\n", B[1] + 2);
     printf("&B[1][2]: %p\n", &B[1][2]);
     printf("--------------------------\n");
 

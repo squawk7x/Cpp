@@ -1,13 +1,11 @@
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
-
-int main(){
-for(int i=10;i>=0;i-=2){
-    std::cout<< i <<"\n";
-
-  }
-    std::cout<<"Happy new yaers\n";
+int main() {
+    for (int i = 10; i >= 0; i -= 2) {
+        std::cout << i << "\n";
+    }
+    std::cout << "Happy new year\n";
 
     return 0;
 }

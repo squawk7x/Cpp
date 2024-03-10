@@ -1,14 +1,14 @@
-#include <iostream>
 #include <chrono>
+#include <cstdlib>
 #include <ctime>
 #include <iomanip>
-#include <thread>
-#include <cstdlib>
-#include <string.h>
+#include <iostream>
 #include <set>
+#include <string.h>
+#include <thread>
 
-using std::string;
 using std::cout;
+using std::string;
 
 #ifdef _WIN32
 #define CLEAR_SCREEN "cls"
@@ -43,7 +43,7 @@ void displayHelp() {
     cout << "  --version       Display program version information\n";
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     int BASE = 5;
 
     if (argc > 1) {
@@ -63,9 +63,10 @@ int main(int argc, char *argv[]) {
             BASE = std::atoi(argv[2]);
         } else {
             std::cerr << "Unknown option \
-            \nusage: " << argv[0] << " -b [ 1 2 3 4 5 6 10 12 ] \
-            \ntry for example: " << argv[0] << " -b 5"
-                      << std::endl;
+            \nusage: " << argv[0]
+                      << " -b [ 1 2 3 4 5 6 10 12 ] \
+            \ntry for example: "
+                      << argv[0] << " -b 5" << std::endl;
             return 1;
         }
     }
@@ -99,10 +100,9 @@ int main(int argc, char *argv[]) {
     while (true) {
         system(CLEAR_SCREEN);
 
-        auto currentTime = std::chrono::system_clock::to_time_t(
-            std::chrono::system_clock::now());
+        auto currentTime = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
-        std::tm *localTime = std::localtime(&currentTime);
+        std::tm* localTime = std::localtime(&currentTime);
 
         cout << "\n";
         cout << pattern_H[localTime->tm_hour / BASE];

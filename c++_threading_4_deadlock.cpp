@@ -2,12 +2,12 @@
 // Deadlock
 //############################################################################
 
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
 #include <memory>
-#include <thread>
 #include <mutex>
+#include <string>
+#include <thread>
 
 using namespace std;
 
@@ -19,9 +19,7 @@ class LogFile {
     ofstream f;
 
 public:
-    LogFile() {
-        f.open("log.txt");
-    }
+    LogFile() { f.open("log.txt"); }
     void shared_print(string id, int value) {
         std::lock_guard<mutex> locker(_mu);
         std::lock_guard<mutex> locker2(_mu2);
@@ -36,7 +34,7 @@ public:
         cout << "From " << id << ": " << value << endl;
     }
 
-	// Prefer locking single mutex:
+    // Prefer locking single mutex:
     void shared_print3(string id, int value) {
         {
             std::lock_guard<mutex> locker(_mu);
@@ -77,9 +75,9 @@ int main() {
 // 		f.open("log.txt");
 // 	}
 // 	void shared_print(string id, int value) {
-// 		std::lock(m_mutex, m_mutex_2);
-// 		std::lock_guard<mutex> locker(m_mutex, std::adopt_lock);
-// 		std::lock_guard<mutex> locker2(m_mutex_2, std::adopt_lock);
+		// std::lock(m_mutex, m_mutex_2);
+		// std::lock_guard<mutex> locker(m_mutex, std::adopt_lock);
+		// std::lock_guard<mutex> locker2(m_mutex_2, std::adopt_lock);
 // 		// f << "From " << id << ": " << value << endl;
 // 		cout << "From " << id << ": " << value << endl;
 // 	}
@@ -119,6 +117,6 @@ int main() {
 
 
 Locking Granularity:
-- Fine-grained lock:  protects small amount of data
+- Fine-grained lock: protects small amount of data
 - Coarse-grained lock: protects big amount of data
 */

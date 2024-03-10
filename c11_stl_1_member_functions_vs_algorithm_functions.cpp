@@ -25,13 +25,13 @@
 // std::pair<iterator, iterator> equal_range(const T&);
 // Note: No generalized form; use hash function to search
 
-#include <iostream>
-#include <string>
-#include <vector>
 #include <algorithm>
-#include <unordered_set>
-#include <map>
+#include <iostream>
 #include <list>
+#include <map>
+#include <string>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 

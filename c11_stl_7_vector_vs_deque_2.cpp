@@ -2,11 +2,11 @@
 // vector vs deque
 //############################################################################
 
+#include <deque>
 #include <iostream>
+#include <list>
 #include <string>
 #include <vector>
-#include <deque>
-#include <list>
 
 using namespace std;
 
@@ -20,7 +20,7 @@ using namespace std;
 
 /*
  * 1. Element type
- *   - When the elements are not of a trivial type, deque is not much less 
+ *   - When the elements are not of a trivial type, deque is not much less
 <<<<<<< HEAD
  *    efficient than vector.
 =======
@@ -30,7 +30,7 @@ using namespace std;
 
 /*
  * 2. Memory Availability
- *   Could allocation of large contiguous memory be a problem? 
+ *   Could allocation of large contiguous memory be a problem?
  *   - Limited memory size
  *   - Large trunk of data
 <<<<<<< HEAD
@@ -116,7 +116,7 @@ int main() {
 
     void cpp_fun(const bool* arr, int size);
     vector<bool> vec = {true, true, false, true};
-    // cpp_fun(&vec[0], vec.size()); 
+    // cpp_fun(&vec[0], vec.size());
     // Compiler Error: &vec[0] is not a bool pointer
     // workaround: use vector<int>, or bitset
 }
@@ -149,7 +149,7 @@ int main() {
 // C-style function taking a pointer to const int and its size
 void c_fun(const int* arr, int size) {
     for (int i = 0; i < size; i++) {
-        cout << arr[i] << " " ;
+        cout << arr[i] << " ";
     }
     cout << endl;
 }
@@ -162,7 +162,7 @@ int main() {
     // Passing data from a list to C
     list<int> mylist = {6, 7, 8, 9, 10};
     // Convert list to vector
-    vector<int> vec2(mylist.begin(), mylist.end()); 
+    vector<int> vec2(mylist.begin(), mylist.end());
     c_fun(&vec2[0], vec2.size());
 
     // NOTE: &vector[0] can be used as a raw array or pointer.

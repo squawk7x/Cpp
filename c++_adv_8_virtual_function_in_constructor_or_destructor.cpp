@@ -2,8 +2,8 @@
 // virtaul function in constructor or destructor
 //############################################################################
 
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -19,31 +19,21 @@ public:
         bark();
         cout << "dog is distroyed." << endl;
     }
-    
-    // void bark() {
-    virtual void bark() {
-        cout << "I am just a dog." << endl;
-    }
 
-    void seeCat() {
-        bark();
-    }
+    // void bark() {
+    virtual void bark() { cout << "I am just a dog." << endl; }
+
+    void seeCat() { bark(); }
 };
 
 // virtual is inherited, but good practice to write additionally
 // in derived class
 class YellowDog : public Dog {
 public:
-    YellowDog() {
-        cout << "yellow dog is born." << endl;
-    }
-    virtual ~YellowDog() {
-        cout << "yellow dog is distroyed." << endl;
-    }
+    YellowDog() { cout << "yellow dog is born." << endl; }
+    virtual ~YellowDog() { cout << "yellow dog is distroyed." << endl; }
 
-    virtual void bark() {
-        cout << "I am a yellow dog." << endl;
-    }
+    virtual void bark() { cout << "I am a yellow dog." << endl; }
 };
 
 int main() {

@@ -1,24 +1,23 @@
 
 //############################################################################
-// C++ Keyword: using 
+// C++ Keyword: using
 //############################################################################
- 
- /*
+
+/*
 1. using directive: to bring all namespace members into current scope
-  Example:  
-                using namespace std;
+ Example:
+               using namespace std;
 
 2. using declaration
-   a. Bring one specific namespace member to current scope. 
-   b. Bring a member from base class to current class's scope. 
-   Example:
-                using std::cout;
-                cout << "Hello world.\n";
+  a. Bring one specific namespace member to current scope.
+  b. Bring a member from base class to current class's scope.
+  Example:
+               using std::cout;
+               cout << "Hello world.\n";
 */
 
-
 #include <iostream>
-using namespace std;        //case 1: global scope
+using namespace std;        // case 1: global scope
 using std::cout, std::endl; // case 2a: global scope
 
 // class B {
@@ -52,21 +51,20 @@ using std::cout, std::endl; // case 2a: global scope
 //     d.f(8);
 // }
 
-
-
 /*
  * Anonymous Namespace
  */
 
-// similiar to: 
+// similiar to:
 // static void h() { std::cout << "h()\n"; }
 // void g() { std::cout << "global g()\n"; }
 
 namespace {
-   void g() { std::cout << "g()\n"; }
-   void h() { std::cout << "h()\n"; g(); }
+void g() { std::cout << "g()\n"; }
+void h() {
+    std::cout << "h()\n";
+    g();
 }
+} // namespace
 
-int main() {
-   h();
-}
+int main() { h(); }

@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 int main() {
     std::vector<int> vec = {1, 2, 3, 4};
@@ -13,8 +13,7 @@ int main() {
     }
 
     // should output: 1, 4, 3, 4. can be simplified using `auto`
-    if (const std::vector<int>::iterator itr =
-            std::find(vec.begin(), vec.end(), 3);
+    if (const std::vector<int>::iterator itr = std::find(vec.begin(), vec.end(), 3);
         itr != vec.end()) {
         *itr = 4;
     }
@@ -26,7 +25,6 @@ int main() {
     //     *itr = 4;
     // }
 
-    for (std::vector<int>::iterator element = vec.begin(); element != vec.end();
-         ++element)
+    for (std::vector<int>::iterator element = vec.begin(); element != vec.end(); ++element)
         std::cout << *element << std::endl;
 }

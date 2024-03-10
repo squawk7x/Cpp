@@ -1,8 +1,8 @@
-#include <stdio.h>
 #include <iostream>
+#include <stdio.h>
 #include <typeinfo>
 
-int sumOfElements(int *arr) {
+int sumOfElements(int* arr) {
     printf("sizeof A = %lu\n", sizeof(&arr));
     return 0;
 }

@@ -1,0 +1,13 @@
+CTRL + P    Search Files by name
+         >  Search Command
+         @  Search Symbol in current file 
+         #  Search Symbol in all files in current directory
+
+CTRL + D    Find Match, again CTRL + D -> Multicursor
+ALT  + D    Multicursor
+
+CTRL + L    Highlight Line
+
+ALT + ↑↓    Move Line
+
+

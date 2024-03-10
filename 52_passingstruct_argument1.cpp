@@ -1,15 +1,15 @@
 #include <iostream>
 
-struct Car{
+struct Car {
     std::string model;
     int year;
     std::string color;
 };
 
-void printCar(Car &car);
-void paintCar(Car &car, std::string color);
+void printCar(Car& car);
+void paintCar(Car& car, std::string color);
 
-int main () {
+int main() {
 
     Car car1;
     Car car2;
@@ -30,11 +30,9 @@ int main () {
 
     return 0;
 }
-void printCar(Car &car){
+void printCar(Car& car) {
     std::cout << car.model << '\n';
     std::cout << car.year << '\n';
     std::cout << car.color << '\n';
 }
-void paintCar(Car &car, std::string color){
-    car.color = color;
-}
+void paintCar(Car& car, std::string color) { car.color = color; }

@@ -1,16 +1,15 @@
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
+int main() {
+    std::string name;
 
-int main(){
-std:: string name;
+    std::cout << "Enter name";
+    std::getline(std::cin, name);
 
-std:: cout<< "Enter name";
-std:: getline(std::cin, name);
+    name.clear();
 
-name.clear();
+    std::cout << "Welcome" << name;
 
-      std:: cout<< "Welcome"<< name;
- 
     return 0;
 }

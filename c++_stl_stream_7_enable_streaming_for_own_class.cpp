@@ -2,17 +2,17 @@
 // Stream - Enable streaming for your own class
 //############################################################################
 
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
 // Creating Stream-enabled class
 
 struct Dog {
-    public:
+public:
     int age_;
     string name_;
 };
@@ -30,7 +30,7 @@ istream& operator>>(istream& sm, Dog& d) {
 }
 
 int main() {
-    Dog d{2, "Bob"};// Universal Initialization from C++ 11
+    Dog d{2, "Bob"}; // Universal Initialization from C++ 11
     cout << d;
 
     // Interactive initialization in terminal

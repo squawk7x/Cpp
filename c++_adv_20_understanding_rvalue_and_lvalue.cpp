@@ -2,51 +2,31 @@
 // Understanding Rvalue and Lvalue
 //############################################################################
 
-#include <iostream>
 #include <array>
+#include <iostream>
 
 using namespace std;
 
 class dog {
-    public:
-    void bark(){}
+public:
+    void bark() {}
 };
 
-int square(int& x) {
-    return x * x;
-}
-
-int square(const int& x) {
-    return x * x;
-}
-
-int square(int&& x) {
-    return x * x;
-}
+int square(int& x) { return x * x; }
+int square(const int& x) { return x * x; }
+int square(int&& x) { return x * x; }
 
 int myglobal;
 
-int& foo() {
-    return myglobal;
-}
+int& foo() { return myglobal; }
 
 // setValue function accepts a const reference to int
-void setValue(const int& value) {
-    printf("setValue: %d\n", value);
-}
+void setValue(const int& value) { printf("setValue: %d\n", value); }
 
 // printName function overloads for lvalues and rvalues
-void printName(string& name) {
-    printf("[lvalue - string&] %s\n", name.c_str());
-}
-
-void printName(const string& name) {
-    printf("[const string&] %s\n", name.c_str());
-}
-
-void printName(string&& name) {
-    printf("[rvalue - string&&] %s\n", name.c_str());
-}
+void printName(string& name) { printf("[lvalue - string&] %s\n", name.c_str()); }
+void printName(const string& name) { printf("[const string&] %s\n", name.c_str()); }
+void printName(string&& name) { printf("[rvalue - string&&] %s\n", name.c_str()); }
 
 int main() {
     // Lvalue examples:
@@ -123,8 +103,7 @@ int main() {
     // square(5) = 25; // Error
     // it is not true for user defined type (class):
     // but:
-    dog().bark();// bark may change the state of the dog object.
-
+    dog().bark(); // bark may change the state of the dog object.
 
     int num = 10;
 
@@ -151,7 +130,7 @@ int main() {
 /*
  * Summary:
  * 1. Every C++ expression yield either a rvalue or a lvalue.
- * 2. If the expression has an identifiable memory address, 
+ * 2. If the expression has an identifiable memory address,
  *      it is a lvalue
  *      otherwise it is a rvalue.
-*/
+ */

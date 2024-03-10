@@ -23,21 +23,19 @@ class Dog {
     Collar* pCollar;
 
 public:
-    Dog() {
-        pCollar = new Collar();
-    }
+    Dog() { pCollar = new Collar(); }
     Dog& operator=(const Dog& rhs) {
-        // not just: 
+        // not just:
         // delete pCollar;
         // pCollar = new Collar(*rhs.pCollar);
         // if lhs == rhs, rhs collar is deleted
 
         if (this == &rhs)
             return *this;
-            
+
         // additionally: make it exception safe:
         // delete only after a new collar was created successfully
-        Collar* pOrigCollar = pCollar;  
+        Collar* pOrigCollar = pCollar;
         pCollar = new Collar(*rhs.pCollar);
         delete pOrigCollar;
         return *this;
@@ -53,9 +51,7 @@ class DogD {
     Collar* pCollar;
 
 public:
-    DogD() {
-        pCollar = new Collar();
-    }
+    DogD() { pCollar = new Collar(); }
     DogD& operator=(const DogD& rhs) {
         // no need to check if (lhs == rhs), copy anyway
         *pCollar = *rhs.pCollar; // member by member copying of Collars or

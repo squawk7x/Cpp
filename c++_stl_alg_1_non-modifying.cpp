@@ -4,9 +4,9 @@
 //    count, min and max, compare, linear search, attribute
 //############################################################################
 
+#include <algorithm>
 #include <iostream>
 #include <string>
-#include <algorithm>
 #include <vector>
 
 using namespace std;
@@ -14,9 +14,7 @@ using namespace std;
 vector<int> vec = {9, 60, 90, 8, 45, 87, 90, 69, 69, 55, 7};
 vector<int> vec2 = {9, 60, 70, 8, 45, 87};
 
-bool lessThan10(int x) {
-    return x < 10;
-}
+bool lessThan10(int x) { return x < 10; }
 
 int main(int argc, char* argv[]) {
     // C++ 11 Lambda Function (same as func above)
@@ -28,25 +26,23 @@ int main(int argc, char* argv[]) {
 
     // 1. Counting
     // Algorithm Data Operation
-    int n = count(vec.begin() + 2, vec.end() - 1, 69); // 2
-    int m =
-        count_if(vec.begin(), vec.end(), [](int x) { return x == 69; });    // 3
-    int m = count_if(vec.begin(), vec.end(), [](int x) { return x < 10; }); // 3
+    int n = count(vec.begin() + 2, vec.end() - 1, 69);                       // 2
+    int m = count_if(vec.begin(), vec.end(), [](int x) { return x == 69; }); // 3
+    int m = count_if(vec.begin(), vec.end(), [](int x) { return x < 10; });  // 3
 
     // 2.  Min and Max
     itr = max_element(vec.begin() + 2, vec.end()); // 90
     // It returns the first max value
-    itr = max_element(vec.begin(), vec.end(),
-                      [](int x, int y) { return (x % 10) < (y % 10); }); // 9
+    itr =
+        max_element(vec.begin(), vec.end(), [](int x, int y) { return (x % 10) < (y % 10); }); // 9
 
     // Most algorithms have a simple form and a generalized form
 
     itr = min_element(vec.begin(), vec.end()); // 7
     // Generalized form: min_element()
 
-    pair_of_itr =
-        minmax_element(vec.begin(), vec.end(), // {60, 69}
-                       [](int x, int y) { return (x % 10) < (y % 10); });
+    pair_of_itr = minmax_element(vec.begin(), vec.end(), // {60, 69}
+                                 [](int x, int y) { return (x % 10) < (y % 10); });
     // returns a pair, which contains first of min and last of max
 
     // 3. Linear Searching (used when data is not sorted)
@@ -79,8 +75,7 @@ int main(int argc, char* argv[]) {
     // Search Adjacent
     itr = adjacent_find(vec.begin(), vec.end()); // find two adjacent items that
                                                  // are same
-    itr = adjacent_find(vec.begin(), vec.end(),
-                        [](int x, int y) { return x == y * 4; });
+    itr = adjacent_find(vec.begin(), vec.end(), [](int x, int y) { return x == y * 4; });
     // find two adjacent items that satisfy: x==y*4;
 
     // 4. Comparing Ranges
@@ -97,7 +92,7 @@ int main(int argc, char* argv[]) {
     // pair_of_itr.first is an iterator of vec
     // pair_of_itr.second is an iterator of vec2
 
-    //Lexicographical Comparison: one-by-one comparison with "less than"
+    // Lexicographical Comparison: one-by-one comparison with "less than"
     lexicographical_compare(vec.begin(), vec.end(), vec2.begin(), vec2.end());
     // {1,2,3,5} < {1,2,4,5}
     // {1,2}     < {1,2,3}
@@ -115,10 +110,9 @@ int main(int argc, char* argv[]) {
     is_partitioned(vec.begin(), vec.end(), [](int x) { return x > 80; });
     // Check if vec is partitioned according to the condition of (x>80)
 
-    is_heap(vec.begin(), vec.end()); // Check if vec is a heap
-    itr =
-        is_heap_until(vec.begin(), vec.end()); // find the first place where it
-                                               // is no longer a heap
+    is_heap(vec.begin(), vec.end());             // Check if vec is a heap
+    itr = is_heap_until(vec.begin(), vec.end()); // find the first place where it
+                                                 // is no longer a heap
     // Generalized forms: is_heap(), is_heap_until()
 
     // All, any, none

@@ -25,15 +25,9 @@ public:
         cout << "Dog is created: " << name << endl;
         m_name = name;
     }
-    ~Dog() {
-        cout << "dog is destroyed: " << m_name << endl;
-    }
-    void bark() {
-        cout << "Dog " << m_name << " rules!" << endl;
-    }
-    void makeFriend(shared_ptr<Dog> f) {
-        m_pFriend = f;
-    }
+    ~Dog() { cout << "dog is destroyed: " << m_name << endl; }
+    void bark() { cout << "Dog " << m_name << " rules!" << endl; }
+    void makeFriend(shared_ptr<Dog> f) { m_pFriend = f; }
     void showFriend() {
         // cout << "My friend is: " << m_pFriend->m_name << endl;
         // weak_ptr can NOT be used just like a regular pointer.
@@ -42,8 +36,7 @@ public:
         // if a weak_ptr is empty, .lock(); will throw an exception
         if (!m_pFriend.expired())
             cout << "My friend is: " << m_pFriend.lock()->m_name << endl;
-        cout << "... he is owned by " << m_pFriend.use_count() << " pointers."
-             << endl;
+        cout << "... he is owned by " << m_pFriend.use_count() << " pointers." << endl;
     }
 };
 

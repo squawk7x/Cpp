@@ -7,11 +7,11 @@
  *    Not truely random -- pseudorandom
  */
 
+#include <algorithm>
+#include <chrono>
 #include <iostream>
 #include <random>
-#include <chrono>
 #include <sstream>
-#include <algorithm>
 
 using namespace std;
 
@@ -84,4 +84,3 @@ int main() {
     // std::shuffle(d.begin(), d.end(), eng); // different order
     // printArray(d);
 }
-

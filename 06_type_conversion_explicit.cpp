@@ -1,11 +1,11 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 
-int main(){
+int main() {
 
-char  x=100;
+    char x = 100;
 
-std:: cout<< (char) x;
+    std::cout << (char)x;
 
     return 0;
 }

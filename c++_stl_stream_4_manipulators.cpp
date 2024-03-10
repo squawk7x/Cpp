@@ -2,12 +2,12 @@
 // Stream - Manipulators
 //############################################################################
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <bitset>
 #include <complex>
+#include <fstream>
 #include <iomanip>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -32,5 +32,4 @@ int main() {
 
     cout << setw(8) << left << setfill('_') << 99 << endl;
     cout << hex << showbase << 14;
-
 }

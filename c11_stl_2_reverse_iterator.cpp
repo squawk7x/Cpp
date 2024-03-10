@@ -2,13 +2,13 @@
 // Reverse Iterator and Iterator
 //############################################################################
 
-#include <iostream>
-#include <string>
-#include <vector>
 #include <algorithm>
-#include <unordered_set>
-#include <map>
+#include <iostream>
 #include <list>
+#include <map>
+#include <string>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -59,7 +59,7 @@ int main() {
     cout << (*itr) << endl; // 4
                             // see picture: itr and ritr diff by 1 position
 
-    //Inserting
+    // Inserting
     vec = {1, 2, 3, 4, 5};
     // vec.insert(ritr, 9); // vec: {1,2,3,9,4,5}
     // or: (ritr and ritr.base() have same result)

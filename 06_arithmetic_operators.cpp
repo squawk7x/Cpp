@@ -1,48 +1,47 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 
-int main(){
+int main() {
 
-int student=20;
+    int student = 20;
 
-student =student +1;
-std:: cout << student << std::endl;
-student +=1;
-std:: cout << student << std::endl;
-student ++;
+    student = student + 1;
+    std::cout << student << std::endl;
+    student += 1;
+    std::cout << student << std::endl;
+    student++;
 
-std:: cout << student << std::endl;
+    std::cout << student << std::endl;
 
+    student = student - 1;
+    std::cout << student << std::endl;
+    student -= 1;
+    std::cout << student << std::endl;
+    student--;
 
-student =student -1;
-std:: cout << student << std::endl;
-student -=1;
-std:: cout << student << std::endl;
-student --;
+    std::cout << student << std::endl;
 
-std:: cout << student << std::endl;
+    student = student * 2;
 
-student =student *2;
+    std::cout << student << std::endl;
 
-std:: cout << student << std::endl;
+    student = student / 2;
 
-student =student /2;
+    std::cout << student << std::endl;
 
-std:: cout << student << std::endl;
+    double studentdouble = 20;
 
-double studentdouble=20;
+    studentdouble = studentdouble / 3;
 
-studentdouble =studentdouble /3;
+    std::cout << studentdouble << std::endl;
 
-std:: cout << studentdouble << std::endl;
+    int remainder = student % 3;
 
-int remainder= student%3;
+    std::cout << remainder << std::endl;
 
-std:: cout << remainder << std::endl;
+    int student2 = 6 - (5 + 4) * 3 / 2;
 
-int student2= 6-(5+4)*3/2;
-
-std:: cout << student2 << std::endl;
+    std::cout << student2 << std::endl;
 
     return 0;
 }

@@ -8,19 +8,15 @@ class B;
 class A {
 public:
     // std::shared_ptr<B> pointer;
-    std::weak_ptr<B> pointer;   // no increase of reference count
-    ~A() {
-        std::cout << "A was destroyed" << std::endl;
-    }
+    std::weak_ptr<B> pointer; // no increase of reference count
+    ~A() { std::cout << "A was destroyed" << std::endl; }
 };
 
 class B {
 public:
     std::shared_ptr<A> pointer;
     // std::weak_ptr<A> pointer;   // no increase of reference count
-    ~B() {
-        std::cout << "B was destroyed" << std::endl;
-    }
+    ~B() { std::cout << "B was destroyed" << std::endl; }
 };
 
 int main() {

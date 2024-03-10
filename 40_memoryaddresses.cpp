@@ -1,16 +1,15 @@
-#include<iostream>
-#include<iomanip>
-#include<ctime>
+#include <ctime>
+#include <iomanip>
+#include <iostream>
 
-int main(){
-        std:: string name="Bro";
-        int age=21;
-        bool student =true;
+int main() {
+    std::string name = "Bro";
+    int age = 21;
+    bool student = true;
 
-    std:: cout<< &name<<"\n";
-    std:: cout<< &age<<"\n";
-    std:: cout<< &student<<"\n";
+    std::cout << &name << "\n";
+    std::cout << &age << "\n";
+    std::cout << &student << "\n";
 
-
-   return 0;
+    return 0;
 }

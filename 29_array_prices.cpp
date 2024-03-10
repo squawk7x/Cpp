@@ -1,14 +1,14 @@
-#include<iostream>
-#include<iomanip>
-#include<ctime>
+#include <ctime>
+#include <iomanip>
+#include <iostream>
 
-int main(){
-double prices[]={5.00,7.50, 9.99, 15.00};
+int main() {
+    double prices[] = {5.00, 7.50, 9.99, 15.00};
 
-std::cout << prices[0]<<"\n";
-std::cout << prices[1]<<"\n";
-std::cout << prices[2]<<"\n";
-std::cout << prices[3]<<"\n";
+    std::cout << prices[0] << "\n";
+    std::cout << prices[1] << "\n";
+    std::cout << prices[2] << "\n";
+    std::cout << prices[3] << "\n";
 
-
-return 0;}
+    return 0;
+}

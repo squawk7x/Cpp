@@ -3,20 +3,16 @@
 
 using namespace std;
 
-template <typename R, typename T, typename U> R add(T x, U y) {
-    return x + y;
-}
+template <typename R, typename T, typename U> R add(T x, U y) { return x + y; }
 
-template <typename T, typename U> auto add2(T x, U y) -> decltype(x + y) {
-    return x + y;
-}
+template <typename T, typename U> auto add2(T x, U y) -> decltype(x + y) { return x + y; }
 
 // after c++14
 // template <typename T, typename U> auto add3(T x, U y) {
 //     return x + y;
 // }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     auto x = 1;
     auto y = 2.0;
     decltype(x + y) z;

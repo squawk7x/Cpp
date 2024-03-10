@@ -1,28 +1,28 @@
-#include<iostream>
-#include<iomanip>
-#include<ctime>
+#include <ctime>
+#include <iomanip>
+#include <iostream>
 
-void sawp2(std::string &x, std::string &y);
+void sawp2(std::string& x, std::string& y);
 
-int main(){
-std:: string x="Kool-aid";
-std:: string y="Water";
+int main() {
+    std::string x = "Kool-aid";
+    std::string y = "Water";
 
-std:: cout<< "\n";
-std:: cout<< x<< "\n";
-std:: cout<< y<< "\n\n";
+    std::cout << "\n";
+    std::cout << x << "\n";
+    std::cout << y << "\n\n";
 
-sawp2(x,y);
+    sawp2(x, y);
 
-std:: cout<< x<< "\n";
-std:: cout<< y<< "\n";
+    std::cout << x << "\n";
+    std::cout << y << "\n";
 
-   return 0;
+    return 0;
 }
 
-void sawp2(std::string &x, std::string &y){
-   std:: string temp;
-   temp=x;
-    x=y;
-    y=temp;
+void sawp2(std::string& x, std::string& y) {
+    std::string temp;
+    temp = x;
+    x = y;
+    y = temp;
 }

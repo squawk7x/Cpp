@@ -11,8 +11,7 @@ int main() {
     auto i = 5;              // i as int
     auto arr = new auto(10); // arr as int *
 
-    for (std::vector<int>::const_iterator it = vec.cbegin(); it != vec.cend();
-         ++it) {
+    for (std::vector<int>::const_iterator it = vec.cbegin(); it != vec.cend(); ++it) {
     }
     for (auto it = vec.cbegin(); it != vec.cend(); ++it) {
     }

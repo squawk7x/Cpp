@@ -5,10 +5,10 @@
 // Sorting algorithm requires random access iterators:
 //    vector, deque, container array, native array
 
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -21,13 +21,9 @@ template <typename T> void print_container(T container) {
     std::cout << " }" << std::endl;
 }
 
-bool lsb_less(int x, int y) {
-    return (x % 10) < (y % 10);
-}
+bool lsb_less(int x, int y) { return (x % 10) < (y % 10); }
 
-bool lessThan10(int i) {
-    return (i < 10);
-}
+bool lessThan10(int i) { return (i < 10); }
 
 int main(int argc, char* argv[]) {
     vector<int> vec = {9, 1, 10, 2, 45, 3, 90, 4, 9, 5, 8};
@@ -35,8 +31,8 @@ int main(int argc, char* argv[]) {
     print_container(vec);
     print_container(vec2);
 
-    sort(vec.begin(), vec.end());           // sort with operator <
-                                            // vec:  1 2 3 4 5 8 9 9 10 45 90
+    sort(vec.begin(), vec.end()); // sort with operator <
+                                  // vec:  1 2 3 4 5 8 9 9 10 45 90
     print_container(vec);
 
     sort(vec.begin(), vec.end(), lsb_less); // sort with lsb_less()

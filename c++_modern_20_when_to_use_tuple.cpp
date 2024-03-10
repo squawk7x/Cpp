@@ -3,18 +3,16 @@
 // ***********************************************
 
 #include <iostream>
+#include <map>
 #include <string>
 #include <tuple>
-#include <map>
 #include <unordered_map>
 
 using namespace std;
 
 // tuple vs struct
 
-tuple<string, int> getNameAge() {
-    return make_tuple("Bob", 34);
-}
+tuple<string, int> getNameAge() { return make_tuple("Bob", 34); }
 
 int main() {
     struct Person {

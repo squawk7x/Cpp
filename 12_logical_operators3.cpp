@@ -1,14 +1,14 @@
-#include<iostream>
+#include <iostream>
 
-int main(){
+int main() {
 
-int temp;
-bool sunny =true;
-std:: cout<< "Enter temp";
-std:: cin >>temp;
+    int temp;
+    bool sunny = true;
+    std::cout << "Enter temp";
+    std::cin >> temp;
 
-!sunny ? std::cout<< "It sunny out there" : std::cout<< "bad outside";
-std:: cout << std::endl;
+    !sunny ? std::cout << "It sunny out there" : std::cout << "bad outside";
+    std::cout << std::endl;
 
     return 0;
 }

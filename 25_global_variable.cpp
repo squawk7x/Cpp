@@ -1,22 +1,22 @@
-#include<iostream>
-#include<ctime>
+#include <ctime>
+#include <iostream>
 
-//scope operation operator ::
+// scope operation operator ::
 
-int num=3;
+int num = 3;
 
 void printnum();
 
-int main(){
+int main() {
 
-    int num=1;
+    int num = 1;
     printnum();
-    std:: cout<< ::num<<"\n";
+    std::cout << ::num << "\n";
 
     return 0;
 }
 
-void printnum(){
-    int num=2;
-    std:: cout<< ::num<<"\n";
+void printnum() {
+    int num = 2;
+    std::cout << ::num << "\n";
 }

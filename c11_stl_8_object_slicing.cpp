@@ -2,49 +2,43 @@
 // Object Slicing
 //############################################################################
 
+#include <algorithm>
+#include <deque>
 #include <iostream>
 #include <string>
-#include <vector>
 #include <unordered_set>
-#include <deque>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
 
 class Dog {
 public:
-    virtual void bark() {
-        cout << "I don't have a name." << endl;
-    }
+    virtual void bark() { cout << "I don't have a name." << endl; }
 };
 
 class YellowDog : public Dog {
     string m_name;
 
 public:
-    YellowDog(string name) : m_name(name) {
-    }
-    void bark() {
-        cout << "My name is " << m_name << endl;
-    }
+    YellowDog(string name) : m_name(name) {}
+    void bark() { cout << "My name is " << m_name << endl; }
 };
 
-void foo(Dog d) {
-}
+void foo(Dog d) {}
 
 int main() {
     deque<Dog> dog;
     YellowDog yellowDog("Gunner");
 
     dog.push_front(yellowDog); // first copy construct dog from yellowDog
-    dog[0].bark();      // dog[0] is a dog NOT yellowDog
+    dog[0].bark();             // dog[0] is a dog NOT yellowDog
     // object slicing, m_name is sliced away
 
     // Solution: use pointer:
     deque<Dog*> dog2;
     YellowDog yellowDog2("Gunner");
     dog2.push_front(&yellowDog); // passed by reference
-    dog2[0]->bark();      // virtual void bark();
+    dog2[0]->bark();             // virtual void bark();
     // dog[0] is a yellow dog
 
     Dog dog2 = yellowDog;
@@ -52,16 +46,16 @@ int main() {
 }
 
 /*
-void foo(Dog* d) {  
-	YellowDog* py = dynamic_cast<YellowDog*>(d);
-	cout << py->m_name << endl;
+void foo(Dog* d) {
+        YellowDog* py = dynamic_cast<YellowDog*>(d);
+        cout << py->m_name << endl;
 }
 
 foo(&yellowDog);
 
-class Dog { 
-	public:
-	virtual ~Dog();
+class Dog {
+        public:
+        virtual ~Dog();
 };
 */
 
@@ -74,7 +68,7 @@ class Dog {
 // vec.push_back(x);
 // vec.insert(vec.begin(), x);
 
-//Solution: shared_ptr
+// Solution: shared_ptr
 //
 
 /*

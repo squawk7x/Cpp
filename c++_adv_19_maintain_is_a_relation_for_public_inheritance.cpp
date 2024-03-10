@@ -107,10 +107,10 @@
 /*
  * in class dog, add:
 
- *  virtual void bark(int age) { 
- *      cout << "I am " << age << " years old"<< endl; 
+ *  virtual void bark(int age) {
+ *      cout << "I am " << age << " years old"<< endl;
  *  }
- * 
+ *
  * in main(),
  *    py->bark(5);  // Won't compile
  *                  // Can be fixed by adding "using Dog::bark;" in yellow dog
@@ -123,30 +123,22 @@ using namespace std;
 
 class Dog {
 public:
-    virtual void bark() {
-        cout << "I am just a dog.\n";
-    };
+    virtual void bark() { cout << "I am just a dog.\n"; };
     void run();
 };
 
 class Yellowdog : public Dog {
 public:
-    virtual void barks() {
-        cout << "I am a yellow dog.\n";
-    };
+    virtual void barks() { cout << "I am a yellow dog.\n"; };
 };
 
 // C++ 11 standard:
-class Yellowdog : public Dog {
-public:
-    // virtual void barks() override;
-    // // Compile Error: no function to override
-
-    // virtual void bark() const override;
-    // // Compile Error: no function to override
-
-    // void run() override; // Error
-};
+// class Yellowdog : public Dog {
+// public:
+//      virtual void barks() override;      // Compile Error: no function to override
+//      virtual void bark() const override; // Compile Error: no function to override
+//      void run() override;                // Error
+// };
 
 /*
  * Summary of pitfalls:

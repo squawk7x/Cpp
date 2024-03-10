@@ -3,23 +3,22 @@
 // ***********************************************
 
 /* Resource Acquisition is Initialization (RAII)
- * 
- * Use objects to manage resources: 
+ *
+ * Use objects to manage resources:
  * 	memory, hardware device, network handle, etc.
  */
 
-#include <mutex>
 #include <iostream>
-#include <string>
 #include <memory>
+#include <mutex>
 #include <random>
+#include <string>
 
 using namespace std;
 
 std::mutex m;
 
-void func() {
-}
+void func() {}
 
 bool random_ok() {
     std::random_device rd;
@@ -101,15 +100,15 @@ void good() {
 
 /* Conclusion:
  *
- * The only code that can be guaranteed to be executed after exception is 
- * thrown are the destructor of objects residing on the stack. 
+ * The only code that can be guaranteed to be executed after exception is
+ * thrown are the destructor of objects residing on the stack.
  *
- * Resource management therefore needs to be tied to the lifespan of 
+ * Resource management therefore needs to be tied to the lifespan of
  * suitable objects in order to gain automatic deallocation and reclamation.
  */
 
 /* Note 1:
- * Another good example of RAII:  
+ * Another good example of RAII:
  * tr1:shared_ptr C++ 03
  * C++ 11: std::shared_ptr
  */
@@ -136,7 +135,7 @@ void good() {
 //     return 0;
 // }
 
-//Question: What's the problem with above code:
+// Question: What's the problem with above code:
 
 // What happens in train()'s parameter passing:
 // 1. new dog();
@@ -152,10 +151,10 @@ void good() {
 //    Lock L1(&mu);
 //    Lock L2(L1);
 
-/* Solution 1: 
- * Prohibit copying. To see how to disallow copy constructor and copy 
- * assignment operator from being used, watch my another session: 
- * Disallow Compiler Generated Functions. 
+/* Solution 1:
+ * Prohibit copying. To see how to disallow copy constructor and copy
+ * assignment operator from being used, watch my another session:
+ * Disallow Compiler Generated Functions.
  */
 
 /* Solution 2:

@@ -1,32 +1,29 @@
-#include<iostream>
-#include<ctime>
+#include <ctime>
+#include <iostream>
 
+int main() {
+    srand(time(NULL));
 
-int main(){
-srand(time(NULL));
+    int num = (rand() % 100) + 1;
+    int guess;
+    int tries = 0;
 
-int num = (rand() %100)+1;
-int guess;
-int tries=0;
+    do {
+        std::cout << "please guess the number: ";
+        std::cin >> guess;
+        tries++;
 
-do{
-std:: cout<<"please guess the number: ";
-std:: cin>> guess;  
-tries++;
+        if (guess > num) {
+            std::cout << "too height\n";
+        } else if (guess < num) {
+            std::cout << "too low\n";
+        } else {
+            std::cout << "Well done\n";
+        }
 
-if(guess>num){
-    std:: cout<<"too height\n";
-}
-else if(guess<num){
-    std:: cout<<"too low\n";
-}
-else{
-std:: cout<<"Well done\n";
-}
-
-if(tries==3){
-    std::cout<<"amout of try"<< tries<<"\n";
-    break;
-}
-}while(guess!=num);
+        if (tries == 3) {
+            std::cout << "amout of try" << tries << "\n";
+            break;
+        }
+    } while (guess != num);
 }

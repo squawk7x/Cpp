@@ -1,6 +1,6 @@
-#include <iostream>
-#include "c++_dog.h"
 #include "c++_cat.h"
+#include "c++_dog.h"
+#include <iostream>
 
 Cat cat("Smokey");
 
@@ -9,6 +9,4 @@ Dog::Dog(std::string name) : name_(name) {
     cat.meow();
 }
 
-void Dog::bark() {
-    std::cout << "Dog rules! My name is " << name_ << std::endl;
-}
+void Dog::bark() { std::cout << "Dog rules! My name is " << name_ << std::endl; }

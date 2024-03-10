@@ -4,10 +4,10 @@
 
 // a class owns another object by pointer
 
-#include <string>
 #include <iostream>
-#include <vector>
 #include <memory>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -16,14 +16,9 @@ private:
     string* pName_;
 
 public:
-    Person(string name) : pName_(new string(name)) {
-    }
-    ~Person() {
-        delete pName_;
-    }
-    void printName() {
-        cout << *pName_;
-    }
+    Person(string name) : pName_(new string(name)) {}
+    ~Person() { delete pName_; }
+    void printName() { cout << *pName_; }
 };
 
 int main() {
@@ -33,7 +28,7 @@ int main() {
     // 1. "George" is constructed.
     // 2. A copy (!) of "George" is saved in the vector persons (shallow copy).
     //          "George" and its copy point to the same pName_
-    // 3. "George" ist destroyed. 
+    // 3. "George" ist destroyed.
 
     persons.back().printName();
     // points to an object that is already deleted => program crashes

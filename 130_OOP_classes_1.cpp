@@ -27,9 +27,7 @@ public:
     Rectangle(int, int);
     Rectangle(double, double);
     Rectangle(int, double);
-    int area() {
-        return (width * height);
-    }
+    int area() { return (width * height); }
 };
 
 Rectangle::Rectangle() {
@@ -42,12 +40,9 @@ Rectangle::Rectangle(int a, int b) {
     height = b;
 }
 
-Rectangle::Rectangle(double c, double d) : width(c) {
-    height = d;
-}
+Rectangle::Rectangle(double c, double d) : width(c) { height = d; }
 
-Rectangle::Rectangle(int a, double d) : width(a), height(d) {
-}
+Rectangle::Rectangle(int a, double d) : width(a), height(d) {}
 
 // classes and uniform initialization
 
@@ -55,15 +50,9 @@ class Circle {
     double radius;
 
 public:
-    Circle(double r) {
-        radius = r;
-    }
-    double circum() {
-        return 2 * radius * 3.14159265;
-    }
-    double area() {
-        return radius * radius * 3.14159265;
-    }
+    Circle(double r) { radius = r; }
+    double circum() { return 2 * radius * 3.14159265; }
+    double area() { return radius * radius * 3.14159265; }
 };
 
 class Cylinder {
@@ -71,11 +60,8 @@ class Cylinder {
     double height;
 
 public:
-    Cylinder(double r, double h) : base(r), height(h) {
-    }
-    double volume() {
-        return base.area() * height;
-    }
+    Cylinder(double r, double h) : base(r), height(h) {}
+    double volume() { return base.area() * height; }
 };
 
 int main() {
@@ -100,11 +86,13 @@ int main() {
     p_foo = &obj;
     p_bar = new Rectangle(5, 6);
     p_baz = new Rectangle[2]{{2, 5}, {3, 6}};
+
     cout << "obj's area: " << obj.area() << '\n';
     cout << "*foo's area: " << p_foo->area() << '\n';
     cout << "*bar's area: " << p_bar->area() << '\n';
     cout << "baz[0]'s area:" << p_baz[0].area() << '\n';
     cout << "baz[1]'s area:" << p_baz[1].area() << '\n';
+
     delete p_bar;
     delete[] p_baz;
 

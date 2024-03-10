@@ -6,13 +6,12 @@
 //  	Binary search, merge, set operations
 //############################################################################
 
-#include <iostream>
-#include <string>
 #include <algorithm>
-#include <vector>
-#include <vector>
+#include <iostream>
 #include <numeric>
 #include <numeric_traits>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -23,8 +22,7 @@ int main(int argc, char* argv[]) {
 
     // 1. Binary Search
     // Search Elements
-    bool found =
-        binary_search(vec.begin(), vec.end(), 9); // check if 9 is in vec
+    bool found = binary_search(vec.begin(), vec.end(), 9); // check if 9 is in vec
 
     vector<int> s = {9, 45, 66};
     bool found = includes(vec.begin(), vec.end(), // Range #1
@@ -52,8 +50,7 @@ int main(int argc, char* argv[]) {
     // Nothing is dropped, all duplicates are kept.
     // vec_out: {7,8,9,9,9,10,10}
 
-    vector<int> vec = {1, 2, 3, 4, 1, 2, 3, 4, 5}
-    // Both part of vec are already sorted
+    vector<int> vec = {1, 2, 3, 4, 1, 2, 3, 4, 5} // Both part of vec are already sorted
     inplace_merge(vec.begin(), vec.begin() + 4, vec.end());
     // vec: {1,1,2,2,3,3,4,4,5}  - One step of merge sort
 
@@ -91,9 +88,9 @@ int main(int argc, char* argv[]) {
     // vec_out: {7,8,9,0,0}
 
     /*
- *  Numeric Algorithms (in <numeric>)
- *   - Accumulate, inner product, partial sum, adjacent difference
- */
+     *  Numeric Algorithms (in <numeric>)
+     *   - Accumulate, inner product, partial sum, adjacent difference
+     */
 
     // 1. Accumulate
 
@@ -104,7 +101,7 @@ int main(int argc, char* argv[]) {
     // 10 * vec[0] * vec[1] * vec[2] * ...
 
     // 2. Inner Product
-    //vector<int> vec = {9,60,70,8,45,87,90};     // 7 items
+    // vector<int> vec = {9,60,70,8,45,87,90};     // 7 items
     int x = inner_product(vec.begin(), vec.begin() + 3, // Range #1
                           vec.end() - 3,                // Range #2
                           10);                          // Init Value

@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -6,32 +7,26 @@ class MyClass {
 public:
     int a, b;
     string c;
+
+    // Default constructor
+    MyClass() : a(0), b(0), c("") {}
+
+    // Parameterized constructor
+    MyClass(int a_val, int b_val, const string& c_val) : a(a_val), b(b_val), c(c_val) {}
+
+    // Copy constructor
+    MyClass(const MyClass& x) : a(x.a), b(x.b), c(x.c) {}
 };
 
-MyClass::MyClass(const MyClass &x) : a(x.a), b(x.b), c(x.c) {
-}
-
-// copy constructor: deep copy
-#include <iostream>
-#include <string>
-using namespace std;
-
 class Example5 {
-    string *ptr;
+    string* ptr;
 
 public:
-    Example5(const string &str) : ptr(new string(str)) {
-    }
-    ~Example5() {
-        delete ptr;
-    }
-    // copy constructor:
-    Example5(const Example5 &x) : ptr(new string(x.content())) {
-    }
-    // access content:
-    const string &content() const {
-        return *ptr;
-    }
+    Example5(const string& str) : ptr(new string(str)) {}
+    Example5(const Example5& x) : ptr(new string(x.content())) {} // copy constructor:
+    ~Example5() { delete ptr; }
+
+    const string& content() const { return *ptr; } // access content:
 };
 
 int main() {

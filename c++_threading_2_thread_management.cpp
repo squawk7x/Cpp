@@ -7,12 +7,10 @@
 using namespace std;
 
 // First example:
-void thread1() {
-    std::cout << "\nHello, World\n" << std::endl;
-}
+void function_1() { std::cout << "Beauty is only skin-deep" << std::endl; }
 
 // int main() {
-//     std::thread t1(thread1);
+//     std::thread t1(function_1);
 
 //     for (int i = 0; i < 100; i++) {
 //         cout << "from main: " << i << std::endl;
@@ -24,7 +22,7 @@ void thread1() {
 // }
 
 // int main() {
-//     std::thread t1(thread1);
+//     std::thread t1(function_1); // t1 statrts running
 
 //     try {
 //         for (int i = 0; i < 10; i++) {
@@ -32,11 +30,11 @@ void thread1() {
 //         }
 //     } catch (std::exception& e) {
 //         t1.join();
-//         // Handle exception if needed
 //         std::cerr << "Exception caught: " << e.what() << std::endl;
+//         throw;
 //     }
-//     t1.join(); // Join the thread after the try-catch block
 
+//     t1.join(); // Join the thread after the try-catch block
 //     return 0;
 // }
 
@@ -57,9 +55,9 @@ void thread1() {
 
 // class Fctor {
 // public:
-//     void operator()() { 
+//     void operator()() {
 //         for (int i=0; i>-100; i--){
-//             cout << "from functor: " << i << endl;
+//             cout << "from Fctor: " << i << endl;
 //         }
 //     }
 // };
@@ -79,9 +77,8 @@ void thread1() {
 
 class Fctor {
 public:
-
-    void operator()(string& msg) { // try with-out &
-        cout << "thread says: " << msg << endl;
+    void operator()(string& msg) { // try with and without &
+        cout << "Fctor says: " << msg << endl;
         msg = "Thrust is the mother of deceit";
     }
 };
@@ -94,11 +91,10 @@ parent and child are sharing the same memory (string s).
 int main() {
     string s = "Where there is no thrust, there is no love";
     Fctor fct;
-    // std::thread t1(fct);         // let's save a line of code ->
-    // std::thread t1(Fctor());     // would be treated as function declaration
-    // std::thread t1((Fctor()), s);   // parameter of thread is ALWAYS passed by value
-    std::thread t1(fct, std::ref(s)); // use std::ref to pass by reference
-    // std::thread t1(fct, std::move(s)); // s is not available in the main thread
+    // std::thread t1(fct);               // let's save a line of code ->
+    // std::thread t1(Fctor());           // would be treated as function declaration
+    std::thread t1(fct, std::ref(s));  // use std::ref to pass by reference
+    // std::thread t1(fct, std::move(s)); // s is not available anymore in the main thread
 
     t1.join();
 

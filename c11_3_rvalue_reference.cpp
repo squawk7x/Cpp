@@ -1,6 +1,6 @@
-#include <type_traits>
 #include <iostream>
 #include <string>
+#include <type_traits>
 #include <vector>
 using namespace std;
 
@@ -32,7 +32,8 @@ using namespace std;
 //     // Error. There is no type const char* lvalue
 
 //     std::vector<int> v = foo();
-//     cout << v.size() << std::endl;  // C++3: copy of temp   // C++11: moved by compiler automatically
+//     cout << v.size() << std::endl;  // C++3: copy of temp   // C++11: moved by compiler
+//     automatically
 // }
 
 // with rvalue reference T&& you get a xvalue
@@ -85,16 +86,14 @@ using namespace std;
 // }
 class A {
 public:
-    int *pointer;
-    A() : pointer(new int(1)) {
-        std::cout << "construct " << pointer << std::endl;
-    }
+    int* pointer;
+    A() : pointer(new int(1)) { std::cout << "construct " << pointer << std::endl; }
 
-    A(A &a) : pointer(new int(*a.pointer)) {
+    A(A& a) : pointer(new int(*a.pointer)) {
         std::cout << "copy " << pointer << std::endl;
     } // meaningless object copy
 
-    A(A &&a) : pointer(a.pointer) {
+    A(A&& a) : pointer(a.pointer) {
         a.pointer = nullptr;
         std::cout << "move " << pointer << std::endl;
     }

@@ -2,10 +2,10 @@
 // Stream - String stream
 //############################################################################
 
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -19,8 +19,7 @@ int main() {
     int a, b, c;
     string s1;
 
-    ss >> hex >>
-        a; // Formatted input works token by token. spaces, tabs, newlines
+    ss >> hex >> a; // Formatted input works token by token. spaces, tabs, newlines
     // a == 137
     ss >> s1;       // s1: "Hex:"
     ss >> dec >> b; // b == 59

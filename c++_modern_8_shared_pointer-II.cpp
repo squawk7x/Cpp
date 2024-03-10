@@ -7,9 +7,9 @@
 //
 // Smart Pointers: Make sure the lifetime of a pointer and pointee match.
 
-#include <string>
 #include <iostream>
 #include <memory>
+#include <string>
 
 using namespace std;
 
@@ -25,12 +25,8 @@ public:
         cout << "Nameless dog created." << endl;
         m_name = "nameless";
     }
-    ~Dog() {
-        cout << "dog is destroyed: " << m_name << endl;
-    }
-    void bark() {
-        cout << "Dog " << m_name << " rules!" << endl;
-    }
+    ~Dog() { cout << "dog is destroyed: " << m_name << endl; }
+    void bark() { cout << "Dog " << m_name << " rules!" << endl; }
 };
 
 void foo() {
@@ -42,19 +38,16 @@ void foo() {
 }
 
 void foo2() {
-    shared_ptr<Dog> p1 =
-        make_shared<Dog>("Gunner"); // using default deleter: operator delete
+    shared_ptr<Dog> p1 = make_shared<Dog>("Gunner"); // using default deleter: operator delete
     // If you want to use custom deleter
     // you need to use constructor of shared pointer with custom deleter
     shared_ptr<Dog> p2 = shared_ptr<Dog>(new Dog("Tank"), [](Dog* p) {
         cout << "Custom deleting... ";
         delete p;
     });
-    shared_ptr<Dog> p3(
-        new Dog[3]); // dog[1] and dog[2] have memory leaks -> custom deleter
-    shared_ptr<Dog> p4(new Dog[3], [](Dog* p) {
-        delete[] p;
-    }); // all 3 dogs deleted when p4 goes out of scope
+    shared_ptr<Dog> p3(new Dog[3]); // dog[1] and dog[2] have memory leaks -> custom deleter
+    shared_ptr<Dog> p4(new Dog[3],
+                       [](Dog* p) { delete[] p; }); // all 3 dogs deleted when p4 goes out of scope
 }
 
 void foo3() {

@@ -4,14 +4,11 @@
 // using namespace std;
 
 // std::make_unique<T> implemented from C++14
-template <typename T, typename... Args>
-std::unique_ptr<T> make_unique(Args&&... args) {
+template <typename T, typename... Args> std::unique_ptr<T> make_unique(Args&&... args) {
     return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
-void foo(std::unique_ptr<int>& i) {
-    (*i)++;
-}
+void foo(std::unique_ptr<int>& i) { (*i)++; }
 
 int main() {
     auto pointer = make_unique<int>(10);

@@ -3,27 +3,30 @@
 //############################################################################
 
 /*
+
 3 ways of locking:
 ------------------
 1. mu.lock() / mu.unlock() (not recommended)
 2. lock_guard<mutex> locker(mu)	// can be called once
-3. std::unique_lock<mutex> ulocker(mu, std::defer_lock) 
-	// do sth else
-	ulocker.lock();
-	// ...
-	ulocker.unlock();
+3. std::unique_lock<mutex> ulocker(mu, std::defer_lock)
+        // do sth else
+        
+        ulocker.lock();
+        // ...
+        ulocker.unlock();
 
-	// -> can be locked multiple times
-	// -> finer graned lock
-	// -> performance not as good as with lock_guard
+        // -> can be locked multiple times
+        // -> finer graned lock
+        // -> performance not as good as with lock_guard
+
 */
 
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
 #include <memory>
-#include <thread>
 #include <mutex>
+#include <string>
+#include <thread>
 
 using namespace std;
 
@@ -54,34 +57,32 @@ using namespace std;
 // /* unique_lock for transferring mutex ownership */
 
 class LogFile {
-	std::mutex m_mutex;
-	ofstream f_;
-public:
-	LogFile() {
-		f_.open("log.txt");
-	}
-	void shared_print(string id, int value) {
-		// std::lock_guard<std::mutex> locker(m_mutex);
-		std::unique_lock<std::mutex> locker(m_mutex, std::defer_lock);
-		// do sth. else
-		locker.lock();
-		// f_ << "From " << id << ": " << value << endl;
-		cout << "From " << id << ": " << value << endl;
-		locker.unlock();
+    std::mutex m_mutex;
+    ofstream f_;
 
-		// unique_lock can be moved
-		// std::unique_lock<mutex> locker2 = std::move(locker);
-	}
+public:
+    LogFile() { f_.open("log.txt"); }
+    void shared_print(string id, int value) {
+        // std::lock_guard<std::mutex> locker(m_mutex);
+        std::unique_lock<std::mutex> locker(m_mutex, std::defer_lock);
+        // do sth. else
+        locker.lock();
+        // f_ << "From " << id << ": " << value << endl;
+        cout << "From " << id << ": " << value << endl;
+        locker.unlock();
+
+        // unique_lock can be moved
+        // std::unique_lock<mutex> locker2 = std::move(locker);
+    }
 };
 
 int main() {
-	LogFile log;
+    LogFile log;
 
-	log.shared_print("from main", 42);
-   
-	return 0;
+    log.shared_print("from main", 42);
+
+    return 0;
 }
-
 
 // class LogFile {
 // 	std::mutex m_mutex;
@@ -103,7 +104,8 @@ int main() {
 // int main() {
 // 	LogFile log;
 // 	unique_lock<mutex> locker = log.giveMeLock();
-//    // I don't want to shared_print anything, but I don't want anybody else to do that either untill I am done.
+//    // I don't want to shared_print anything, but I don't want anybody else to do that either
+//    untill I am done.
 
 //    // I can also release the lock before locker is destroyed
 //    locker.unlock();  // lock_guard can't unlock
@@ -145,7 +147,8 @@ int main() {
 // 			   f.open("log.txt");   // This must be synchronized  -- B
 //          }
 // 		}
-// 		f << "From " << id << ": " << value << endl;  // I don't care this is not synchronized
+// 		f << "From " << id << ": " << value << endl;  // I don't care this is not
+// synchronized
 // 	}
 // };
 // // Double-checked locking
@@ -160,10 +163,11 @@ int main() {
 // 	void init() { f.open("log.txt"); }
 // public:
 // 	void shared_print(string id, int value) {
-//       std::call_once(m_flag, &LogFile::init, this); // init() will only be called once by one thread
+//       std::call_once(m_flag, &LogFile::init, this); // init() will only be called once by one
+//       thread
 // 		//std::call_once(m_flag, [&](){ f.open("log.txt"); });  // Lambda solution
-// 		//std::call_once(_flag, [&](){ _f.open("log.txt"); });  // file will be opened only once by one thread
-// 		f << "From " << id << ": " << value << endl;
+// 		//std::call_once(_flag, [&](){ _f.open("log.txt"); });  // file will be opened only
+// once by one thread 		f << "From " << id << ": " << value << endl;
 // 	}
 // };
 // int LogFile::x = 9;

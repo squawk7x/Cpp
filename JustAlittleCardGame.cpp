@@ -1,20 +1,18 @@
 #include <algorithm>
 #include <iostream>
+#include <random>
 #include <string>
 #include <vector>
-#include <random>
-
 
 using namespace std;
 
 vector<string> ranks = {"6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 vector<string> suits = {"♦", "♥", "♠", "♣"};
-vector<string> ranknames = {"6",    "7",     "8",    "9",  "10",
-                            "jack", "queen", "king", "ace"};
+vector<string> ranknames = {"6", "7", "8", "9", "10", "jack", "queen", "king", "ace"};
 vector<string> suitnames = {"diamonds", "hearts", "spades", "clubs"};
 
-class Card{
-// private:
+class Card {
+    // private:
 public:
     string suit;
     string rank;
@@ -22,12 +20,10 @@ public:
     string rankname;
     int value;
 
-// public:
+    // public:
     Card(string suit, string rank) : suit(suit), rank(rank) {
-        suitname = suitnames[distance(suits.begin(),
-                                      find(suits.begin(), suits.end(), suit))];
-        rankname = ranknames[distance(ranks.begin(),
-                                      find(ranks.begin(), ranks.end(), rank))];
+        suitname = suitnames[distance(suits.begin(), find(suits.begin(), suits.end(), suit))];
+        rankname = ranknames[distance(ranks.begin(), find(ranks.begin(), ranks.end(), rank))];
         value = set_value(rank);
     }
 
@@ -44,27 +40,19 @@ public:
         return 0;
     }
 
-    string toString() const {
-        return suit + rank;
-    }
+    string toString() const { return suit + rank; }
 
     void set_suitname(string suit) {
-        suitname = suitnames[distance(suits.begin(),
-                                      find(suits.begin(), suits.end(), suit))];
+        suitname = suitnames[distance(suits.begin(), find(suits.begin(), suits.end(), suit))];
     }
 
     void set_rankname(string rank) {
-        rankname = ranknames[distance(ranks.begin(),
-                                      find(ranks.begin(), ranks.end(), rank))];
+        rankname = ranknames[distance(ranks.begin(), find(ranks.begin(), ranks.end(), rank))];
     }
 
-    string get_suitname() const {
-        return suitname;
-    }
+    string get_suitname() const { return suitname; }
 
-    string get_rankname() const {
-        return rankname;
-    }
+    string get_rankname() const { return rankname; }
 };
 
 class JsuitChooser {
@@ -90,13 +78,9 @@ public:
         suit = suits[0];
     }
 
-    void clear_suit() {
-        suit = "";
-    }
+    void clear_suit() { suit = ""; }
 
-    string get_suit() const {
-        return suit;
-    }
+    string get_suit() const { return suit; }
 };
 
 JsuitChooser jsuitChooser;
@@ -125,13 +109,9 @@ public:
         decision = eights[0];
     }
 
-    void clear_decision() {
-        decision = "\0";
-    }
+    void clear_decision() { decision = "\0"; }
 
-    string get_decision() const {
-        return decision;
-    }
+    string get_decision() const { return decision; }
 };
 
 EightChooser eightChooser;
@@ -160,13 +140,9 @@ public:
         decision = bridge[0];
     }
 
-    void clear_decision() {
-        decision = "\0";
-    }
+    void clear_decision() { decision = "\0"; }
 
-    string get_decision() const {
-        return decision;
-    }
+    string get_decision() const { return decision; }
 };
 
 BridgeChooser bridgeChooser;
@@ -195,13 +171,9 @@ public:
         decision = jpoints[0];
     }
 
-    void clear_decision() {
-        decision = "\0";
-    }
+    void clear_decision() { decision = "\0"; }
 
-    string get_decision() const {
-        return decision;
-    }
+    string get_decision() const { return decision; }
 };
 
 JpointsChooser jpointsChooser;
@@ -229,13 +201,9 @@ public:
         decision = round[0];
     }
 
-    void clear_decision() {
-        decision = "\0";
-    }
+    void clear_decision() { decision = "\0"; }
 
-    string get_decision() const {
-        return decision;
-    }
+    string get_decision() const { return decision; }
 };
 
 RoundChooser roundChooser;
@@ -275,9 +243,7 @@ public:
         is_visible = false;
     }
 
-    void toggle_is_visible() {
-        is_visible = !is_visible;
-    }
+    void toggle_is_visible() { is_visible = !is_visible; }
 
     void shuffle_blind() {
         random_device rd;
@@ -292,7 +258,7 @@ public:
         }
         return stack_str;
     }
-    
+
     string blind_as_str() {
         string blind_str;
         for (const Card& card : blind) {
@@ -327,7 +293,7 @@ public:
 
         // Play audio
         // if (is_sound_on()) {
-            // Play audio
+        // Play audio
 
         stack.push_back(card);
         cards_played.push_back(card);
@@ -341,19 +307,23 @@ public:
             bridge.ask_for_bridge();
         }
 
-        if (get_top_card_from_stack().rank == "J" && cards_played.size() > 0 && bridge.player.hand.cards.size() > 0) {
+        if (get_top_card_from_stack().rank == "J" && cards_played.size() > 0 &&
+            bridge.player.hand.cards.size() > 0) {
             bridge.ask_for_jsuit();
         }
 
-        if (cards_played.size() >= 2 && bridge_monitor.size() >= 2 && get_top_card_from_stack().rank == "8") {
+        if (cards_played.size() >= 2 && bridge_monitor.size() >= 2 &&
+            get_top_card_from_stack().rank == "8") {
             eightChooser.toggle();
         }
 
-        if (get_top_card_from_stack().rank == "J" && (bridge.player.hand.cards.size() == 0 || bridge_monitor.size() == 4)) {
+        if (get_top_card_from_stack().rank == "J" &&
+            (bridge.player.hand.cards.size() == 0 || bridge_monitor.size() == 4)) {
             jpointsChooser.toggle();
         }
 
-        if (bridge.player.hand.cards.size() == 0 && get_top_card_from_stack().rank != "6" && !bridgeChooser.decision) {
+        if (bridge.player.hand.cards.size() == 0 && get_top_card_from_stack().rank != "6" &&
+            !bridgeChooser.decision) {
             roundChooser.decision = "delay";
         }
     }
@@ -373,11 +343,9 @@ public:
 
 Deck deck;
 
-
 int main() {
     Card card("♥", "7");
     cout << card.toString() << endl;
 
     return 0;
 }
-

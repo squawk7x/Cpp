@@ -5,7 +5,7 @@ void increment_by_value(int a) {
     printf("address of variable a in increment_by_value = %p\n", &a);
 }
 
-void increment_by_reference(int *pa) {
+void increment_by_reference(int* pa) {
     *pa = *pa + 1;
     printf("address of variable a in increment_by_reference = %p\n", &*pa);
 }
@@ -15,8 +15,7 @@ int sumOfElements(int B[], int size) {
     // int size = sizeof(B) / sizeof(B[0]);
     // with array as argument is call by reference !!!
     // A[] interpreted as int *B (pointer to integer)
-    printf("sumOfElements: size of B = %ld, size of B[0] = %ld\n", sizeof(B),
-           sizeof(B[0]));
+    printf("sumOfElements: size of B = %ld, size of B[0] = %ld\n", sizeof(B), sizeof(B[0]));
     for (i = 0; i < size; i++) {
         sum += B[i]; // B[i] = *(B+i)
     }
@@ -24,7 +23,7 @@ int sumOfElements(int B[], int size) {
     return sum;
 }
 
-void doubleElements(int *B, int size) {
+void doubleElements(int* B, int size) {
     int i, sum = 0;
     for (i = 0; i < size; i++) {
         B[i] = 2 * B[i];
@@ -33,7 +32,7 @@ void doubleElements(int *B, int size) {
 
 int main() {
     int a = 1025;
-    int *p;
+    int* p;
     p = &a;
 
     // POINTER ARITHMETIC
@@ -49,8 +48,8 @@ int main() {
     printf("address +1 = %p, value  = %d\n", p + 1, *(p + 1));
 
     // TYPE CASTING
-    char *p0;
-    p0 = (char *)p;
+    char* p0;
+    p0 = (char*)p;
 
     printf("size of char is %ld byte(s)\n", sizeof(char));
     printf("address char pointer = %p, value = %d\n", p0, *p0);
@@ -59,7 +58,7 @@ int main() {
 
     // VOID POINTER - GENERIC POINTER
 
-    void *p1;
+    void* p1;
     p1 = p;
     printf("address void pointer = %p\n", p1); // *p1 = ... Compilation error
     // printf("address +1 = %p", p1+1); // p1+1 : Compilation error
@@ -67,11 +66,11 @@ int main() {
     // POINTER TO ANOTHER POINTER
 
     int x = 5;
-    int *px = &x;
+    int* px = &x;
     *px = 6;
 
-    int **q = &px;
-    int ***r = &q;
+    int** q = &px;
+    int*** r = &q;
 
     printf("----------------------------\n");
     printf("*p = %d\n", *px);
@@ -96,7 +95,7 @@ int main() {
 
     // POINTERS AND ARRAYS
     int A[] = {2, 4, 5, 8, 1};
-    int *pA = A;
+    int* pA = A;
 
     printf("%p\n", A); // A == &A[0]   !!!
 
@@ -111,8 +110,7 @@ int main() {
     int B[] = {1, 2, 3, 4, 5};
     int size = sizeof(B) / sizeof(B[0]);
     int total = sumOfElements(B, size);
-    printf("main: size of B = %ld, size of B[0] = %ld\n", sizeof(B),
-           sizeof(B[0]));
+    printf("main: size of B = %ld, size of B[0] = %ld\n", sizeof(B), sizeof(B[0]));
     printf("sum of elements = %d\n", total);
 
     doubleElements(B, size);

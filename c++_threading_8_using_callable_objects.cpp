@@ -2,10 +2,10 @@
 // Using callable objects
 //############################################################################
 
-#include <string>
-#include <iostream>
-#include <future>
 #include "../../../../../usr/include/c++/11/tr1/functional"
+#include <future>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -13,29 +13,26 @@ using namespace std;
 class A {
 public:
     string note;
-    void f(int x, char c) {
-    }
+    void f(int x, char c) {}
     long g(double x) {
         note = "changed";
         return 0;
     }
-    int operator()(int N) {
-        return 0;
-    } //Functor
+    int operator()(int N) { return 0; } // Functor
 };
 
-int foo(int x) {return 0;}
+int foo(int x) { return 0; }
 
 int main() {
     A a;
-    std::thread t1(a, 6);   // copy_of_a() in a different thread
-    std::thread t2(std::ref(a), 6); // a() as Functor in a different thread
-    std::thread t3(A(), 6); // temp A;
-    std::thread t4([](int x){return x*x;}, 6); // temp A;
+    std::thread t1(a, 6);                           // copy_of_a() in a different thread
+    std::thread t2(std::ref(a), 6);                 // a() as Functor in a different thread
+    std::thread t3(A(), 6);                         // temp A;
+    std::thread t4([](int x) { return x * x; }, 6); // temp A;
     std::thread t5(foo, 7);
-    std::thread t6(&A::f, a, 8, 'w'); // copy_of_a.f(8, 'w') in a different thread
+    std::thread t6(&A::f, a, 8, 'w');  // copy_of_a.f(8, 'w') in a different thread
     std::thread t7(&A::f, &a, 8, 'w'); // a.f(8, 'w') in a different thread
-    std::thread t8(std::move(a), 8); // a is no longer usable in parent thread
+    std::thread t8(std::move(a), 8);   // a is no longer usable in parent thread
 
     // same for:
     // std::async(a, 6);

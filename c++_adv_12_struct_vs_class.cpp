@@ -2,7 +2,8 @@
 // struct vs class
 // ***********************************************
 
-// Small passive objects that carry public data and have no or few basic member functions. --  data container
+// Small passive objects that carry public data and have no or few basic member functions. --  data
+// container
 struct Person_t {
     string name;
     unsigned age;
@@ -14,12 +15,8 @@ class Person {
     unsigned age_;
 
 public:
-    unsigned age() {
-        return age_;
-    } // getter / accessor
-    void set_age(unsigned a) {
-        age_ = a;
-    } // setter / mutator
+    unsigned age() { return age_; }        // getter / accessor
+    void set_age(unsigned a) { age_ = a; } // setter / mutator
 };
 
 int main() {
@@ -31,6 +28,7 @@ int main() {
 }
 
 // Summary:
-// 1. Use struct for passive objects with public data, use class for active objects with private data.
+// 1. Use struct for passive objects with public data, use class for active objects with private
+// data.
 // 2. Use setter/getter to access class's data
 // 3. Avoid making setter/getter if possible

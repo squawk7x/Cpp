@@ -8,12 +8,11 @@ class CVector {
 public:
     int x, y;
     CVector(){};
-    CVector(int a, int b) : x(a), y(b) {
-    }
-    CVector operator+(const CVector &);
+    CVector(int a, int b) : x(a), y(b) {}
+    CVector operator+(const CVector&);
 };
 
-CVector CVector::operator+(const CVector &param) {
+CVector CVector::operator+(const CVector& param) {
     CVector temp;
     temp.x = x + param.x;
     temp.y = y + param.y;
@@ -21,7 +20,7 @@ CVector CVector::operator+(const CVector &param) {
 }
 
 // non-member operator overloads
-CVector operator-(const CVector &lhs, const CVector &rhs) {
+CVector operator-(const CVector& lhs, const CVector& rhs) {
     CVector temp;
     temp.x = lhs.x - rhs.x;
     temp.y = lhs.y - rhs.y;
@@ -34,10 +33,10 @@ using namespace std;
 
 class Dummy {
 public:
-    bool isitme(Dummy &param);
+    bool isitme(Dummy& param);
 };
 
-bool Dummy::isitme(Dummy &param) {
+bool Dummy::isitme(Dummy& param) {
     if (&param == this)
         return true;
     else
@@ -56,7 +55,7 @@ int main() {
     cout << result.x << ',' << result.y << '\n';
 
     Dummy a;
-    Dummy *b = &a;
+    Dummy* b = &a;
     cout << b, *b;
     if (b->isitme(a))
         cout << "yes, &a is b\n";

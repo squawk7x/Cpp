@@ -1,6 +1,6 @@
 //############################################################################
 // watchBaseN - simulation of the 'Mengenlehreuhr' found in Berlin
-// ██ ██ ██ ░░  
+// ██ ██ ██ ░░
 // ██ ██ ░░ ░░
 // ████░░░░░░░
 // ██ ██ ░░ ░░
@@ -8,18 +8,18 @@
 // ██ ░░ ░░ ░░
 //############################################################################
 
-#include <iostream>
 #include <chrono>
+#include <cstdlib>
+#include <cstring>
 #include <ctime>
 #include <iomanip>
-#include <thread>
-#include <cstdlib>
-#include <string>
-#include <cstring>
+#include <iostream>
 #include <set>
+#include <string>
+#include <thread>
 
-using std::string;
 using std::cout;
+using std::string;
 
 #ifdef _WIN32
 #define CLEAR_SCREEN "cls"
@@ -41,8 +41,7 @@ private:
     string* pattern_L;
     string* pattern_S;
 
-    string makePattern(int digit, int length, string opaque,
-                       string translucent) {
+    string makePattern(int digit, int length, string opaque, string translucent) {
         string pattern = "";
 
         for (int i = 0; i < digit; i++) {
@@ -90,8 +89,8 @@ public:
         while (true) {
             system(CLEAR_SCREEN);
 
-            auto currentTime = std::chrono::system_clock::to_time_t(
-                std::chrono::system_clock::now());
+            auto currentTime =
+                std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
             std::tm* localTime = std::localtime(&currentTime);
 

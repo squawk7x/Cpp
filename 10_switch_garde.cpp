@@ -1,31 +1,30 @@
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
+int main() {
 
-int main(){
+    char grade;
 
-char grade;
+    std::cout << "enter A-C :";
+    std::cin >> grade;
+    std::cout << std::endl;
 
-std:: cout <<"enter A-C :";
-std:: cin >> grade;
-std:: cout << std::endl;
-
-switch(grade){
+    switch (grade) {
     case 'A':
-    std:: cout <<  " You did good";
-    break;
+        std::cout << " You did good";
+        break;
 
     case 'B':
-    std:: cout << " Ok";
-    break;
+        std::cout << " Ok";
+        break;
 
     case 'C':
-    std:: cout <<  " Pass";
-    break;
-    
+        std::cout << " Pass";
+        break;
+
     default:
-    std:: cout << " Invalid operation";
-}
+        std::cout << " Invalid operation";
+    }
 
     return 0;
 }

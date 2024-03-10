@@ -1,6 +1,6 @@
-#include <iostream>
 #include "c++_cat.h"
 #include "c++_dog.h"
+#include <iostream>
 
 using namespace std;
 
@@ -12,6 +12,4 @@ Cat::Cat(string name) {
     dog.bark();
 }
 
-void Cat::meow() {
-    cout << "Cat rules! My name is " << name_ << endl;
-}
+void Cat::meow() { cout << "Cat rules! My name is " << name_ << endl; }

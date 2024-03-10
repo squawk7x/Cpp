@@ -5,7 +5,7 @@
  */
 //############################################################################
 
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -26,15 +26,12 @@ public:
     }
 
 private:
-    virtual void process_node(TreeNode* node) {
-    }
+    virtual void process_node(TreeNode* node) {}
 };
 
 class EmployeeChart_Parser : public Generic_Parser {
 private:
-    void process_node(TreeNode* node) {
-        cout << "Customized process_node() for EmployeeChart.\n";
-    }
+    void process_node(TreeNode* node) { cout << "Customized process_node() for EmployeeChart.\n"; }
 };
 
 int main() {

@@ -36,17 +36,14 @@ public:
     }
 
     // Constructor with initializer_list
-    BoVector(std::initializer_list<double> values)
-        : size(values.size()), arr_(new double[size]) {
+    BoVector(std::initializer_list<double> values) : size(values.size()), arr_(new double[size]) {
         int i = 0;
         for (auto value : values) {
             arr_[i++] = value;
         }
     }
 
-    ~BoVector() {
-        delete[] arr_;
-    }
+    ~BoVector() { delete[] arr_; }
 };
 
 // // void foo(BoVector arg);
@@ -58,9 +55,8 @@ BoVector createBoVector() { // creates a BoVector
 }
 
 // T&& - Universal Reference
-template <typename T>
-void relay(T&& arg) { // Universal Reference, works for lvalues and rvalues
-    foo(std::forward<T>(arg)); // argument forwarding
+template <typename T> void relay(T&& arg) { // Universal Reference, works for lvalues and rvalues
+    foo(std::forward<T>(arg));              // argument forwarding
 }
 
 // template <typename T>
@@ -94,7 +90,7 @@ void relay(T&& arg) { // Universal Reference, works for lvalues and rvalues
     IF AND ONLY IF:
 
     Conditions:
-    1. T is a template type. 
+    1. T is a template type.
     2. Type deduction (reference collapsing) happens to T.
        - T is a function template type, not class template type.
 */

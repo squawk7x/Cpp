@@ -10,7 +10,6 @@ If you want to allow logical constness use keyword mutable
 
 using std::vector;
 
-
 class BigVector {
     vector<int> v;
     // int accessCounter;
@@ -35,6 +34,4 @@ public:
     }
 };
 
-int main() {
-    BigVector b;
-}
+int main() { BigVector b; }

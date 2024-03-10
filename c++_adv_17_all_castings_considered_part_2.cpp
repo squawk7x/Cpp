@@ -8,7 +8,6 @@
  */
 //############################################################################
 
-
 #include <iostream>
 
 using namespace std;
@@ -21,18 +20,14 @@ using namespace std;
 
 class dog {
 public:
-    virtual ~dog() {
-    }
-
+    virtual ~dog() {}
 };
 
 class yellowdog : public dog {
     int age;
 
 public:
-    void bark() {
-        cout << "woof. I am " << age << endl;
-    }
+    void bark() { cout << "woof. I am " << age << endl; }
 };
 
 int main() {
@@ -60,11 +55,11 @@ int main() {
 
 /*
  * =========================================  C++ Style Casting ================================
- *  
+ *
  *                            Generate_Code   Generate_data      risky   data_type
- * Object Casting:            
+ * Object Casting:
  *    static_cast                 yes              yes             2      any types
- *                                                                        (as long as type 
+ *                                                                        (as long as type
  *                                                                        conversion is defined)
  * Pointer/Reference Casting:
  *    static_cast                 no               no              4      related types
@@ -73,10 +68,10 @@ int main() {
  *    reinterpret_cast            no               no              5      any types
  *
  * =========================================  C Style Casting ================================
- *                  
+ *
  *                             Generate_Code  Generate_data      risky   data_type
  * Object Casting:               yes              yes             5      any types
- *                                                                       (as long as type 
+ *                                                                       (as long as type
  *                                                                       conversion is defined)
  * Pointer/Reference Casting:    no               no              5      any types
  *
@@ -85,11 +80,11 @@ int main() {
  *
  * Note:
  * 1. const_cast, dynamic_cast and reinterpret_cast can only work on pointers/references.
- * 2. static_cast of objects is very different from static_cast of pointers. 
- * 3. reinterpret_cast basically reassigning the type information of the bit pattern. 
+ * 2. static_cast of objects is very different from static_cast of pointers.
+ * 3. reinterpret_cast basically reassigning the type information of the bit pattern.
  *    It should only be used in low-level coding.
  * 4. dynamic_cast does static_cast plus run-time type check.
- * 5. dynamic_cast and static_cast for pointers can only work on related type (e.g., 
+ * 5. dynamic_cast and static_cast for pointers can only work on related type (e.g.,
  *    base <-> derived).
  *
  */

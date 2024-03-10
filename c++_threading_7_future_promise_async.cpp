@@ -2,13 +2,12 @@
 // Future, Promise, async
 //############################################################################
 
+#include "../../../../../usr/include/c++/11/bits/this_thread_sleep.h"
+#include <future>
 #include <iostream>
 #include <string>
-#include <future>
-#include "../../../../../usr/include/c++/11/bits/this_thread_sleep.h"
 
 using namespace std;
-
 
 // void factorial(int N) {
 // 	int res = 1;
@@ -48,74 +47,74 @@ using namespace std;
 
 // passing value from parent to child:
 
-// /* Asynchronously provide data with promise */
-// int factorial(std::future<int>& f) {
-// 	// do something else and wait for my promise
-// 	int res = 1;
+/* Asynchronously provide data with promise */
+int factorial(std::future<int>& f) {
+    // do something else and wait for my promise
+    int res = 1;
 
-// 	int N = f.get();     
-//     // If promise is distroyed, exception: std::future_errc::broken_promise
-	
-//     for (int i=N; i>1; i--)
-// 		res *= i;
+    int N = f.get();
+    // If promise is distroyed, exception: std::future_errc::broken_promise
 
-// 	cout << "Got from parent: " << N << endl;
-// 	cout << "Result is: " << res << endl;
-// 	return res;
-// }
+    for (int i = N; i > 1; i--)
+        res *= i;
 
-// int main() {
-//     int x;
-
-// // Both promise and future cannot be copied, they can only be moved.
-// 	std::promise<int> p;
-// 	// std::promise<int> p2;
-//     // p2 = std::move(p);
-
-// 	std::future<int> f = p.get_future();
-// 	// std::future<int> f2 = p.get_future();
-//     // f2 = std::move(f);
-
-// 	std::future<int> fu = std::async(std::launch::async, factorial, std::ref(f));
-
-// 	// Do something else
-// 	std::this_thread::sleep_for(chrono::milliseconds(20));
-// 	// p.set_value(4);  // forget to fulfill my promise
-// 	//p.set_value(28);  // It can only be set once
-// 	p.set_exception(std::make_exception_ptr(std::runtime_error("Flat tire")));
-
-// 	cout << "Got from child: " << fu.get() << endl;
-// 	return 0;
-// }
-
-/* shared_future */
-int factorial(shared_future<int> f) {
-	// do something else
-
-	int N = f.get();     // If promise is distroyed, exception: std::future_errc::broken_promise
-	f.get();
-	cout << "Got from parent: " << N << endl;
-	int res = 1;
-	for (int i=N; i>1; i--)
-		res *= i;
-
-	return res;
+    cout << "Got from parent: " << N << endl;
+    cout << "Result is: " << res << endl;
+    return res;
 }
 
 int main() {
-	// Both promise and future cannot be copied, they can only be moved.
-	promise<int> p;
-	future<int> f = p.get_future();
-	shared_future<int> sf = f.share();
+    int x;
 
-	future<int> fu = std::async(std::launch::async, factorial, sf);
-	future<int> fu2 = std::async(std::launch::async, factorial, sf);
+    // Both promise and future cannot be copied, they can only be moved.
+    std::promise<int> p;
+    // std::promise<int> p2;
+    // p2 = std::move(p);
 
-	// Do something else
-	std::this_thread::sleep_for(chrono::milliseconds(20));
-	p.set_value(5);
+    std::future<int> f = p.get_future();
+    // std::future<int> f2 = p.get_future();
+    // f2 = std::move(f);
 
-	cout << "Got from child thread #: " << fu.get() << endl;
-	cout << "Got from child thread #: " << fu2.get() << endl;
-	return 0;
+    std::future<int> fu = std::async(std::launch::async, factorial, std::ref(f));
+
+    // Do something else
+    std::this_thread::sleep_for(chrono::milliseconds(20));
+    // p.set_value(4);  // forget to fulfill my promise
+    // p.set_value(28);  // It can only be set once
+    p.set_exception(std::make_exception_ptr(std::runtime_error("Flat tire")));
+
+    cout << "Got from child: " << fu.get() << endl;
+    return 0;
 }
+
+/* shared_future */
+// int factorial(shared_future<int> f) {
+//     // do something else
+
+//     int N = f.get(); // If promise is distroyed, exception: std::future_errc::broken_promise
+//     f.get();
+//     cout << "Got from parent: " << N << endl;
+//     int res = 1;
+//     for (int i = N; i > 1; i--)
+//         res *= i;
+
+//     return res;
+// }
+
+// int main() {
+//     // Both promise and future cannot be copied, they can only be moved.
+//     promise<int> p;
+//     future<int> f = p.get_future();
+//     shared_future<int> sf = f.share();
+
+//     future<int> fu = std::async(std::launch::async, factorial, sf);
+//     future<int> fu2 = std::async(std::launch::async, factorial, sf);
+
+//     // Do something else
+//     std::this_thread::sleep_for(chrono::milliseconds(20));
+//     p.set_value(5);
+
+//     cout << "Got from child thread #: " << fu.get() << endl;
+//     cout << "Got from child thread #: " << fu2.get() << endl;
+//     return 0;
+// }

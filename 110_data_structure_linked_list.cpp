@@ -4,7 +4,7 @@
 struct Node {
     int data;
     Node* next;
-    
+
     // Constructor to initialize data and next pointer
     Node(int value) : data(value), next(nullptr) {}
 };
@@ -23,7 +23,7 @@ public:
         Node* newNode = new Node(value); // Create a new node
         // (*newNode).next = head;
         newNode->next = head; // Point the new node to the current head
-        head = newNode; // Update the head to the new node
+        head = newNode;       // Update the head to the new node
     }
 
     // Function to display the elements of the linked list
@@ -31,7 +31,7 @@ public:
         Node* current = head; // Start from the head
         while (current != nullptr) {
             std::cout << current->data << " "; // Print current node's data
-            current = current->next; // Move to the next node
+            current = current->next;           // Move to the next node
         }
         std::cout << std::endl;
     }

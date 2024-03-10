@@ -2,9 +2,9 @@
 // String - Strings and Algorithms
 //############################################################################
 
-#include <string>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -16,16 +16,14 @@ int main() {
 
     string s1 = "Variety is the spice of life";
     cout << s1 << endl;
-    int num = count(s1.begin(), s1.end(), 'e'); //4
+    int num = count(s1.begin(), s1.end(), 'e'); // 4
     cout << num << endl;
-    num = count_if(s1.begin(), s1.end(),
-                   [](char c) { return (c <= 'e' && c >= 'a'); });
+    num = count_if(s1.begin(), s1.end(), [](char c) { return (c <= 'e' && c >= 'a'); });
     cout << num << endl;
 
     s1 = "Goodness is better than beauty";
     cout << s1 << endl;
-    string::iterator itr =
-        search_n(s1.begin(), s1.begin() + 20, 2, 's'); // itr -> first 's'
+    string::iterator itr = search_n(s1.begin(), s1.begin() + 20, 2, 's'); // itr -> first 's'
     cout << *itr << endl;
     s1.erase(itr, itr + 5);
     cout << s1 << endl;

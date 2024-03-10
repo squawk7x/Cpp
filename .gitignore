@@ -4,5 +4,8 @@
 # Allow *.cpp files
 .gitignore
 !*.cpp
+!*sh
+!*.txt
 tester.cpp
+log.txt
 /tempCodeRunnerFile.cpp

@@ -1,13 +1,13 @@
-#include<iostream>
+#include <iostream>
 
-int main(){
+int main() {
 
-    int gardes[]={66,72,5};
-    //less flexibilie than for loop
-    
-    for(int garde : gardes){
-        std :: cout <<"\n"<< garde;
+    int gardes[] = {66, 72, 5};
+    // less flexibilie than for loop
+
+    for (int garde : gardes) {
+        std ::cout << "\n" << garde;
     }
 
-return 0;
+    return 0;
 }

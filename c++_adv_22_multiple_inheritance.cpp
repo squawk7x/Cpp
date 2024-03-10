@@ -36,8 +36,8 @@ using namespace std;
 // Notes:
 //   void open();
 //   f.open();
-//Correction:
-//f.Output::open();
+// Correction:
+// f.Output::open();
 
 // class File {            //         File
 // public:                 //         /  \        -

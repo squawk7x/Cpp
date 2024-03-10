@@ -1,18 +1,18 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 
-int main(){
+int main() {
 
-std:: string name;
-int age;
+    std::string name;
+    int age;
 
-std:: cout<< "what is your age?" << std::endl;
-std:: cin >> age;
+    std::cout << "what is your age?" << std::endl;
+    std::cin >> age;
 
-std:: cout<< "your first and last is?" << std::endl;
-std:: getline(std::cin >> std::ws, name); //with white space
-//std:: cin>>name; //without white space
+    std::cout << "your first and last is?" << std::endl;
+    std::getline(std::cin >> std::ws, name); // with white space
+    // std:: cin>>name; //without white space
 
-std:: cout<< "your name is "<< name << ". You are "<< age << std::endl;
+    std::cout << "your name is " << name << ". You are " << age << std::endl;
     return 0;
 }

@@ -2,22 +2,22 @@
 // Assoziative Containers
 //############################################################################
 
-/* 
+/*
     Always sorted, default criteria is <
     No push_back(), push_front()
  */
 
-#include <vector>
-#include <deque>
-#include <list>
-#include <set>           // set and multiset
-#include <map>           // map and multimap
-#include <unordered_set> // unordered set/multiset
-#include <unordered_map> // unordered map/multimap
-#include <iterator>
 #include <algorithm>
-#include <numeric> // some numeric algorithm
+#include <deque>
 #include <functional>
+#include <iterator>
+#include <list>
+#include <map>           // map and multimap
+#include <numeric>       // some numeric algorithm
+#include <set>           // set and multiset
+#include <unordered_map> // unordered map/multimap
+#include <unordered_set> // unordered set/multiset
+#include <vector>
 
 #include <iostream>
 
@@ -53,7 +53,7 @@ int main() {
     myset.erase(it); // myset:  {1, 7, 9}
 
     myset.erase(7); // myset:  {1, 9}
-        // Note: none of the sequence containers provide this kind of erase.
+                    // Note: none of the sequence containers provide this kind of erase.
 
     // ############################################################################
     // Multiset
@@ -67,10 +67,10 @@ int main() {
 }
 
 /* Properties:
-    * 1. Fast search: O(log(n))
-    * 2. Traversing is slow (compared to vector & deque)
-    * 3. No random access, no [] operator.
-    */
+ * 1. Fast search: O(log(n))
+ * 2. Traversing is slow (compared to vector & deque)
+ * 3. No random access, no [] operator.
+ */
 
 //############################################################################
 // Map

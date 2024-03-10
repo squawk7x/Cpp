@@ -3,7 +3,7 @@
 
 // A STRING HAS TO BE TERMINATED BY '\0'
 
-void print(char *C) {
+void print(char* C) {
     int i = 0;
     while (C[i] != '\0') // C[i] = *(C+i)
     {
@@ -13,7 +13,7 @@ void print(char *C) {
     printf("\n");
 }
 
-void print2(char *C) {
+void print2(char* C) {
     while (*C != '\0') // C[i] = *(C+i)
     {
         printf("%c", *C);
@@ -47,7 +47,7 @@ int main() {
     // THAT ARE USED IN A SIMILIAR MANNER
 
     char c1[6] = "Hello";
-    char *c2;
+    char* c2;
     c2 = c1; // here this assignment is valid
     printf("%s\n", c1);
     printf("%c\n", c2[1]);

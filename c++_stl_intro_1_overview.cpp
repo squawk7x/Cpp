@@ -6,18 +6,17 @@
 /*
  * STL Headers
  */
-#include <vector>
-#include <deque>
-#include <list>
-#include <set>           // set and multiset
-#include <map>           // map and multimap
-#include <unordered_set> // unordered set/multiset
-#include <unordered_map> // unordered map/multimap
-#include <iterator>
 #include <algorithm>
-#include <numeric>       // some numeric algorithm
+#include <deque>
 #include <functional>
-
+#include <iterator>
+#include <list>
+#include <map>           // map and multimap
+#include <numeric>       // some numeric algorithm
+#include <set>           // set and multiset
+#include <unordered_map> // unordered map/multimap
+#include <unordered_set> // unordered set/multiset
+#include <vector>
 
 using namespace std;
 
@@ -28,7 +27,7 @@ vector<int> vec;
 //     vec.push_back(1);
 //     vec.push_back(8); // vec: {4, 1, 8}
 
-//     vector<int>::iterator itr1 = vec.begin(); 
+//     vector<int>::iterator itr1 = vec.begin();
 //     // half-open:  [begin, end)
 //     vector<int>::iterator itr2 = vec.end();
 
@@ -53,5 +52,3 @@ vector<int> vec;
 //  * 6. A role model of writing library.
 //  * 7. Good knowledge of data structures and algorithms.
 //  */
-
-

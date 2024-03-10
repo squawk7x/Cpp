@@ -2,11 +2,11 @@
 // Stream - Formatted and unformatted IO
 //############################################################################
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <bitset>
 #include <complex>
+#include <fstream>
+#include <iostream>
+#include <string>
 
 using namespace std;
 

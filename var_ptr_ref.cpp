@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
 
     // rv_ref = 47;
 
-    ptr = &bar;  // ptr can be reassigned
+    ptr = &bar; // ptr can be reassigned
     ptr = &var;
 
     cout << "&var: " << &var << " var: " << var << "\n";
@@ -53,6 +53,6 @@ int main(int argc, char* argv[]) {
 
     int rvalue = foo(std::move(lv_ref));
     cout << " " << rvalue << "\n";
-    
+
     return 0;
 }

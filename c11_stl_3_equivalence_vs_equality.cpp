@@ -2,10 +2,10 @@
 // Equality vs Equivalence
 //############################################################################
 
-#include <iostream>
-#include <string>
-#include <set>
 #include <algorithm>
+#include <iostream>
+#include <set>
+#include <string>
 
 using namespace std;
 
@@ -21,11 +21,8 @@ template <typename T> void print_container(T container) {
 // Functor:
 class Lsb_less {
 public:
-    bool operator() (int x, int y) const {
-        return (x % 10) < (y % 10);
-    }
+    bool operator()(int x, int y) const { return (x % 10) < (y % 10); }
 };
-
 
 int main() {
     set<int, Lsb_less> s = {21, 23, 26, 27};
@@ -55,10 +52,9 @@ int main() {
 // set<int, Lsb_less> s = {21, 23, 26, 27};
 
 //############################################################################
-// Algorithm find() looks for equality: if (x == y)  
+// Algorithm find() looks for equality: if (x == y)
 // itr1 = find(s.begin(), s.end(), 36); // itr1 points to s.end()
 //############################################################################
-
 
 //############################################################################
 // set<int>::find() looks for equivalence: if ( !(x<y) && !(y<x) )
@@ -74,9 +70,8 @@ int main() {
 // If the function is using operator "==" or its like, it's checking equality
 //   - Typically the data is not required to be sorted
 
-
 // Algorithms of equality:
-// search 
+// search
 // find_end
 // find_first_of
 // adjacent_search
@@ -84,13 +79,13 @@ int main() {
 // Algorithms of equivalence:
 // binary_search
 // simple forms
-// includes 
-// lower_bound 
+// includes
+// lower_bound
 // upper_bound
 
 /*
  * Summary:
- * When using a function to search or remove certain element, make sure you 
+ * When using a function to search or remove certain element, make sure you
  * understand the difference between equality and equivalence.
  *
  */

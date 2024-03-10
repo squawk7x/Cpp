@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 // Function to convert decimal to binary
 std::vector<int> decimalToBinary(int n) {

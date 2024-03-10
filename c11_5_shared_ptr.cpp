@@ -3,10 +3,7 @@
 
 using namespace std;
 
-
-void foo(shared_ptr<int>& i) {
-    (*i)++;
-}
+void foo(shared_ptr<int>& i) { (*i)++; }
 int main() {
     // auto pointer = new int(10); // illegal, no direct assignment
     // Constructed a std::shared_ptr

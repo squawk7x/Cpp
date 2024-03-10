@@ -2,8 +2,8 @@
 // String - Non-Member Functions Algorithms
 //############################################################################
 
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -19,5 +19,5 @@ int main() {
     getline(cin, s1, ';'); // delimiter is ';'
 
     // ...
-    // lexical_sort(); 
+    // lexical_sort();
 }

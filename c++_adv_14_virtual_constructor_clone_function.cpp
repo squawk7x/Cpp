@@ -13,9 +13,7 @@ class Dog {
 };
 
 class Yellowdog : public Dog {
-    virtual Yellowdog* clone() {
-        return new Yellowdog(*this);
-    }
+    virtual Yellowdog* clone() { return new Yellowdog(*this); }
 };
 
 void foo(Dog* d) { // d is a yellow dog

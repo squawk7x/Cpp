@@ -37,9 +37,7 @@ public:
     // ---------------------
     // const string getName() { return name; } // const useless, returns a temporary value
 
-    const string& getName() {
-        return name;
-    } // the caller cannot modify the return value
+    const string& getName() { return name; } // the caller cannot modify the return value
 
     // ---------------------
     // const FUNCTION       // can only call another const function
@@ -50,9 +48,7 @@ public:
     void printDogName() const { // function can not change member variables
         cout << name << " - const" << endl;
     }
-    void printDogName() {
-        cout << getName() << " - non-const" << endl;
-    }
+    void printDogName() { cout << getName() << " - non-const" << endl; }
 };
 
 int main() {

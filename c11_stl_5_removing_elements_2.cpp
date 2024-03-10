@@ -6,13 +6,13 @@
 //
 // 4. Remove and do something else?
 
+#include <algorithm>
+#include <functional>
 #include <iostream>
+#include <list>
+#include <set>
 #include <string>
 #include <vector>
-#include <list>
-#include <algorithm>
-#include <set>
-#include <functional>
 
 using namespace std;
 
@@ -71,16 +71,16 @@ int main() {
 
     // First erase OK; second one is undefined behavior
 
-    //Solution:
-    // multiset<int>::iterator itr;
-    // for (itr = s.begin(); itr != s.end();) {
-    //     if (*itr == 1) {
-    //         cout << "Erase one item of " << *itr << endl;
-    //         s.erase(itr++);  //  <----------
-    //     } else {
-    //         itr++;
-    //     }
-    // }
+    // Solution:
+    //  multiset<int>::iterator itr;
+    //  for (itr = s.begin(); itr != s.end();) {
+    //      if (*itr == 1) {
+    //          cout << "Erase one item of " << *itr << endl;
+    //          s.erase(itr++);  //  <----------
+    //      } else {
+    //          itr++;
+    //      }
+    //  }
 
     // Sequence Container:
     // vector<int> v = {1, 4, 1, 1, 1, 12, 18, 16};
@@ -97,17 +97,17 @@ int main() {
     // Sequence container and unordered container's erase() returns
     // iterator pointing to next item after the erased item.
 
-    //Solution:
-    // vector<int> v = {1, 4, 1, 1, 1, 12, 18, 16};
-    // vector<int>::iterator itr2;
-    // for (itr2 = v.begin(); itr2 != v.end();) {
-    //     if (*itr2 == 1) {
-    //         cout << "Erase one item of " << *itr2 << endl;
-    //         itr2 = v.erase(itr2); //  <----------
-    //     } else {
-    //         itr2++;
-    //     }
-    // }
+    // Solution:
+    //  vector<int> v = {1, 4, 1, 1, 1, 12, 18, 16};
+    //  vector<int>::iterator itr2;
+    //  for (itr2 = v.begin(); itr2 != v.end();) {
+    //      if (*itr2 == 1) {
+    //          cout << "Erase one item of " << *itr2 << endl;
+    //          itr2 = v.erase(itr2); //  <----------
+    //      } else {
+    //          itr2++;
+    //      }
+    //  }
 
     // 1. Sequence container and unordered container's erase() returns the next
     //    iterator after the erased item.
@@ -144,19 +144,19 @@ int main() {
 //     }
 // }
 
-//Solution:
-// int main() {
-//     multiset<int> ms = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
-//     multiset<int>::iterator itr;
-//     for (itr = ms.begin(); itr != ms.end();) {
-//         if (*itr == 1) {
-//             cout << "Erase one item of " << *itr << endl;
-//             ms.erase(itr++); //  <----------
-//         } else {
-//             itr++;
-//         }
-//     }
-// }
+// Solution:
+//  int main() {
+//      multiset<int> ms = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
+//      multiset<int>::iterator itr;
+//      for (itr = ms.begin(); itr != ms.end();) {
+//          if (*itr == 1) {
+//              cout << "Erase one item of " << *itr << endl;
+//              ms.erase(itr++); //  <----------
+//          } else {
+//              itr++;
+//          }
+//      }
+//  }
 
 // Same way to erase elements from vector?
 
@@ -179,19 +179,19 @@ int main() {
 // Sequence container and unordered container's erase() returns
 // iterator pointing to next item after the erased item.
 
-//Solution for sequence and unordered container:
-// int main() {
-//     vector<int> v = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
-//     vector<int>::iterator itr;
-//     for (itr = v.begin(); itr != v.end();) {
-//         if (*itr == 1) {
-//             cout << "Erase one item of " << *itr << endl;
-//             itr = v.erase(itr); //  <----------
-//         } else {
-//             itr++;
-//         }
-//     }
-// }
+// Solution for sequence and unordered container:
+//  int main() {
+//      vector<int> v = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
+//      vector<int>::iterator itr;
+//      for (itr = v.begin(); itr != v.end();) {
+//          if (*itr == 1) {
+//              cout << "Erase one item of " << *itr << endl;
+//              itr = v.erase(itr); //  <----------
+//          } else {
+//              itr++;
+//          }
+//      }
+//  }
 
 // 1. Sequence container and unordered container's erase() returns the next
 //    iterator after the erased item.
@@ -199,13 +199,12 @@ int main() {
 // 2. Associative container's erase() returns nothing.
 //    c.erase(itr++)
 
-
 // A thing about efficiency: v.end()
 
 // BEST SOLUTION: Use Algorithm + Lambda
 int main() {
     vector<int> v;
-    
+
     v = {1, 4, 6, 1, 1, 1, 1, 12, 18, 16};
     auto itr = remove_if(v.begin(), v.end(), equalOne);
     v.erase(itr, v.end());

@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
     int n;
-    int *p;
+    int* p;
     cout << "How many numbers would you like to type? ";
     cin >> n;
     p = new (nothrow) int[n];

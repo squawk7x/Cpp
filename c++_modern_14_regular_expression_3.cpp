@@ -2,8 +2,8 @@
 // Regular Expression 3
 // ***********************************************
 
-#include <regex>
 #include <iostream>
+#include <regex>
 #include <string>
 
 using namespace std;

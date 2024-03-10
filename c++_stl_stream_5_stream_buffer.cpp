@@ -2,10 +2,10 @@
 // Stream - Buffer
 //############################################################################
 
-#include <iostream>
 #include <fstream>
-#include <string>
 #include <iomanip>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -44,5 +44,6 @@ int main(int argc, char* argv[]) {
         ++i;
     }
 
-    copy(istreambuf_iterator<char>(cin), istreambuf_iterator<char>(), ostreambuf_iterator<char>(cout));
+    copy(istreambuf_iterator<char>(cin), istreambuf_iterator<char>(),
+         ostreambuf_iterator<char>(cout));
 }

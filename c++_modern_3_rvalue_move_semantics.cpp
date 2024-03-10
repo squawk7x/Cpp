@@ -2,26 +2,26 @@
 // Rvalue Reference -- Move Semantics
 //###################################################################
 
-/* 
- * Note 1: the most useful place for rvalue reference is overloading copy 
+/*
+ * Note 1: the most useful place for rvalue reference is overloading copy
  * constructor and copy assignment operator, to achieve move semantics.
  *
  * X& X::operator=(X const & rhs);  // copy assignment operator
  * X& X::operator=(X&& rhs);        // move assignment operator
- * 
+ *
  * Note 2: Move semantics is implemented for all STL containers, which means:
  *    a. Move to C++ 11. Your code will be faster without changing a thing.
  *    b. Passing by value can be used for STL containers.
  *
-*/
+ */
 
 /* Move constructor / Move assignment operator:
  *    Purpose: conveniently avoid costly and unnecessary deep copying.
  *
- * 1. Move constructor is particularly powerful where passing by reference and 
+ * 1. Move constructor is particularly powerful where passing by reference and
  *    passing by value are both needed.
- * 
- * 2. Move constructor give you finer control of which part of your object to 
+ *
+ * 2. Move constructor give you finer control of which part of your object to
  *    be moved.
  */
 
@@ -87,17 +87,14 @@ public:
     }
 
     // Constructor with initializer_list
-    BoVector(std::initializer_list<double> values)
-        : size(values.size()), arr_(new double[size]) {
+    BoVector(std::initializer_list<double> values) : size(values.size()), arr_(new double[size]) {
         int i = 0;
         for (auto value : values) {
             arr_[i++] = value;
         }
     }
 
-    ~BoVector() {
-        delete[] arr_;
-    }
+    ~BoVector() { delete[] arr_; }
 };
 
 // void foo(BoVector v);

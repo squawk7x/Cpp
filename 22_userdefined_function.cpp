@@ -1,16 +1,16 @@
-#include<iostream>
-#include<ctime>
+#include <ctime>
+#include <iostream>
 
 void happy();
 
-int main(){
-happy();
-std::cout<<"\n";
-happy();
+int main() {
+    happy();
+    std::cout << "\n";
+    happy();
     return 0;
 }
 
-void happy(){
-        std::cout<<" happy birthday to you\n";
-        std::cout<<" happy birthday to you\n";
+void happy() {
+    std::cout << " happy birthday to you\n";
+    std::cout << " happy birthday to you\n";
 }

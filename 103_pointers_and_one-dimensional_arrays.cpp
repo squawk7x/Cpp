@@ -3,13 +3,12 @@
 
 // A STRING HAS TO BE TERMINATED BY '\0'
 
-int main()
-{
+int main() {
     // int x = 10;
     // int *ptr = &x;               // Pointer to an integer
 
-    int A[5] = {2, 4, 6, 8, 10};    // type int(*)[5]
-    int *pA = A;                    // not &A, 
+    int A[5] = {2, 4, 6, 8, 10}; // type int(*)[5]
+    int* pA = A;                 // not &A,
     // A refers to address of first array element
 
     printf("A: %p\n", A);

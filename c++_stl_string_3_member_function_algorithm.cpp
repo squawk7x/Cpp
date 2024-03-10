@@ -2,8 +2,8 @@
 // String - Member Functions Algorithms
 //############################################################################
 
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 

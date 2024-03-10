@@ -3,26 +3,17 @@
 
 // unique can not be copied but moved
 
-template <typename T, typename... Args>
-std::unique_ptr<T> make_unique(Args&&... args) {
+template <typename T, typename... Args> std::unique_ptr<T> make_unique(Args&&... args) {
     return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
 struct Foo {
-    Foo() {
-        std::cout << "Foo::Foo" << std::endl;
-    }
-    ~Foo() {
-        std::cout << "Foo::~Foo" << std::endl;
-    }
-    void foo() {
-        std::cout << "Foo::foo" << std::endl;
-    }
+    Foo() { std::cout << "Foo::Foo" << std::endl; }
+    ~Foo() { std::cout << "Foo::~Foo" << std::endl; }
+    void foo() { std::cout << "Foo::foo" << std::endl; }
 };
 
-void f(const Foo&) {
-    std::cout << "f(const Foo&)" << std::endl;
-}
+void f(const Foo&) { std::cout << "f(const Foo&)" << std::endl; }
 
 int main() {
     // std::unique_ptr<Foo> p1(new Foo());    // Correct
