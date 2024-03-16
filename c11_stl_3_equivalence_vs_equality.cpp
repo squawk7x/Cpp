@@ -52,13 +52,14 @@ int main() {
 // set<int, Lsb_less> s = {21, 23, 26, 27};
 
 //############################################################################
-// Algorithm find() looks for equality: if (x == y)
+// Algorithm find() looks for EQUALITY: if (x == y)
 // itr1 = find(s.begin(), s.end(), 36); // itr1 points to s.end()
 //############################################################################
 
 //############################################################################
-// set<int>::find() looks for equivalence: if ( !(x<y) && !(y<x) )
+// set<int>::find() looks for EQUIVALENCE: if ( !(x<y) && !(y<x) )
 // itr2 = s.find(36); // itr2 points to 26
+// s.find uses the set's comparison function (e.g. Lsb_Less) if defined
 //############################################################################
 
 // Guidelines:
@@ -87,5 +88,4 @@ int main() {
  * Summary:
  * When using a function to search or remove certain element, make sure you
  * understand the difference between equality and equivalence.
- *
  */

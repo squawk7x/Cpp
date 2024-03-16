@@ -19,7 +19,7 @@ Why use const
 using namespace std;
 
 int main() {
-    const int i = 9;
+    int i = 9;
     // i = 6;   // fails
 
     const int* p0 = &i; // data is constant, pointer is not

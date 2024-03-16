@@ -98,6 +98,7 @@ int main() {
     list<int> s2 = {2, 1, 4, 8, 5, 9};
     itr = remove(s2.begin(), s2.end(), 4); // O(n)
     cout << "remove 4 by algorithm function: " << endl;
+    // s2 = {2, 1, 8, 5, 9, 9};
     print_container(s2);
     cout << "after erase: " << endl;
     s.erase(itr, s2.end());

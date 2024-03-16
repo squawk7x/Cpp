@@ -1,7 +1,7 @@
 
-// /*###################################################################
-//  *                          Learn C++ 11
-//  ###################################################################*/
+//###################################################################
+//  Learn C++ 11
+//###################################################################
 
 /*
  * 1. Initializer List
@@ -80,6 +80,12 @@ void draw_rect(Rectangle r) { cout << "Rectangle was drawn." << endl; };
 //     Dog11_1(int age, string name){};
 // };
 
+/* Uniform Initialization Search Order:
+ * 1. Initializer_list constructor
+ * 2. Regular constructor that takes the appropriate parameters.
+ * 3. Aggregate initializer.
+ */
+
 // class Dog11_2 {
 // public:
 //     int age; // 3rd choice - Aggregat Initializer
@@ -100,11 +106,6 @@ void draw_rect(Rectangle r) { cout << "Rectangle was drawn." << endl; };
 //     // C++ 11 extended the scope of curly brace initialization
 //     Dog11_1 d11_1 = {5, "Henry"};
 
-/* Uniform Initialization Search Order:
- * 1. Initializer_list constructor
- * 2. Regular constructor that takes the appropriate parameters.
- * 3. Aggregate initializer.
- */
 
 //     Dog11_2 d11_2{3};
 // }

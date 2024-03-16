@@ -34,10 +34,6 @@ TEST(StackTest, testAll) {
     EXPECT_DOUBLE_EQ(7.0, ((double)val) / 4);
     EXPECT_NEAR(6.0, ((float)val) / 5, 1); // The difference is less than 1
 
-    // EXPECT_THROW(st.pop(), OUT_OF_RANGE_EXCEPTION);   // Expect st.pop() to throw an exception of
-    // OUT_OF... EXPECT_ANY_THROW(st.pop());  // Expect st.pop() to throw an exception of any type
-    // EXPECT_NO_THROW(st.pop());   // Expect st.pop() not to throw exception.
-
     // If this fails, the rest of current function is skipped  -- Fatal Error
     ASSERT_EQ(28, val);
     ASSERT_GT(29, val);
