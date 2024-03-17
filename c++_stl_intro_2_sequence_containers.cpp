@@ -4,18 +4,21 @@
 
 #include <iostream>
 #include <string>
-
 #include <algorithm>
-#include <deque>
 #include <functional>
-#include <iterator>
-#include <list>
-#include <map>           // map and multimap
 #include <numeric>       // some numeric algorithm
+// Sequence Containers
+#include <vector>
+#include <list>
+#include <deque>
+
+#include <map>           // map and multimap
 #include <set>           // set and multiset
+
 #include <unordered_map> // unordered map/multimap
 #include <unordered_set> // unordered set/multiset
-#include <vector>
+
+#include <iterator>
 
 using namespace std;
 
@@ -114,7 +117,7 @@ using namespace std;
 // mylist1.splice(itr, mylist2, itr_a, itr_b); // O(1) in constant time!
 
 //############################################################################
-// Array
+// Array Container
 //############################################################################
 
 int main(int argc, char* argv[]) {

@@ -27,22 +27,23 @@ public:
 void foo(Dog d) {}
 
 int main() {
-    deque<Dog> dog;
     YellowDog yellowDog("Gunner");
+    
+    deque<Dog> d;
 
-    dog.push_front(yellowDog); // first copy construct dog from yellowDog
-    dog[0].bark();             // dog[0] is a dog NOT yellowDog
+    d.push_front(yellowDog); // first copy construct dog from yellowDog
+    d[0].bark();             // dog[0] is a dog NOT yellowDog
     // object slicing, m_name is sliced away
 
     // Solution: use pointer:
-    deque<Dog*> dog2;
+    deque<Dog*> d2;
     YellowDog yellowDog2("Gunner");
-    dog2.push_front(&yellowDog); // passed by reference
-    dog2[0]->bark();             // virtual void bark();
-    // dog[0] is a yellow dog
+    d2.push_front(&yellowDog); // passed by reference
+    d2[0]->bark();             // virtual void bark();
+    // d2[0] is a yellow dog
 
     Dog dog2 = yellowDog;
-    foo(yellowDog); // yellowDog is slices and passed to foo
+    foo(yellowDog); // yellowDog is sliced to create a dog and passed to foo
 }
 
 /*

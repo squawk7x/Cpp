@@ -1,32 +1,31 @@
-#include <initializer_list>
-#include <vector>
+
+#include <bitset>
+#include <complex>
+#include <fstream>
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-class MyVector {
-    vector<int> vec_;
-
-public:
-    MyVector(const initializer_list<int>& v) {
-        for (initializer_list<int>::iterator i = v.begin(); i != v.end(); ++i) {
-            vec_.push_back(*i);
-        }
+int main(int argc, char* argv[]) {
+    {
+        // ofstream of("myLog.txt"); // open for write, clear content of the file
+        ofstream of("myLog.txt", ofstream::app); // open for write for append
+        of << "Honesty is the best policy" << std::endl;
     }
-    void show(){
-        for (int i : vec_) {
-            cout << i << endl;
-        }
+    {
+        ofstream of("myLog.txt", ofstream::in | ofstream::out);
+        of.seekp(10, ios::beg); // Move the output pointer 10 chars after begin
+        of << "12345";          // Overwrite 5 chars
+        of.seekp(-5, ios::end); // Move the output pointer 5 chars before end
+        of << "Nothing ventured, nothing gained" << std::endl;
+        of.seekp(-5,
+                 ios::cur); // Move the output pointer 5 chars before current pointer
 
+        cout << of.good() << std::endl;
+        cout << of.bad() << std::endl;
+        cout << of.fail() << std::endl;
+        cout << of.eof() << std::endl;
+        cout << of.flags() << std::endl;
     }
-};
-
-
-int main() {
-    MyVector mv = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-
-    mv.show();
-    
-    return 0;
 }

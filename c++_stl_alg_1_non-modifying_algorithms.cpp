@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
     // 1. Counting
     // Algorithm Data Operation
     int n = count(vec.begin() + 2, vec.end() - 1, 69);                       // 2
-    int m = count_if(vec.begin(), vec.end(), [](int x) { return x == 69; }); // 3
+    // int m = count_if(vec.begin(), vec.end(), [](int x) { return x == 69; }); // 2
     int m = count_if(vec.begin(), vec.end(), [](int x) { return x < 10; });  // 3
 
     // 2.  Min and Max

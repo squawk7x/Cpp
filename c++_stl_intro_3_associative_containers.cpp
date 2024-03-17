@@ -76,8 +76,7 @@ int main() {
 // Map
 //############################################################################
 
-//  * - No duplicated key
-//  */
+/* - No duplicated key  */
 
 int main() {
     map<char, int> mymap;

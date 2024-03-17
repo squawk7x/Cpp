@@ -36,7 +36,7 @@ template <typename T> void print_container(T container) {
 //     // itr = itr + 5; // advance itr by 5
 //     // itr = itr - 4;
 //     // if (itr2 > itr1)
-//     // ++itr; // preincrement is faster than postincrement itr++
+//     // ++itr; // preincrement ++itr is faster than postincrement itr++
 //     // --itr;
 
 //     // // 2. Bidirectional Iterator: list, set/multiset, map/multimap
