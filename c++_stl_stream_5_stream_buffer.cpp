@@ -2,6 +2,10 @@
 // Stream - Buffer
 //############################################################################
 
+// IO operation
+// 1. formatting data                        -- stream
+// 2. communicating data to external devices -- stream buffer
+
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -9,28 +13,24 @@
 
 using namespace std;
 
-// IO operation
-// formatting data -- stream
-// communicating data to external devices -- stream buffer
+int main() {
+    cout << 34 << endl;             // stream
+    streambuf* pbuf = cout.rdbuf(); // pointer to internal model of stream buffer
 
-int main(int argc, char* argv[]) {
-    cout << 34 << endl;
-    streambuf* pbuf = cout.rdbuf();
+    ostream myCout(pbuf); // other ostream which has same streambuffer as cout
+    myCout << 34;         // myCout has same transferring channel as cout   // 34 to stdout
 
-    ostream myCout(pbuf);
-    myCout << 34; // 34 to stdout
-
-    myCout.setf(ios::showpos);
-    myCout.width(20);
-    myCout << 12 << endl;
-    cout << 12 << endl;
+    myCout.setf(ios::showpos); // useful for temporarily change format of myCout, but not cout
+    myCout.width(20);          // default align to the right
+    myCout << 12 << endl;      //            +12
+    cout << 12 << endl;        // 12
 
     ofstream of("myLog.txt");
     streambuf* origBuf = cout.rdbuf();
-    cout.rdbuf(of.rdbuf());
+    cout.rdbuf(of.rdbuf()); // Redirecting cout to myLog.txt
     cout << "Hello" << endl; // mylog.txt has "Hello"
-    // Redirecting
 
+    // Restoring
     cout.rdbuf(origBuf);
     cout << "Goodbye" << endl; // stdout has "Goodbye"
 
@@ -38,12 +38,14 @@ int main(int argc, char* argv[]) {
     istreambuf_iterator<char> i(cin);
     ostreambuf_iterator<char> o(cout);
 
+    // Echo input to output:
     while (*i != 'x') {
         *o = *i;
         ++o;
         ++i;
     }
 
+    // Echo input to output:
     copy(istreambuf_iterator<char>(cin), istreambuf_iterator<char>(),
          ostreambuf_iterator<char>(cout));
 }

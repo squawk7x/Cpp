@@ -10,25 +10,33 @@
 using namespace std;
 
 int main() {
-    stringstream ss; // stream without IO operation
-    // read/write of string
+    stringstream ss; // stream without IO channels/operations
+    // read from a string / write to a string
 
-    ss << "Dec: " << 89 << " Hex: " << hex << 89 << " Oct: " << oct << 89;
-    cout << ss.str() << endl;
+    ss << 89 << " Hex: " << hex << 89 << " Oct: " << oct << 89; // format string with stringstream
+    cout << ss.str() << endl;                                   // 89 Hex: 59 Oct: 131
 
     int a, b, c;
     string s1;
 
-    ss >> hex >> a; // Formatted input works token by token. spaces, tabs, newlines
-    // a == 137
+    // 89 Hex: 59 Oct: 131
+    ss >> hex >> a; // Formatted input works token by token.
+    // tokens separated byspaces, tabs, newlines
+    //  a == 137
+
     ss >> s1;       // s1: "Hex:"
     ss >> dec >> b; // b == 59
 
-    ss.ignore(6);
-    ss >> oct >> c; // c==89
+    ss.ignore(6);   // ignore next 6 characters of the stream
+    ss >> oct >> c; // c == 89
 
     cout << a << " " << b << " " << c << endl;
 
-    // ostringstream -- formatted output
-    // istringstream -- formatted input
+    // stringstream can both, format input and ouput
+
+    // more specialized:
+    // better type safety:
+    // better code readability:
+    // ostringstream -- only for formatted output
+    // istringstream -- only for formatted input
 }

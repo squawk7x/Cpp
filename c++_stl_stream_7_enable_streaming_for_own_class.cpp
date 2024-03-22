@@ -9,7 +9,8 @@
 
 using namespace std;
 
-// Creating Stream-enabled class
+// Creating Stream-enabled Class
+// class that can be read from a stream and written to a stream
 
 struct Dog {
 public:
@@ -17,7 +18,7 @@ public:
     string name_;
 };
 
-// Non-member functions (usual way)
+// defining operators as Non-member functions (usual way)
 ostream& operator<<(ostream& sm, const Dog& d) {
     sm << "My name is " << d.name_ << " and my age is " << d.age_ << endl;
     return sm;
