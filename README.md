@@ -9,10 +9,15 @@ A digital watch that shows the time in fancy formats, e.g.
 watchBaseN -b 5:
 
 ██ ██ ██ ░░
+
 ██ ██ ██ ░░
+
 █████░░░░░░
+
 ██ ██ ░░ ░░
+
 ███░░░░░░░░
+
 ██ ██ ██ ░░
 
 
