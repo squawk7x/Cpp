@@ -6,25 +6,11 @@ These filenames start with c11_ or c++_
 Own little program: watchBaseN
 A digital watch that shows the time in fancy formats, e.g.
 
-watchBaseN -b 5:
-
-██ ██ ██ ░░
-
-██ ██ ██ ░░
-
-█████░░░░░░
-
-██ ██ ░░ ░░
-
-███░░░░░░░░
-
-██ ██ ██ ░░
-
-
 watchBaseN -b 10:
 
 █ ░ H █ █ █ █ █ █ █ █ ░ : █ █ ░ ░ ░ M █ █ █ █ █ █ ░ ░ ░ : █ █ █ █ ░ S █ █ █ █ █ ░ ░ ░ ░ 
 
+or just tryout watchBaseN -b 5
 
 
 Some more files with special topics like OOP and lambda functions.
