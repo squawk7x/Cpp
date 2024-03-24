@@ -6,17 +6,10 @@
 #include <iostream>
 #include <set>
 #include <string>
+#include "../include/print_container.h"
+
 
 using namespace std;
-
-template <typename T> void print_container(T container) {
-    typename T::iterator it;
-    std::cout << "{ ";
-    for (it = container.begin(); it != container.end(); it++) {
-        std::cout << *it << ", ";
-    }
-    std::cout << " }" << std::endl;
-}
 
 // Functor:
 class Lsb_less {
