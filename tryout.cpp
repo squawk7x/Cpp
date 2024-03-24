@@ -3,6 +3,9 @@
 #include <algorithm>
 
 
+
+
+
 // Function to find the longest increasing subsequence
 std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
     int n = nums.size();
@@ -50,5 +53,10 @@ int main() {
     std::cout << "Length of longest increasing subsequence: " << lis.size() << std::endl;
 
 
+
+
+
+
+    
     return 0;
 }
