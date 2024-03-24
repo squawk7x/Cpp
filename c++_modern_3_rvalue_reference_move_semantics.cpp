@@ -6,7 +6,7 @@
  * Note 1: the most useful place for rvalue reference is overloading copy
  * constructor and copy assignment operator, to achieve move semantics.
  *
- * X& X::operator=(X const & rhs);  // copy assignment operator
+ * X& X::operator=(const X& rhs);   // copy assignment operator
  * X& X::operator=(X&& rhs);        // move assignment operator
  *
  * Note 2: Move semantics is implemented for all STL containers, which means:
@@ -65,6 +65,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class BoVector {
     int size;
     double* arr_;
@@ -77,6 +79,7 @@ public:
         for (int i = 0; i < size; i++) {
             arr_[i] = rhs.arr_[i];
         }
+        cout << "copy constructor was called" << endl;
     }
 
     // Move constructor - shallow copy
@@ -84,6 +87,7 @@ public:
         size = rhs.size;
         arr_ = rhs.arr_;
         rhs.arr_ = nullptr;
+        cout << "move constructor was called" << endl;
     }
 
     // Constructor with initializer_list
