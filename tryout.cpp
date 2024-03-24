@@ -52,5 +52,7 @@ int main() {
     // 2nd comment
     // 3rd comment
 
+    // 7th comment
+
     return 0;
 }
