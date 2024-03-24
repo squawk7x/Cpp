@@ -2,17 +2,78 @@
 // Rvalue Reference -- Perfect Forwarding
 //###################################################################
 
+#include <iostream>
+#include <string>
+#include <type_traits>
+
+using namespace std;
+
+template <typename T> void relay_bad(T arg) { foo(arg); }
+
 /*
 PERFECT FORWARDING
 1. no costly and unnecessary copy construction of boVector is made.
 2. rvalue is forwarded as rvalue, and lvalue is forwarded as lvalue.
 */
 
-#include <iostream>
-#include <string>
-#include <type_traits>
+// Solution: T&& - Universal Reference
+template <typename T> void relay(T&& arg) { // Universal Reference, works for lvalues and rvalues
+    foo(std::forward<T>(arg));              // argument forwarding
+}
 
-using namespace std;
+/*
+    Reference Collapsing Rules (C++ 11)
+    T& &    ==> T&
+    T& &&   ==> T&
+    T&& &   ==> T&
+    T&& &&  ==> T&&
+
+    template< typename> T >
+    void func (T&& arg) {...}    func can take any type of argument
+
+    if arg is initialized with rvalue ==> T&& arg is rvalue reference
+    func(9); => T = int&& => T&& = int&& && = int&&
+
+    if arg is initialized with lvalue ==> T&& arg is lvalue reference
+    func(x); => T = int& => T&& = int& && = int&
+
+    T&& IS UNIVERSAL REFERENCE !!! (Scott Meyer)
+    rvalue, lvalue, const, non-const, etc.
+
+    IF AND ONLY IF:
+
+    Conditions:
+    1. T is a template type.
+    2. Type deduction (reference collapsing) happens to T.
+       - T is a function template type, not class template type.
+*/
+
+// // Implementation of std::forward()
+// template <typename T> T&& forward(typename remove_reference<T>::type& arg) {
+//     return static_cast<T&&>(arg);
+// }
+
+// template <typename T>
+// struct remove_reference;
+
+// // T is int&
+// remove_reference<int&>::type i; // <=> int i
+
+// // T is int (no reference to remove - same result)
+// remove_reference<int&>::type i; // <=> int i
+
+/*
+            MOVE <----------------------> FORWARD
+    std::move<T>(arg);              std::forward<T>(arg);
+    Turns arg into rvalue type      Turns rvalue into type of T&&
+*/
+
+/*
+Summary:
+Usage of rvalue reference:
+1. Move semantics
+2. Perfect forwarding
+*/
 
 class BoVector {
     int size;
@@ -54,68 +115,9 @@ BoVector createBoVector() { // creates a BoVector
     return bv;
 }
 
-// T&& - Universal Reference
-template <typename T> void relay(T&& arg) { // Universal Reference, works for lvalues and rvalues
-    foo(std::forward<T>(arg));              // argument forwarding
-}
-
-// template <typename T>
-// struct remove_reference;
-
-// // T is int&
-// remove_reference<int&>::type i; // <=> int i
-
-// // T is int
-// remove_reference<int&>::type i; // <=> int i
-
-/*
-    Reference Collapsing Rules (C++ 11)
-    T& &    ==> T&
-    T& &&   ==> T&
-    T&& &   ==> T&
-    T&& &&  ==> T&&
-
-    template< typename> T >
-    void func (T&& arg) {...}    func can take any type of argument
-
-    if arg is initialized with rvalue ==> T&& arg is rvalue reference
-    func(9); => T = int&& => T&& = int&& && = int&&
-
-    if arg is initialized with lvalue ==> T&& arg is lvalue reference
-    func(x); => T = int& => T&& = int& && = int&
-
-    T&& IS UNIVERSAL REFERENCE !!! (Scott Meyer)
-    rvalue, lvalue, const, non-const, etc.
-
-    IF AND ONLY IF:
-
-    Conditions:
-    1. T is a template type.
-    2. Type deduction (reference collapsing) happens to T.
-       - T is a function template type, not class template type.
-*/
-
 int main() {
     BoVector reusable = createBoVector();
 
-    relay(reusable);
-    relay(createBoVector());
+    relay(reusable);         // Copy constructor of BoVector invoked
+    relay(createBoVector()); // Move constructor of BoVector invoked
 }
-
-// // Implementation of std::forward()
-// template <typename T> T&& forward(typename remove_reference<T>::type& arg) {
-//     return static_cast<T&&>(arg);
-// }
-
-/*
-            MOVE <----------------------> FORWARD
-    std::move<T>(arg);              std::forward<T>(arg);
-    Turns arg into rvalue type      Turns rvalue into type of T&&
-*/
-
-/*
-Summary:
-Usage of rvalue reference:
-1. Move semantics
-2. Perfect forwarding
-*/

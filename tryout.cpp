@@ -24,12 +24,6 @@ std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
         }
     }
 
-    std::vector<int> lis;
-    while (end_index != -1) {
-        lis.push_back(nums[end_index]);
-        end_index = prev[end_index];
-    }
-
     std::reverse(lis.begin(), lis.end());
     return lis;
 }
@@ -54,6 +48,7 @@ int main() {
 
     // 4th comment
     // 5th comment
+    // 6th comment
 
     return 0;
-}
+
