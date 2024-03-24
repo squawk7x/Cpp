@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 // Function to find the longest increasing subsequence
 std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
@@ -24,11 +24,6 @@ std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
         }
     }
 
-
-
-
-
-
     std::vector<int> lis;
     while (end_index != -1) {
         lis.push_back(nums[end_index]);
@@ -37,6 +32,8 @@ std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
 
     std::reverse(lis.begin(), lis.end());
     return lis;
+
+    
 }
 
 int main() {
