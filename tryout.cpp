@@ -24,6 +24,7 @@ std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
         }
     }
 
+    // Defining a vector
     std::vector<int> lis;
     while (end_index != -1) {
         lis.push_back(nums[end_index]);
