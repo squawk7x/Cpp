@@ -4,12 +4,14 @@
 
 // Function to find the longest increasing subsequence
 std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
-    int n = nums.size();
-    std::vector<int> dp(n, 1);
-    std::vector<int> prev(n, -1);
 
     int max_length = 1;
     int end_index = 0;
+
+    
+    int n = nums.size();
+    std::vector<int> dp(n, 1);
+    std::vector<int> prev(n, -1);
 
     for (int i = 1; i < n; ++i) {
         for (int j = 0; j < i; ++j) {
