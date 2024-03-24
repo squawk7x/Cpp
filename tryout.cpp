@@ -34,6 +34,7 @@ std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
     return lis;
 }
 
+
 int main() {
     std::vector<int> nums = {10, 22, 9, 33, 21, 50, 41, 60};
     std::vector<int> lis = longestIncreasingSubsequence(nums);
