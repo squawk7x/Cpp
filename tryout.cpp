@@ -10,28 +10,6 @@ std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
 
     int max_length = 1;
     int end_index = 0;
-
-    for (int i = 1; i < n; ++i) {
-        for (int j = 0; j < i; ++j) {
-            if (nums[i] > nums[j] && dp[i] < dp[j] + 1) {
-                dp[i] = dp[j] + 1;
-                prev[i] = j;
-                if (dp[i] > max_length) {
-                    max_length = dp[i];
-                    end_index = i;
-                }
-            }
-        }
-    }
-
-    std::vector<int> lis;
-    while (end_index != -1) {
-        lis.push_back(nums[end_index]);
-        end_index = prev[end_index];
-    }
-
-    std::reverse(lis.begin(), lis.end());
-    return lis;
 }
 
 int main() {
