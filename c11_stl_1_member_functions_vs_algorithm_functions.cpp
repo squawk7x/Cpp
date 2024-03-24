@@ -32,17 +32,9 @@
 #include <string>
 #include <unordered_set>
 #include <vector>
+#include "../include/print_container.h"
 
 using namespace std;
-
-template <typename T> void print_container(T container) {
-    typename T::iterator it;
-    std::cout << "{ ";
-    for (it = container.begin(); it != container.end(); it++) {
-        std::cout << *it << ", ";
-    }
-    std::cout << " }" << std::endl;
-}
 
 // unordered_set<int> s = {2, 4, 1, 8, 5, 9}; // Hash table
 

@@ -1,31 +1,52 @@
-
-#include <bitset>
-#include <complex>
-#include <fstream>
 #include <iostream>
-#include <string>
+#include <vector>
+#include <algorithm>
 
-using namespace std;
+// Function to find the longest increasing subsequence
+std::vector<int> longestIncreasingSubsequence(const std::vector<int>& nums) {
+    int n = nums.size();
+    std::vector<int> dp(n, 1);
+    std::vector<int> prev(n, -1);
 
-int main(int argc, char* argv[]) {
-    {
-        // ofstream of("myLog.txt"); // open for write, clear content of the file
-        ofstream of("myLog.txt", ofstream::app); // open for write for append
-        of << "Honesty is the best policy" << std::endl;
+    int max_length = 1;
+    int end_index = 0;
+
+    for (int i = 1; i < n; ++i) {
+        for (int j = 0; j < i; ++j) {
+            if (nums[i] > nums[j] && dp[i] < dp[j] + 1) {
+                dp[i] = dp[j] + 1;
+                prev[i] = j;
+                if (dp[i] > max_length) {
+                    max_length = dp[i];
+                    end_index = i;
+                }
+            }
+        }
     }
-    {
-        ofstream of("myLog.txt", ofstream::in | ofstream::out);
-        of.seekp(10, ios::beg); // Move the output pointer 10 chars after begin
-        of << "12345";          // Overwrite 5 chars
-        of.seekp(-5, ios::end); // Move the output pointer 5 chars before end
-        of << "Nothing ventured, nothing gained" << std::endl;
-        of.seekp(-5,
-                 ios::cur); // Move the output pointer 5 chars before current pointer
 
-        cout << of.good() << std::endl;
-        cout << of.bad() << std::endl;
-        cout << of.fail() << std::endl;
-        cout << of.eof() << std::endl;
-        cout << of.flags() << std::endl;
+    std::vector<int> lis;
+    while (end_index != -1) {
+        lis.push_back(nums[end_index]);
+        end_index = prev[end_index];
     }
+
+    std::reverse(lis.begin(), lis.end());
+    return lis;
+}
+
+int main() {
+    std::vector<int> nums = {10, 22, 9, 33, 21, 50, 41, 60};
+    std::vector<int> lis = longestIncreasingSubsequence(nums);
+
+    std::cout << "Longest increasing subsequence: ";
+    for (size_t i = 0; i < lis.size(); ++i) {
+        std::cout << lis[i];
+        if (i != lis.size() - 1) {
+            std::cout << ", ";
+        }
+    }
+    std::cout << std::endl;
+    std::cout << "Length of longest increasing subsequence: " << lis.size() << std::endl;
+
+    return 0;
 }

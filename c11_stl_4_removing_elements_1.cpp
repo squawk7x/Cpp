@@ -8,12 +8,13 @@
 #include <set>
 #include <string>
 #include <vector>
+#include "../include/print_container.h"
 
 using namespace std;
 
-template <class T> void print_container(T container, string msg) {
+template <class T> void print_container(T container, string msg = "") {
     typename T::iterator it;
-    cout << msg << "{ ";
+    cout << msg + ": " << "{ ";
     for (it = container.begin(); it != container.end(); it++) {
         std::cout << *it << ", ";
     }

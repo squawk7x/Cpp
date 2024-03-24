@@ -13,16 +13,9 @@
 #include <set>
 #include <string>
 #include <vector>
+#include "../include/print_container.h"
 
 using namespace std;
-
-template <class T> void print_container(T container, const string& msg) {
-    cout << msg << "{ ";
-    for (const auto& elem : container) {
-        cout << elem << ", ";
-    }
-    cout << " }" << endl;
-}
 
 bool equalOne(int e) {
     if (e == 1) {
