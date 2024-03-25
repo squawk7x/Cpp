@@ -20,6 +20,7 @@ using namespace std;
 
 int main() {
     int i = 9;
+    // const int i = 9;
     // i = 6;   // fails
 
     const int* p0 = &i; // data is constant, pointer is not
@@ -33,14 +34,16 @@ int main() {
     const int* const p3 = &i; // pointer and data both constant
     // p3++; *p3 = 10;  // fail
 
-    // const_cast<int&>(i) = 6;
-    // // Uses const_cast to remove the constness of i and assign it the value 6
-    // cout << "i = " << i << endl; // Outputs the value of i (which is now 6) ???
+    // Use const_cast to remove the constness
+    const int c = 5;
+    int& ref_c = const_cast<int&>(c);
+    ref_c = 6;
+    cout << "c = " << c << endl;
 
-    // static_cast<const int&>(j);
-    // // Uses static_cast to cast j to a const int reference (this doesn't change j itself)
-    // j = 10; // Modifies j to 10
-    // cout << "j = " << j << endl; // Outputs the value of j (which is now 10)
+    // Uses static_cast to cast j to a const
+    int j = 10;
+    const int& const_j = static_cast<const int&>(j);
+    // const_j = 13; // This line will cause a compilation error since const_j is a const reference
 
     return 0;
 }

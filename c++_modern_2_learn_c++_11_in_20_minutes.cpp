@@ -2,6 +2,13 @@
 //  Learn C++ 11 in 20 minutes - 2
 //###################################################################
 
+#include <initializer_list>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
 /*
  * 9. override (for virtual function)
  */

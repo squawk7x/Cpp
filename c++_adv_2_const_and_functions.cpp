@@ -27,6 +27,7 @@ public:
         cout << age << " - non-const" << endl;
         a++;
     }
+
     void setAge(const int& a) { // rvalue
         age = a;
         cout << age << " - const" << endl;
@@ -35,20 +36,20 @@ public:
     // ---------------------
     // const RETURN VALUE
     // ---------------------
-    // const string getName() { return name; } // const useless, returns a temporary value
+    // const string getName() { return name; } // const uselessfor a temporary value
 
     const string& getName() { return name; } // the caller cannot modify the return value
 
     // ---------------------
-    // const FUNCTION       // can only call another const function
+    // const FUNCTION
     // ---------------------
+    // function can not change member variables
+    // can only call another const function
     // void printDogName() const {cout << name << endl; age++; }
     // void printDogName() const {cout << name << endl; }
 
-    void printDogName() const { // function can not change member variables
-        cout << name << " - const" << endl;
-    }
     void printDogName() { cout << getName() << " - non-const" << endl; }
+    void printDogName() const { cout << name << " - const" << endl; }
 };
 
 int main() {

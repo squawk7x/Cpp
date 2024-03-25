@@ -1,13 +1,20 @@
 #include <iostream>
-#include <string>
+#include <numeric>
+#include <string_view>
+#include <vector>
 
-using namespace std;
+#include "../include/print_container.h"
 
-int main() {
+int main()
+{
+    std::vector<char> cnt(10);
+    std::iota(cnt.begin(), cnt.end(), '0');
+    print_container(cnt);
 
-    int a = 1;
-    int& b = a;
-    int&& c = a;
+    std::erase(cnt, '3');
+    print_container(cnt);
 
-    return 0;
+    auto erased = std::erase_if(cnt, [](char x) { return (x - '0') % 2 == 0; });
+    print_container(cnt);
+    std::cout << "Erased even numbers: " << erased << '\n';
 }
