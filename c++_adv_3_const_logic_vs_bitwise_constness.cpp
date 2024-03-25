@@ -30,7 +30,7 @@ public:
         // it does not change any class member directly
 
         // Quiz:
-        // const * int const func (const int *const& p) const
+        // const* int const func (const int* const &p) const
     }
 };
 

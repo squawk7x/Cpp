@@ -5,8 +5,7 @@
 
 #include "../include/print_container.h"
 
-int main()
-{
+int main() {
     std::vector<char> cnt(10);
     std::iota(cnt.begin(), cnt.end(), '0');
     print_container(cnt);
