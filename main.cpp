@@ -1,90 +1,148 @@
 //############################################################################
-// Sortings in STL
+// watchBaseN - simulation of the 'Mengenlehreuhr' found in Berlin
+// ██ ██ ██ ░░
+// ██ ██ ░░ ░░
+// ████░░░░░░░
+// ██ ██ ░░ ░░
+// ███████░░░░
+// ██ ░░ ░░ ░░
 //############################################################################
 
-// Sorting algorithm requires random access iterators:
-//    vector, deque, container array, native array
-
-// #include "/home/andreas/C++/Tutorials/advanced/include/print_container.h"
-#include "print_container.h"
-#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <iomanip>
 #include <iostream>
+#include <set>
 #include <string>
-#include <vector>
+#include <thread>
 
-using namespace std;
+using std::cout;
+using std::string;
 
-bool lsb_less(int x, int y) { return (x % 10) < (y % 10); }
+#ifdef _WIN32
+#define CLEAR_SCREEN "cls"
+#else
+#define CLEAR_SCREEN "clear"
+#endif
 
-bool lessThan10(int i) { return (i < 10); }
+// #define BASE 5
+const std::set<string> validValues = {"1", "2", "3", "4", "5", "6", "10", "12"};
+
+class Clock {
+private:
+    int BASE;
+    string pos;
+    string pts;
+    string pol;
+    string ptl;
+    string* pattern_H;
+    string* pattern_L;
+    string* pattern_S;
+
+    string makePattern(int digit, int length, string opaque, string translucent) {
+        string pattern = "";
+
+        for (int i = 0; i < digit; i++) {
+            pattern += opaque;
+        }
+
+        for (int i = digit; i < length; i++) {
+            pattern += translucent;
+        }
+
+        return pattern;
+    }
+
+public:
+    Clock(int base) : BASE(base) {
+        pos = (BASE == 5) ? "█" : "█ ";
+        pts = (BASE == 5) ? "░" : "░ ";
+        pol = (BASE == 5) ? "██ " : "█ ";
+        ptl = (BASE == 5) ? "░░ " : "░ ";
+
+        pattern_H = new string[24 / BASE + 1];
+        pattern_L = new string[BASE];
+        pattern_S = new string[60 / BASE];
+
+        for (int k = 0; k < 24 / BASE + 1; k++) {
+            pattern_H[k] = makePattern(k, 24 / BASE, pol, ptl);
+        }
+
+        for (int k = 0; k < 60 / BASE; k++) {
+            pattern_S[k] = makePattern(k, 60 / BASE - 1, pos, pts);
+        }
+
+        for (int k = 0; k < BASE; k++) {
+            pattern_L[k] = makePattern(k, BASE - 1, pol, ptl);
+        }
+    }
+
+    ~Clock() {
+        delete[] pattern_H;
+        delete[] pattern_L;
+        delete[] pattern_S;
+    }
+
+    void displayTime() {
+        while (true) {
+            system(CLEAR_SCREEN);
+
+            auto currentTime =
+                std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+
+            std::tm* localTime = std::localtime(&currentTime);
+
+            cout << "\n";
+            cout << pattern_H[localTime->tm_hour / BASE];
+            BASE == 5 ? cout << "\n" : cout << "H ";
+            cout << pattern_L[localTime->tm_hour % BASE];
+            BASE == 5 ? cout << "\n" : cout << ": ";
+            cout << pattern_S[localTime->tm_min / BASE];
+            BASE == 5 ? cout << "\n" : cout << "M ";
+            cout << pattern_L[localTime->tm_min % BASE];
+            BASE == 5 ? cout << "\n" : cout << ": ";
+            cout << pattern_S[localTime->tm_sec / BASE];
+            BASE == 5 ? cout << "\n" : cout << "S ";
+            cout << pattern_L[localTime->tm_sec % BASE];
+            cout << "\n\n";
+
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
+    }
+};
 
 int main(int argc, char* argv[]) {
-    vector<int> vec = {9, 1, 10, 2, 45, 3, 90, 4, 9, 5, 8};
-    vector<int> vec2 = {9, 60, 70, 8, 45, 87, 90, 69, 69, 55, 7};
-    print_container(vec);
-    print_container(vec2);
+    int BASE = 5;
 
-    sort(vec.begin(), vec.end()); // sort with operator <
-                                  // vec:  1 2 3 4 5 8 9 9 10 45 90
-    print_container(vec);
+    if (argc > 1) {
+        string arg = argv[1];
+        if (arg == "-h" || arg == "--help") {
+            cout << "Usage: " << argv[0] << " [options]\n";
+            cout << "Options:\n";
+            cout << "  -b [ 1 2 3 4 5 6 10 12 ]     Display time base-n "
+                    "(default -b 5)\n";
+            cout << "  -h, --help      Display this help message\n";
+            cout << "  --version       Display program version information\n";
+            return 0;
+        } else if (arg == "--version") {
+            cout << "Program Version 1.0" << std::endl;
+            return 0;
+        } else if (arg == "-b" && validValues.count(argv[2]) > 0) {
+            BASE = std::atoi(argv[2]);
+        } else {
+            std::cerr << "Unknown option \
+            \nusage: " << argv[0]
+                      << " -b [ 1 2 3 4 5 6 10 12 ] \
+            \ntry for example: "
+                      << argv[0] << " -b 5" << std::endl;
+            return 1;
+        }
+    }
 
-    sort(vec.begin(), vec.end(), lsb_less); // sort with lsb_less()
-                                            // vec: 10 90 1 2 3 4 45 5 8 9 9
-    print_container(vec);
-
-    // Sometime we don't need complete sorting.
-    // Problem #1: Finding top 5 students according to their test scores.
-    //
-    //  -  partial sort
-    partial_sort(vec.begin(), vec.begin() + 5, vec.end(), greater<int>());
-    // vec: 90 87 70 69 69 8 9 45 60 55 7
-
-    // Overloaded:
-    partial_sort(vec.begin(), vec.begin() + 5, vec.end());
-    print_container(vec);
-    // vec: 7 8 9 45 55 90 60 87 70 69 69
-
-    // Problem #2: Finding top 5 students according to their score, but I don't
-    // care their order.
-    nth_element(vec.begin(), vec.begin() + 5, vec.end(), greater<int>());
-    // vec: 69 87 70 90 69 60 55 45 9 8 7
-
-    // Problem #3: Move the students whose score is less than 10 to the front
-    partition(vec.begin(), vec.end(), lessThan10);
-    // vec: 8 7 9 90 69 60 55 45 70 87 69
-
-    // To preserve the original order within each partition:
-    stable_partition(vec.begin(), vec.end(), lessThan10);
-    // vec: 9 8 7 60 70 45 87 90 69 69 55
-
-    // Heap Algorithms
-    //
-    // Heap:
-    // 1. First element is always the largest
-    // 2. Add/remove takes O(log(n)) time
-
-    make_heap(vec2.begin(), vec2.end());
-    // vec: 90 45 10 9 8 3 9 4 2 5 1
-
-    // Remove the largest element:
-    pop_heap(vec2.begin(),
-             vec2.end()); // 1. Swap vec[0] with last item vec[size-1]
-                          // 2. Heapify [vec.begin(), vec.end()-1)
-    // vec:  45 9 10 4 8 3 9 1 2 5 90
-    vec2.pop_back(); // Remove the last item (the largest one)
-    // vec:  45 9 10 4 8 3 9 1 2 5
-
-    // Add a new element:
-    vec2.push_back(100);
-    push_heap(vec2.begin(), vec2.end()); // Heapify the last item in vec
-    // vec:  100 45 10 4 9 3 9 1 2 5 8
-
-    // Heap Sorting:
-    make_heap(vec.begin(), vec.end());
-
-    sort_heap(vec.begin(), vec.end());
-    // vec: 1 2 3 4 5 8 9 9 10 45 100
-    // Note: sort_heap can only work on a heap.
+    Clock clock(BASE);
+    clock.displayTime();
 
     return 0;
 }

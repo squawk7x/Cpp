@@ -1,5 +1,8 @@
-#include "/home/andreas/C++/Tutorials/advanced/include/clock.h"
+#include "clock.cpp"
 #include <iostream>
+#include <set>
+
+const std::set<std::string> validValues = {"1", "2", "3", "4", "5", "6", "10", "12"};
 
 int main(int argc, char* argv[]) {
     int BASE = 5;
