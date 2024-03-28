@@ -1,0 +1,184 @@
+# ---------------------------------------------------------------
+
+cmake_minimum_required(VERSION 3.5...3.29)
+
+if (${CMAKE_VERSION} VERSION_LESS 3.12)
+    cmake_policy(VERSION ${CMAKE_VERSION})
+endif()
+
+# ---------------------------------------------------------------
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# ---------------------------------------------------------------
+
+# set(ENV{PATH} "$ENV{PATH}:/usr/local/bin")
+# message("PATH: " $ENV{PATH})
+
+# ---------------------------------------------------------------
+
+set(NAME_SOURCE main.cpp)
+
+# ---------------------------------------------------------------
+
+set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(BIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/bin")
+set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(TST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/test")
+set(SOURCE ${SRC_DIR}/${NAME_SOURCE})
+# unset(SOURCE) or set(SOURCE) -> $(SOURCE) == ""
+get_filename_component(NAME_EXE ${SOURCE} NAME_WE)
+
+
+message("NAME_SOURCE:              " ${NAME_SOURCE})
+message("SRC_DIR:                  " ${SRC_DIR})
+message("CMAKE_CURRENT_SOURCE_DIR: " ${CMAKE_CURRENT_SOURCE_DIR})
+message("INCLUDE_DIR:              " ${INCLUDE_DIR})
+message("TST_DIR:                  " ${TST_DIR})
+message("BIN_DIR:                  " ${BIN_DIR})
+message("NAME_EXE:                 " ${NAME_EXE})
+
+# ---------------------------------------------------------------
+
+add_executable(${NAME_EXE} ${SOURCE})
+
+# ---------------------------------------------------------------
+
+set(BUILD_EXE FALSE
+    CACHE BOOL
+    "create 2nd executable file"
+    )
+
+if(${BUILD_EXE})
+    add_executable(
+        ${NAME_EXE}_2 ${SOURCE}
+    )
+endif()
+
+set(CACHE_FILEPATH ""
+    CACHE FILEPATH
+    "example Cache Variable Filepath"
+    )
+
+set(CACHE_PATH ""
+    CACHE PATH
+    "example Cache Variable Path"
+    )
+
+set(CACHE_INTERNAL ""
+    CACHE FILEPATH
+    "example Cache Variable Internal"
+    FORCE
+    )
+
+set(CACHE_STRING ""
+    CACHE STRING
+    "example Cache Variable String"
+    )
+
+set_property(CACHE CACHE_STRING
+   PROPERTY STRINGS
+   "Option1" "Option2" "Option3"
+   )
+
+# ---------------------------------------------------------------
+
+project(Project_${NAME_EXE}
+    VERSION 0.1.0
+    DESCRIPTION "Cpp Tutorial Project"
+    LANGUAGES C CXX)
+
+# ---------------------------------------------------------------
+
+set_target_properties(${NAME_EXE} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR}
+)
+
+# ---------------------------------------------------------------
+
+target_include_directories(
+    ${NAME_EXE} PUBLIC ${INCLUDE_DIR}
+)
+
+# include_directories(
+#     ${NAME_EXE} PRIVATE ${INCLUDE_DIR}
+# )
+
+# ---------------------------------------------------------------
+
+# set(OSBitness 32)
+# if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+#     set(OSBitness 64)
+# endif()
+
+# set(FullOutputDir "${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}${OSBitness}/${CMAKE_BUILD_TYPE}")
+
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static libs")
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}")
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
+
+# set_target_properties(${NAME_EXE} PROPERTIES
+#     RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}"
+# )
+
+# ---------------------------------------------------------------
+
+set(LISTE STATUS FATAL_ERROR WARNING DEBUG)
+message("Liste: ${LISTE}")
+
+set(LISTE2 "${NAME_SOURCE}; ${NAME_EXE}")
+message("Liste 2: " ${LISTE2})
+
+set(LISTE ${LISTE2})
+list(LENGTH LISTE LAENGE)
+message("List 2 has ${LAENGE} elements")
+# LENGTH GET APPEND REMOVE_ITEM ...
+
+# ---------------------------------------------------------------
+
+# PROPERTIES
+# Objekte: Targets, Ordner, Source Dateien, ...
+# Target: ausführbare Datei oder Bibliothek
+
+get_property(
+    SOURCE_FILES
+    TARGET ${NAME_EXE}
+    PROPERTY SOURCES
+)
+
+# set_property(...)
+
+message("${NAME_EXE} has source file: ${SOURCE_FILES}")
+
+# ---------------------------------------------------------------
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
+
+# ---------------------------------------------------------------
+# TESTING:
+# ---------------------------------------------------------------
+
+include(CTest)
+enable_testing()
+
+# Include GTest package
+find_package(GTest REQUIRED)
+
+# Locate GTest package
+find_package(GTest REQUIRED)
+
+# Add test executable
+add_executable(tester ${TST_DIR}/tester.cpp)
+
+# Link against GTest and pthread library
+target_link_libraries(tester GTest::gtest GTest::gtest_main pthread)
+
+# Add the test to CTest
+add_test(NAME tester COMMAND tester)
+
+# ---------------------------------------------------------------
+# END TESTING
+# ---------------------------------------------------------------
