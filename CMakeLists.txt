@@ -30,7 +30,6 @@ set(SOURCE ${SRC_DIR}/${NAME_SOURCE})
 # unset(SOURCE) or set(SOURCE) -> $(SOURCE) == ""
 get_filename_component(NAME_EXE ${SOURCE} NAME_WE)
 
-
 message("NAME_SOURCE:              " ${NAME_SOURCE})
 message("SRC_DIR:                  " ${SRC_DIR})
 message("CMAKE_CURRENT_SOURCE_DIR: " ${CMAKE_CURRENT_SOURCE_DIR})
@@ -124,15 +123,15 @@ target_include_directories(
 
 # ---------------------------------------------------------------
 
-set(LISTE STATUS FATAL_ERROR WARNING DEBUG)
-message("Liste: ${LISTE}")
+# set(LISTE STATUS FATAL_ERROR WARNING DEBUG)
+# message("Liste: ${LISTE}")
 
-set(LISTE2 "${NAME_SOURCE}; ${NAME_EXE}")
-message("Liste 2: " ${LISTE2})
+# set(LISTE2 "${NAME_SOURCE}; ${NAME_EXE}")
+# message("Liste 2: " ${LISTE2})
 
-set(LISTE ${LISTE2})
-list(LENGTH LISTE LAENGE)
-message("List 2 has ${LAENGE} elements")
+# set(LISTE ${LISTE2})
+# list(LENGTH LISTE LAENGE)
+# message("List 2 has ${LAENGE} elements")
 # LENGTH GET APPEND REMOVE_ITEM ...
 
 # ---------------------------------------------------------------
@@ -149,7 +148,7 @@ get_property(
 
 # set_property(...)
 
-message("${NAME_EXE} has source file: ${SOURCE_FILES}")
+# message("${NAME_EXE} has source file: ${SOURCE_FILES}")
 
 # ---------------------------------------------------------------
 
@@ -170,14 +169,16 @@ find_package(GTest REQUIRED)
 # Locate GTest package
 find_package(GTest REQUIRED)
 
+set(TESTER tester)
+
 # Add test executable
-add_executable(tester ${TST_DIR}/tester.cpp)
+add_executable(${TESTER} ${TST_DIR}/${TESTER}.cpp)
 
 # Link against GTest and pthread library
-target_link_libraries(tester GTest::gtest GTest::gtest_main pthread)
+target_link_libraries(${TESTER} GTest::gtest GTest::gtest_main pthread)
 
 # Add the test to CTest
-add_test(NAME tester COMMAND tester)
+add_test(NAME ${TESTER} COMMAND ${TESTER})
 
 # ---------------------------------------------------------------
 # END TESTING

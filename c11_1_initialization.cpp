@@ -7,7 +7,7 @@ class DemoInit {
     string str;
 
 public:
-    DemoInit() { cout << "DemoInit{...}" << endl; };
+    DemoInit() { cout << "DemoInit{...}" << endl; }
     DemoInit(string str) { cout << "DemoInit(string str)" << endl; }
     DemoInit(int& i) { cout << "DemoInit(int &i)" << endl; }
     DemoInit(int&& i) { cout << "DemoInit(int &&i)" << endl; }

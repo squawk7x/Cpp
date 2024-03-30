@@ -17,21 +17,22 @@
 #include <set>
 #include <string>
 #include <thread>
+#include <vector>
 
 using std::cout;
 using std::string;
+using std::vector;
 
 #ifdef _WIN32
 #define CLEAR_SCREEN "cls"
+#include <windows.h>
 #else
 #define CLEAR_SCREEN "clear"
 #endif
 
-// #define BASE 5
-const std::set<string> validValues = {"1", "2", "3", "4", "5", "6", "10", "12"};
-
 class Clock {
-private:
+    // private:
+public:
     int BASE;
     string pos;
     string pts;
@@ -41,17 +42,26 @@ private:
     string* pattern_L;
     string* pattern_S;
 
-    string makePattern(int digit, int length, string opaque, string translucent) {
+    string makePattern(int digit, int length, const string& opaque, const string& translucent) {
+
         string pattern = "";
 
-        for (int i = 0; i < digit; i++) {
-            pattern += opaque;
-        }
+        if (BASE == 5) {
+            for (int i = 0; i < digit; i++) {
+                pattern += opaque;
+            }
+            for (int i = digit; i < length; i++) {
+                pattern += translucent;
+            }
 
-        for (int i = digit; i < length; i++) {
-            pattern += translucent;
+        } else {
+            for (int i = digit; i < length; i++) {
+                pattern += translucent;
+            }
+            for (int i = 0; i < digit; i++) {
+                pattern += opaque;
+            }
         }
-
         return pattern;
     }
 
@@ -62,20 +72,20 @@ public:
         pol = (BASE == 5) ? "██ " : "█ ";
         ptl = (BASE == 5) ? "░░ " : "░ ";
 
-        pattern_H = new string[24 / BASE + 1];
-        pattern_L = new string[BASE];
-        pattern_S = new string[60 / BASE];
+        pattern_H = new string[24 / BASE + 1]; // pattern_H[1]: "██ ░░ ░░ ░░ "
+        pattern_L = new string[BASE];          // pattern_L[2]: "██ ██ ░░ ░░ "
+        pattern_S = new string[60 / BASE];     // pattern_S[5]: "█████░░░░░░"
 
         for (int k = 0; k < 24 / BASE + 1; k++) {
             pattern_H[k] = makePattern(k, 24 / BASE, pol, ptl);
         }
 
-        for (int k = 0; k < 60 / BASE; k++) {
-            pattern_S[k] = makePattern(k, 60 / BASE - 1, pos, pts);
-        }
-
         for (int k = 0; k < BASE; k++) {
             pattern_L[k] = makePattern(k, BASE - 1, pol, ptl);
+        }
+
+        for (int k = 0; k < 60 / BASE; k++) {
+            pattern_S[k] = makePattern(k, 60 / BASE - 1, pos, pts);
         }
     }
 
@@ -95,26 +105,34 @@ public:
             std::tm* localTime = std::localtime(&currentTime);
 
             cout << "\n";
+            // hours
             cout << pattern_H[localTime->tm_hour / BASE];
             BASE == 5 ? cout << "\n" : cout << "H ";
             cout << pattern_L[localTime->tm_hour % BASE];
+            // minutes
             BASE == 5 ? cout << "\n" : cout << ": ";
             cout << pattern_S[localTime->tm_min / BASE];
             BASE == 5 ? cout << "\n" : cout << "M ";
             cout << pattern_L[localTime->tm_min % BASE];
+            // seconds
             BASE == 5 ? cout << "\n" : cout << ": ";
             cout << pattern_S[localTime->tm_sec / BASE];
             BASE == 5 ? cout << "\n" : cout << "S ";
             cout << pattern_L[localTime->tm_sec % BASE];
             cout << "\n\n";
 
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+#ifdef _WIN32
+            Sleep(1000); // Sleep for 1000 milliseconds (1 second) on Windows
+#else
+            usleep(1000000);
+#endif
         }
     }
 };
 
 int main(int argc, char* argv[]) {
     int BASE = 5;
+    const std::set<string> validValues = {"1", "2", "3", "4", "5", "6", "10", "12"};
 
     if (argc > 1) {
         string arg = argv[1];
@@ -127,7 +145,7 @@ int main(int argc, char* argv[]) {
             cout << "  --version       Display program version information\n";
             return 0;
         } else if (arg == "--version") {
-            cout << "Program Version 1.0" << std::endl;
+            cout << "Program Version 1.1" << std::endl;
             return 0;
         } else if (arg == "-b" && validValues.count(argv[2]) > 0) {
             BASE = std::atoi(argv[2]);
