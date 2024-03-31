@@ -34,7 +34,6 @@ message("NAME_SOURCE:              " ${NAME_SOURCE})
 message("SRC_DIR:                  " ${SRC_DIR})
 message("CMAKE_CURRENT_SOURCE_DIR: " ${CMAKE_CURRENT_SOURCE_DIR})
 message("INCLUDE_DIR:              " ${INCLUDE_DIR})
-message("TST_DIR:                  " ${TST_DIR})
 message("BIN_DIR:                  " ${BIN_DIR})
 message("NAME_EXE:                 " ${NAME_EXE})
 
@@ -44,42 +43,42 @@ add_executable(${NAME_EXE} ${SOURCE})
 
 # ---------------------------------------------------------------
 
-set(BUILD_EXE FALSE
-    CACHE BOOL
-    "create 2nd executable file"
-    )
+# set(BUILD_EXE FALSE
+#     CACHE BOOL
+#     "create 2nd executable file"
+#     )
 
-if(${BUILD_EXE})
-    add_executable(
-        ${NAME_EXE}_2 ${SOURCE}
-    )
-endif()
+# if(${BUILD_EXE})
+#     add_executable(
+#         ${NAME_EXE}_2 ${SOURCE}
+#     )
+# endif()
 
-set(CACHE_FILEPATH ""
-    CACHE FILEPATH
-    "example Cache Variable Filepath"
-    )
+# set(CACHE_FILEPATH ""
+#     CACHE FILEPATH
+#     "example Cache Variable Filepath"
+#     )
 
-set(CACHE_PATH ""
-    CACHE PATH
-    "example Cache Variable Path"
-    )
+# set(CACHE_PATH ""
+#     CACHE PATH
+#     "example Cache Variable Path"
+#     )
 
-set(CACHE_INTERNAL ""
-    CACHE FILEPATH
-    "example Cache Variable Internal"
-    FORCE
-    )
+# set(CACHE_INTERNAL ""
+#     CACHE FILEPATH
+#     "example Cache Variable Internal"
+#     FORCE
+#     )
 
-set(CACHE_STRING ""
-    CACHE STRING
-    "example Cache Variable String"
-    )
+# set(CACHE_STRING ""
+#     CACHE STRING
+#     "example Cache Variable String"
+#     )
 
-set_property(CACHE CACHE_STRING
-   PROPERTY STRINGS
-   "Option1" "Option2" "Option3"
-   )
+# set_property(CACHE CACHE_STRING
+#    PROPERTY STRINGS
+#    "Option1" "Option2" "Option3"
+#    )
 
 # ---------------------------------------------------------------
 
@@ -140,11 +139,11 @@ target_include_directories(
 # Objekte: Targets, Ordner, Source Dateien, ...
 # Target: ausführbare Datei oder Bibliothek
 
-get_property(
-    SOURCE_FILES
-    TARGET ${NAME_EXE}
-    PROPERTY SOURCES
-)
+# get_property(
+#     SOURCE_FILES
+#     TARGET ${NAME_EXE}
+#     PROPERTY SOURCES
+# )
 
 # set_property(...)
 
@@ -173,6 +172,9 @@ set(TESTER tester)
 
 # Add test executable
 add_executable(${TESTER} ${TST_DIR}/${TESTER}.cpp)
+message("TST_DIR:                  " ${TST_DIR})
+message("TESTER:                   " ${TESTER})
+message("TESTER.cpp:               " ${TESTER}.cpp)
 
 # Link against GTest and pthread library
 target_link_libraries(${TESTER} GTest::gtest GTest::gtest_main pthread)

@@ -121,11 +121,7 @@ public:
             cout << pattern_L[localTime->tm_sec % BASE];
             cout << "\n\n";
 
-#ifdef _WIN32
-            Sleep(1000); // Sleep for 1000 milliseconds (1 second) on Windows
-#else
-            usleep(1000000);
-#endif
+            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
     }
 };
