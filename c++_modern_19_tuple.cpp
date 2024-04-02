@@ -31,6 +31,7 @@ std:
     cout << get<1>(t) << endl;
     cout << get<2>(t) << endl;
 
+    // get returns a refenence to the elements of the tuple
     get<1>(t) = "Pound foolish";
     cout << get<1>(t) << endl;
 
@@ -73,7 +74,7 @@ std:
     string y;
     char z;
     std::make_tuple(ref(x), ref(y), ref(z)) = t2; // assign t2 to x, y, z
-    std::tie(x, y, z) = t2;                       // same thing
+    std::tie(x, y, z) = t2;                       // doing the same thing
     std::tie(x, std::ignore, z) = t2;             // get<1>(t2) is ignored
 
     // Other features

@@ -113,10 +113,10 @@ Concurrent Programming
 3. data race
     std::lock_guard<mutex> locker(m_mutex);
 
-4. deadlock (2 or more mutexes) 
-	std::lock(m_mutex, m_mutex_2);
-	std::lock_guard<mutex> locker(m_mutex, std::adopt_lock);
-	std::lock_guard<mutex> locker2(m_mutex_2, std::adopt_lock);
+4. deadlock (2 or more mutexes)
+        std::lock(m_mutex, m_mutex_2);
+        std::lock_guard<mutex> locker(m_mutex, std::adopt_lock);
+        std::lock_guard<mutex> locker2(m_mutex_2, std::adopt_lock);
 
 5. unique_lock
     std::unique_lock<mutex> ulocker(mu, std::defer_lock)
@@ -128,9 +128,9 @@ Concurrent Programming
     std::once_flag m_flag;
     std::call_once(m_flag, [&](){ f.open("log.txt"); });
 
-6. condition_variable cond; 
+6. condition_variable cond;
     // needs std::unique_lock<mutex> locker(mu);
-    t1: cond.notify_one(); // cond.notify_all(); 
+    t1: cond.notify_one(); // cond.notify_all();
     t2: cond.wait(locker, [](){ return predicate == true; });
 
 7. future, promise: exchange values between threads
@@ -139,7 +139,7 @@ Concurrent Programming
     std::future<int> f = p.get_future();
     p.set_value(4);
 
-    std::future<int> fu = 
+    std::future<int> fu =
     std::async(std::launch::async, func, std::ref(f)));
     int x = fu.get();
 
@@ -157,7 +157,7 @@ Concurrent Programming
     t(4);   // or
     std::package_task<int()> t(std::bind(factorial, 4));
     t();
-    
+
     int x = t.get_future().get();
 
 
@@ -169,3 +169,5 @@ Concurrent Programming
  */
 
 /********************************************************************/
+
+// variable capture: auto func = [&](int x) { return f(x, y); };

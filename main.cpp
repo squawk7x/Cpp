@@ -1,9 +1,1 @@
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-int main() {
-    cout << "Hello world!" << endl;
-    return 0;
-}
+/home/andreas/C++/Tutorials/advanced/src/c++_modern_20_when_to_use_tuple.cpp

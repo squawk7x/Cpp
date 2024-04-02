@@ -12,7 +12,10 @@ using namespace std;
 
 // tuple vs struct
 
-tuple<string, int> getNameAge() { return make_tuple("Bob", 34); }
+tuple<string, int> getNameAge() {
+    // ...
+    return make_tuple("Bob", 34);
+}
 
 int main() {
     struct Person {
@@ -39,9 +42,10 @@ int main() {
     // Multi index map
     map<tuple<int, char, float>, string> m;
     m[make_tuple(2, 'a', 2.3)] = "Faith will move mountains";
-    // unordered_map<tuple<int, char, float>, string> hashtable;
+    //  std::unordered_map<std::tuple<int, char, float>, std::string> hashtable;
 
     // Little trick
     int a, b, c;
     tie(b, c, a) = make_tuple(a, b, c);
+    // a, b, c shifted 1 position to the left
 }

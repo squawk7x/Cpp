@@ -63,7 +63,7 @@ template <typename T> void relay(T&& arg) { // Universal Reference, works for lv
 // remove_reference<int&>::type i; // <=> int i
 
 /*
-            MOVE <----------------------> FORWARD
+            MOVE          <------>       FORWARD
     std::move<T>(arg);              std::forward<T>(arg);
     Turns arg into rvalue type      Turns rvalue into type of T&&
 */

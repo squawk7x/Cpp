@@ -46,25 +46,32 @@ public:
 
 void foo_wrong() {
     Dog* dog_w = new Dog("dangerous dog");
-    // delete dog_w;
+    delete dog_w;
     dog_w->bark(); // dog_w is a dangling pointer - undefined behavior
 } // Memory Leak
 
 void foo() {
     // CORRECT way creating shared pointer, but not the BEST way (see below PREFERED ...):
-    shared_ptr<Dog> p(new Dog("Gunner")); // count == 1
+
+    shared_ptr<Dog> p(new Dog("Gunner"));
+    cout << "counts: " << p.use_count() << "\n"; // count == 1
+
     // 1. Gunner is created
     // 2. p is created with Dog Gunner
+
     // not exception safe:
     // What if Dog is created successfully but shared_ptr failed to be created?
 
     {
-        shared_ptr<Dog> p2 = p; // count == 2
+        shared_ptr<Dog> p2 = p;
+        cout << "counts: " << p2.use_count() << "\n"; // count == 2
         p2->bark();
-        cout << "\ncounts: " << p2.use_count() << "\n";
-    } // count == 1
+    }
+
+    cout << "counts: " << p.use_count() << "\n"; // count == 1
     p->bark();
-} // count == 0
+}
+// count == 0
 
 int main() {
     // foo_wrong();
@@ -78,11 +85,14 @@ int main() {
     // Raw pointer should not be used again.
 
     // PREFERED way to create shared pointer:
+
     shared_ptr<Dog> p = make_shared<Dog>("Tank"); // faster and safer
     p->bark();
-    (*p).bark();
+    // (*p).bark();
     auto p2 = make_shared<Dog>("Gunner");
-    p2->bark(); // == (*p2).bark();
+    cout << "counts: " << p2.use_count() << "\n"; // count == 1
+    p2->bark();
+    // (*p2).bark();
 
     // CASTING with shared pointer:
     // static_pointer_cast
